@@ -1,0 +1,222 @@
+EXER FILTER PRODUCT
+SELECT CONCAT (SUBSTR(ProductId,2,LENGTH(ProductId)),'-',PName) AS "Product" FROM Product WHERE UPPER(Color) = 'WHITE' AND LENGTH(PName) > 9;
+//OR\\
+SELECT CONCAT (SUBSTR(ProductId,2),'-',PName) AS "Product" FROM Product WHERE UPPER(Color) = 'WHITE' AND LENGTH(PName) > 9;
+
+EXER CHAR
+SELECT CONCAT(PName,'-',SUBSTR(Review,1,1)) AS "Product_Review" FROM Product WHERE (Pcategory LIKE '%i%');
+
+EXER LAPSED MON
+SELECT InvoiceId, ProductId, ROUND (MONTHS_BETWEEN(SYSDATE, PurchaseDate)) AS "NOOFMONTHS" FROM Invoice WHERE ProductId = 'P105' ; 
+
+EXER DATE FUNCTION
+SELECT InvoiceId AS "InvoiceId", PurchaseDate AS "PurchaseDate", ADD_MONTHS(PurchaseDate,2) AS "ExchangeValidityDate" FROM Invoice;
+
+EXER NVL
+SELECT CustId AS "CustomerId", CustName AS "CustomerName", NVL (Email,'Not Provided') AS "CustEmail", NVL (Age,0) AS "CustAge" FROM Customer;
+
+
+
+
+ASSMNT 1
+SELECT JournalId AS "JournalId", FLOOR(MonthlyCharges-70.25) AS "Rounded_Integer"FROM Journal WHERE LENGTH(Genre) > 8;
+
+2
+SELECT COUNT(ContactNo) AS "NUMBEROFPUBLISHERS" FROM Publisher WHERE LENGTH(PublisherName) > 5;
+
+3
+SELECT JournalId AS "JournalId", Genre AS "Genre", MonthlyCharges AS "Old_Price", ROUND(MonthlyCharges*0.625,2) AS "New_Price" FROM Journal WHERE Genre = 'Academics';
+
+4
+SELECT CustomerId, CustomerName FROM Customer WHERE LOWER (CustomerType) = 'regular' AND (State LIKE '%o%');
+
+5
+SELECT JournalId, JournalName FROM Journal WHERE SUBSTR(PublisherId,LENGTH(JournalId))>2 AND (JournalNAME LIKE '%o%t%');
+
+6
+SELECT MAX(DiscountPercent) AS "MaxDiscount", MIN(DiscountPercent) AS "MinDiscount", AVG(DiscountPercent) AS "AvgDiscount" FROM Subscription;
+
+7
+SELECT CONCAT (CustomerId,'/',SUBSTR(CustomerType,1,4)) AS "Customer-ID" FROM Customer;
+
+8
+SELECT  COUNT (DISTINCT StartDate) AS "Total_Dates" FROM Subscription;
+
+9
+SELECT MIN(DiscountPercent) AS "Min Discount Percent", Count(*) AS "No. Of Customers" FROM Subscription WHERE TO_CHAR(StartDate,'MM')=11;
+
+10
+SELECT COUNT(DISTINCT CustomerId) AS "NoOfUniqueCustomer" FROM Subscription WHERE TO_CHAR(StartDate, 'MONTH') <> 'June';
+
+11
+SELECT SUM(MonthlyCharges) AS "Monthly_Charges" FROM Journal WHERE SUBSTR(PublisherId,LENGTH(PublisherId))>4;
+
+12
+SELECT SubscriptionId, CustomerId FROM Subscription WHERE MONTHS_BETWEEN(DATE '2024-06-30',ADD_MONTHS(StartDate,DurationInMonths-1))>=0 AND MONTHS_BETWEEN(DATE '2024-06-30',ADD_MONTHS(StartDate,DurationInMonths-1))<=1;
+
+13
+SELECT JournalName, MonthlyCharges,
+CASE
+WHEN MonthlyCharges < 75 THEN 'LowCost'
+WHEN MonthlyCharges >= 75  AND MonthlyCharges < 100 THEN 'AverageCost'
+ELSE 'HighCost' 
+END JournalCategory
+FROM Journal;
+
+14
+SELECT JournalName,Genre,MonthlyCharges,
+CASE
+WHEN Genre = 'Trade' THEN MonthlyCharges + MonthlyCharges*0.1
+WHEN Genre = 'Scientific' THEN MonthlyCharges + MonthlyCharges*0.15
+WHEN Genre = 'Academics' THEN MonthlyCharges + MonthlyCharges*0.05
+WHEN Genre = 'Politics' THEN MonthlyCharges + MonthlyCharges*0.25
+ELSE MonthlyCharges + MonthlyCharges*0.2
+END NewMonthlyCharge
+FROM Journal ORDER BY Genre;
+
+
+
+
+
+
+
+-- 1: Exercise_Functions_CeilingFloor
+SELECT DISTINCT
+    VendorId as "VendorId",
+    Round(ceil(Price)) as "Higher_Round",
+    Round(floor(Price)) as "Lower_Round"
+from
+    VendorOffering;
+
+-- 1: Exercise_Functions_Absolute
+SELECT
+    Abs(Price - 500) "After Discount"
+FROM
+    VendorOffering;
+
+-- 1: Exercise_Functions_FilterProducts
+SELECT
+    CONCAT (SUBSTR (ProductId, 2, 4), '-', Pname) AS "Product"
+FROM
+    Product
+WHERE
+    UPPER(color) = 'WHITE'
+    AND LENGTH (Pname) > 9;
+
+-- 1: Exercise_Functions_Character
+SELECT
+    CONCAT (PName, '-', SUBSTR (Review, 1, 1)) AS "Product_Review"
+FROM
+    Product
+WHERE
+    PCategory LIKE '%i%';
+
+-- 1: Exercise_Functions_Aggregate
+SELECT
+    MIN(Rating) AS "MIN_RATING",
+    MAX(Rating) AS "MAX_RATING",
+    AVG(Rating) AS "AVG_RATING",
+    COUNT(Rating) "NUMBEROFVENDORS"
+FROM
+    Vendor;
+
+-- 1: Exercise_Functions_AggregateFilteredRows
+SELECT
+    MAX(age) AS "MaxAge",
+    MIN(age) AS "MinAge",
+    AVG(age) AS "AvgAge",
+    COUNT(age) AS "NumberOfCustomers"
+FROM
+    Customer
+WHERE
+    LENGTH (CustName) > 3;
+
+-- 1: Exercise_Functions_TotalPrice
+SELECT
+    SUM(CEIL(Price)) AS "Total_Price"
+FROM
+    VendorOffering;
+
+-- 1: Exercise_Functions_MonthsLapsed
+SELECT
+    InvoiceId AS "INVOICEID",
+    ProductId AS "PRODUCTID",
+    ROUND(MONTHS_BETWEEN (SYSDATE, PurchaseDate)) AS "NOOFMONTHS"
+FROM
+    Invoice
+WHERE
+    PRODUCTID = 'P105';
+
+-- 1: Exercise_Functions_Date
+SELECT
+    InvoiceId AS "InvoiceId",
+    PurchaseDate AS "PurchaseDate",
+    ADD_MONTHS (PurchaseDate, 2) AS "ExchangeValidityDate"
+FROM
+    Invoice;
+
+-- 1: Exercise_Function_NVL
+SELECT
+    CustId as "CustomerId",
+    CustName as "CustomerName",
+    NVL (Email, 'Not Provided') as "CustEmail",
+    NVL (Age, 0) as "CustAge"
+FROM
+    Customer;
+
+-- Exercise_Functions_StringInCharacterColumn
+SELECT
+    VendorId AS "VENDORID",
+    NVL (TO_CHAR (Rating), 'Not Provided') AS "RATING"
+FROM
+    Vendor;
+
+-- 1: Assignment_Functions_Numeric
+SELECT
+    JournalId AS "JournalId",
+    Round(FLOOR(MonthlyCHarges - 70.25)) AS "Rounded_Integer"
+FROM
+    Journal
+WHERE
+    LENGTH (Genre) > 8;
+
+-- 1: Assignment_Functions_CountSelectivePublishers
+SELECT
+    COUNT(DISTINCT ContactNo) AS "NUMBEROFPUBLISHERS"
+FROM
+    Publisher
+WHERE
+    LENGTH (PublisherName) > 5;
+
+-- 1: Assignment_Functions_RoundOff2DecimalDigits
+SELECT
+    JournalId AS "JournalId",
+    Genre AS "Genre",
+    MonthlyCharges AS "Old_Price",
+    Round(MonthlyCharges - MonthlyCharges * 0.375, 2) "New_Price"
+FROM
+    Journal
+WHERE
+    Genre = 'Academics';
+
+-- CREATE TABLE Std(
+--     StdId INTEGER PRIMARY KEY,
+--     StdName VARCHAR(10),
+--     Marks numeric(4,2)
+-- )
+-- INSERT INTO Std(
+-- (101,'John',89),
+-- (102,'Priya',67),
+-- (103,'Seema',54),
+-- (104,'Kevin',35),
+-- (105,'Saurav',92),
+-- (106,'Harsh',95),
+-- );
+-- INSERT INTO Student1 (stdid, stdname, marks) VALUES(
+--     (101, 'John', 89),
+--     (102, 'Priya', 67),
+--     (103, 'Seema', 54),
+--     (104, 'Kevin', 35),
+--     (105, 'Saurav', 92),
+--     (106, 'Harsh', 95)
+-- );

@@ -1,0 +1,274 @@
+EXER1
+SELECT CustLocation AS "LOCATION", MIN(Age) AS "MINIMUMAGE" FROM Customer GROUP BY CustLocation HAVING MIN(Age)>=30;
+
+EXER2
+SELECT CustId, VendorId, ProductId, COUNT(*) AS "NOOFPURCHASES" FROM Invoice GROUP BY ProductId,CustId,VendorId HAVING COUNT(ProductId)>1;
+
+EXER TOTAL QUAN
+SELECT ProductId, SUM(QuantityPurchased) AS "TOTAL_QUANTITY" FROM Invoice WHERE QuantityPurchased>1 GROUP BY ProductId HAVING COUNT(ProductId)>1;
+
+ASSMENT 1
+SELECT Review, COUNT(*) AS "NUMBER_OF_PRODUCTS" FROM Product GROUP BY Review;
+
+2
+SELECT TO_CHAR(StartDate, 'MONTH') AS "MONTH", COUNT(SubscriptionId) AS "SUBSCRIBERCOUNT" FROM Subscription GROUP BY TO_CHAR(StartDate,'MONTH');
+
+3
+SELECT CustomerId, DiscountPercent, AVG(DurationInMonths) AS "AVG_DURATION" FROM Subscription WHERE DurationInMonths > 3 GROUP BY CustomerId,DiscountPercent HAVING COUNT(CustomerId)>1;
+
+4
+SELECT PCategory FROM Product GROUP BY PCategory HAVING COUNT(ProductId)>1;
+
+5
+SELECT Genre, AVG(MonthlyCharges) AS "AVG_CHARGES" FROM Journal GROUP BY Genre HAVING AVG(MonthlyCharges)>100;
+
+6
+SELECT TO_CHAR(StartDate, 'MON') AS "MONTH", COUNT(SubscriptionId) AS "TOTAL_SUBSCRIPTIONS" FROM Subscription WHERE DurationInMonths>=6 GROUP BY TO_CHAR(StartDate, 'MON') HAVING COUNT(SubscriptionId)>1;
+
+7
+SELECT JournalId, AVG(DiscountPercent) AS "AVG_DIS" FROM Subscription WHERE TO_CHAR(StartDate)<'2023-11-01' GROUP BY JournalId;
+
+8
+SELECT Genre, AVG(MonthlyCharges) AS "Average Charge" FROM Journal WHERE Genre <> 'Trade' GROUP BY Genre HAVING AVG(MonthlyCharges)<100;
+
+9
+SELECT JournalId, COUNT(SubscriptionId) AS "TOTALSUBSCRIPTIONS" FROM Subscription GROUP BY JournalId;
+
+10
+SELECT PublisherId, AVG(MonthlyCharges) AS "MONTHLY_CHARGES" FROM Journal WHERE Genre = 'Trade' OR Genre = 'Politics' GROUP BY PublisherId HAVING AVG(MonthlyCharges)<110;
+
+11
+SELECT StartDate, AVG(DiscountPercent) AS "AVG_DISCOUNT" FROM SUBSCRIPTION WHERE DurationInMonths >=6 GROUP BY StartDate  HAVING AVG(DiscountPercent)>10;
+
+
+
+
+
+
+-- 1: Exercise_GroupBy_LocationWiseMinAge
+SELECT
+    CustLocation AS "LOCATION",
+    MIN(Age) AS "MINIMUMAGE"
+FROM
+    Customer
+GROUP BY
+    CustLocation;
+
+-- 1: Exercise_GroupBy_RecentPurchaseDate
+SELECT
+    CustId AS "CUSTID",
+    MAX(PurchaseDate) AS "RECENTPURCHASEDATE"
+FROM
+    Invoice
+GROUP BY
+    CustId;
+
+-- 1: Exercise_GroupBy_WhiteProducts
+SELECT
+    Brand AS "BRAND",
+    COUNT(COLOR) AS "NOOFWHITEPRODUCTS"
+FROM
+    Product
+WHERE
+    Color = 'White'
+GROUP BY
+    Brand;
+
+-- 1: Exercise_GroupBy_RecentPurchaseDateProductWise
+SELECT
+    CustId AS "CUSTID",
+    ProductId AS "PRODUCTID",
+    MAX(PurchaseDate) AS "RECENTPURCHASEDATE"
+FROM
+    Invoice
+GROUP BY
+    CustId,
+    ProductId;
+
+-- 1: Exercise_GroupBy_LocationWiseMinAgeOfEachGender
+SELECT
+    CustLocation AS "LOCATION",
+    Gender AS "GENDER",
+    MIN(Age) AS "MINIMUMAGE"
+FROM
+    Customer
+GROUP BY
+    CustLocation,
+    Gender
+ORDER BY
+    CustLocation,
+    Gender;
+
+-- 1: Exercise_GroupBy_MinAgeAtleast30
+SELECT
+    CustLocation AS "LOCATION",
+    MIN(Age) AS "MINIMUMAGE"
+FROM
+    Customer
+GROUP BY
+    CustLocation
+HAVING
+    MIN(Age) > 30
+    or MIN(Age) = 30;
+
+-- 1: Exercise_GroupBy_LoyalCustomers
+SELECT
+    CustId AS "CUSTID",
+    VendorId AS "VENDORID",
+    ProductId AS "PRODUCTID",
+    COUNT(QuantityPurchased) AS "NOOFPURCHASES"
+FROM
+    Invoice
+GROUP BY
+    CustId,
+    VendorId,
+    ProductId
+HAVING
+    COUNT(ProductId) > 1;
+
+--  Exercise_GroupBy_Month
+SELECT
+    TO_CHAR (PurchaseDate, 'MON') AS "MONTH",
+    COUNT(ProductId) AS "NUMBER_OF_PURCHASES"
+FROM
+    Invoice
+GROUP BY
+    TO_CHAR (PurchaseDate, 'MON')
+ORDER BY
+    2 DESC;
+
+-- 1: Exercise_GroupBy_TotalQuantity
+SELECT
+    ProductId AS "PRODUCTID",
+    SUM(QuantityPurchased) AS "TOTAL_QUANTITY"
+FROM
+    Invoice
+WHERE
+    QuantityPurchased > 1
+GROUP BY
+    ProductId
+HAVING
+    COUNT(ProductId) > 1;
+
+-- 1: Assignment_GroupBy_CountProduct
+SELECT
+    Review AS "REVIEW",
+    COUNT(PName) AS "NUMBER_OF_PRODUCTS"
+FROM
+    Product
+GROUP BY
+    Review;
+
+-- 1: Assignment_GroupBy_MonthWiseCount
+SELECT
+    TO_CHAR (StartDate, 'Month') AS "MONTH",
+    COUNT(SubscriptionId) AS "SUBSCRIBERCOUNT"
+FROM
+    Subscription
+GROUP BY
+    TO_CHAR (StartDate, 'Month');
+
+-- 1: Assignment_GroupBy_TwoColumns
+SELECT
+    CustomerId AS "CUSTOMERID",
+    DiscountPercent AS "DISCOUNTPERCENT",
+    AVG(DurationInMonths) AS "AVG_DURATION"
+FROM
+    Subscription
+WHERE
+    DurationInMonths > 3
+GROUP BY
+    CustomerId,
+    DiscountPercent
+HAVING
+    COUNT(CustomerId) > 1;
+
+-- 1: Assignment_GroupBy_Having
+SELECT
+    Pcategory AS "PCATEGORY"
+FROM
+    Product
+GROUP BY
+    Pcategory
+HAVING
+    COUNT(PName) > 1;
+
+-- 1: Assignment_GroupBy_GenreWiseAvgMonthlyCharges
+SELECT
+    Genre AS "GENRE",
+    AVG(MonthlyCharges) AS "AVG_CHARGES"
+FROM
+    Journal
+GROUP BY
+    Genre
+HAVING
+    AVG(MonthlyCharges) > 100;
+
+-- 1: Assignment_GroupBy_FilterMonthWiseCount
+SELECT
+    TO_CHAR (StartDate, 'MON') AS "MONTH",
+    COUNT(SubscriptionId) AS "TOTAL_SUBSCRIPTIONS"
+FROM
+    Subscription
+WHERE
+    DurationInMonths > 6
+GROUP BY
+    TO_CHAR (StartDate, 'MON')
+HAVING
+    COUNT(SubscriptionId) > 1
+    -- 1: Assignment_GroupBy_AvgMonthlyCharges
+SELECT
+    JournalId AS "JOURNALID",
+    AVG(DiscountPercent) AS "AVG_DIS"
+FROM
+    Subscription
+WHERE
+    StartDate < '2023-11-01'
+GROUP BY
+    JournalId;
+
+-- 1: Assignment_GroupBy_AvgMonthlyCharges
+SELECT
+    Genre AS "GENRE",
+    AVG(MonthlyCharges) AS "Average Charge"
+FROM
+    Journal
+GROUP BY
+    Genre
+HAVING
+    AVG(MonthlyCharges) < 100
+    and Genre <> 'Trade';
+
+-- 1: Assignment_GroupBy_JournalWiseSubscription
+SELECT
+    JournalId AS "JOURNALID",
+    COUNT(SubscriptionId) AS "TOTALSUBSCRIPTIONS"
+FROM
+    Subscription
+GROUP BY
+    JournalId
+    -- 1: Assignment_GroupBy_FilterAvgCharges
+SELECT
+    PublisherId AS "PUBLISHERID",
+    AVG(MONTHLYCHARGES) AS "MONTHLY_CHARGES"
+FROM
+    Journal
+WHERE
+    Genre in ('Trade', 'Politics')
+GROUP BY
+    PublisherId
+HAVING
+    AVG(MONTHLYCHARGES) < 110;
+
+-- 1: Assignment_GroupBy_StartDate
+SELECT
+    StartDate AS "STARTDATE",
+    AVG(DiscountPercent) AS "AVG_DISCOUNT"
+FROM
+    Subscription
+WHERE
+    DurationInMonths >= 6
+GROUP BY
+    StartDate
+HAVING
+    AVG(DiscountPercent) > 10;

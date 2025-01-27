@@ -1,0 +1,366 @@
+-- 1: Exercise_Join_Condition
+SELECT
+    C.CustName,
+    C.Email,
+    I.InvoiceId
+FROM
+    Customer C
+    JOIN Invoice I ON C.CustId = I.CustId
+WHERE
+    I.Discount > 12;
+
+-- 1: Exercise_Join_SelectiveCustomers
+SELECT
+    ProductId AS "Product Id",
+    PName AS "Product Name",
+    PCategory AS "Category"
+FROM
+    Product P
+    INNER JOIN Invoice I ON P.ProductId = I.ProductId
+    AND I.CustId IN ('C101', 'C108');
+
+-- 1: Exercise_InnerJoin_SelectiveAgeGroup
+SELECT
+    C.CustId AS "Customer ID",
+    C.CustName AS "Customer Name",
+    I.ProductId AS "Product ID"
+FROM
+    Customer C
+    INNER JOIN Invoice I ON C.CustId = I.CustId
+    AND C.Age > 35;
+
+-- 1: Exercise_Join_ConditionOnMonth
+SELECT DISTINCT
+    I.CustId AS "CUSTID",
+    C.CustName AS "CUSTNAME"
+FROM
+    Customer C
+    INNER JOIN Invoice I ON C.CustId = I.CustId
+    AND TO_CHAR (PurchaseDate, 'Month') = 'August';
+
+-- 1: Exercise_Join_CategoryWiseCount
+SELECT
+    PCategory,
+    COUNT(I.ProductId) AS "NUMBER_OF_PRODUCTS"
+FROM
+    Product P
+    INNER JOIN Invoice I ON P.ProductId = I.ProductId
+GROUP BY
+    P.PCategory;
+
+-- 1: Exercise_Join_SelectiveColorProducts
+SELECT
+    V.VendorId,
+    P.PName,
+    P.Color,
+    ROUND(FLOOR(V.Price)) AS "BASEPRICE"
+FROM
+    VendorOffering V
+    INNER JOIN Product P ON V.ProductId = P.ProductId
+    AND P.Color IN ('White', 'Blue');
+
+-- 1: Exercise_Join_CategoryWiseSelectiveCount
+SELECT
+    P.PCategory AS "Category",
+    COUNT(I.QuantityPurchased) AS "Total Products"
+FROM
+    Product P
+    INNER JOIN Invoice I ON P.ProductId = I.ProductId
+    AND P.Review = 'Good'
+    AND I.QuantityPurchased > 8
+GROUP BY
+    PCategory;
+
+-- 1: Exercise_Join_SelectiveVendors
+SELECT
+    V.VendorName,
+    VO.ProductId,
+    VO.Price
+FROM
+    Vendor V
+    INNER JOIN VendorOffering VO ON V.VendorId = VO.VendorId
+    AND Price > 1000
+    AND LENGTH (v.VendorName) > 15;
+
+-- 1: Exercise_Join_DiscountCalculation
+SELECT DISTINCT
+    I.CustId AS "CUSTID",
+    I.InvoiceId AS "INVOICEID",
+    ROUND(V.Price * I.QuantityPurchased) AS "MRP",
+    ROUND(
+        V.Price * I.QuantityPurchased * (1 - (I.Discount / 100))
+    ) AS "FINAL_PRICE"
+FROM
+    Invoice I
+    INNER JOIN VendorOffering V ON I.Vendorid = V.Vendorid
+    AND I.ProductId = V.ProductId
+    AND QuantityPurchased > 2;
+
+-- 1: Exercise_Join_GB_OB
+SELECT
+    C.CustLocation AS "LOCATION",
+    P.Brand AS "BRAND",
+    SUM(I.QuantityPurchased) "PRODUCTSSOLD"
+FROM
+    Invoice I
+    INNER JOIN Product P ON I.ProductId = P.ProductId
+    INNER JOIN Customer C ON C.CustId = I.CustId
+GROUP BY
+    C.CustLocation,
+    P.Brand
+ORDER BY
+    C.CustLocation,
+    P.Brand;
+
+-- 1: Exercise_Join_CoLocatedCustomers
+SELECT DISTINCT
+    C.CustId,
+    C.CustName,
+    C1.CustLocation
+FROM
+    Customer C
+    JOIN Customer C1 ON C.CustLocation = C1.CustLocation
+    AND C.CustId <> C1.CustId;
+
+-- 1: Exercise_Join_FilterProducts
+SELECT DISTINCT
+    PName,
+    PCategory,
+    Review
+FROM
+    Product P
+    INNER JOIN Product P1 On P.PCategory = P1.PCategory
+    AND P.Review = P1.Review
+    AND P.ProductId <> P1.ProductId
+    AND Review <> 'Bad';
+
+-- 1: Exercise_Join_LoyalCustomers
+SELECT DISTINCT
+    CustId,
+    VendorId,
+    ProductId
+FROM
+    Invoice I
+    JOIN Invoice I1 ON I.CustId = I1.CustId
+    AND I.VendorId = I1.VendorId
+    AND I.ProductId = I1.ProductId
+WHERE
+    I.InvoiceId <> I1.InvoiceId;
+
+-- 1: Exercise_Join_UniqueCustomerProducts
+SELECT DISTINCT
+    CustName,
+    ProductId "PRODUCTID"
+FROM
+    Customer C
+    FULL JOIN Invoice I ON C.CustId = I.CustId;
+
+-- 1: Exercise_Join_AllVendors
+SELECT
+    Vendorname,
+    NVL (PName, 'NULL') AS "PNAME"
+FROM
+    Vendor V
+    LEFT JOIN VendorOffering VO ON VO.VendorId = V.VendorId
+    LEFT JOIN Product P ON P.ProductId = VO.ProductId;
+
+--1: Exercise_OuterJoin_FilterMain_W
+SELECT DISTINCT
+    ProductId,
+    NVL (InvoiceId, 'NOT YET SOLD') "INVOICEID"
+FROM
+    Product P
+    LEFT JOIN Invoice I ON P.ProductId = I.ProductId
+WHERE
+    P.PCategory = 'Clothing';
+
+-- 1: Exercise_OuterJoin_FilterMain_O
+SELECT DISTINCT
+    ProductId,
+    NVL (InvoiceId, 'NOT YET SOLD') "INVOICEID"
+FROM
+    Product P
+    LEFT JOIN Invoice I ON P.ProductId = I.ProductId
+    AND P.PCategory = 'Clothing';
+
+-- 1: Exercise_OuterJoin_FilterLookup
+SELECT DISTINCT
+    ProductId,
+    NVL (InvoiceId, 'Not sold since Sept,23') "INVOICEID"
+FROM
+    Product P
+    LEFT JOIN Invoice I ON P.ProductId = I.ProductId
+    AND TO_CHAR (I.PurchaseDate, 'YYYY-MM') > '2023-08';
+
+-- 1: Assignment_Join_AndOr
+SELECT DISTINCT
+    CustomerId,
+    CustomerName
+FROM
+    Customer C
+    JOIN Subscription S ON C.CustomerId = S.CustomerId
+    AND CustomerType in ('Regular', 'Prime');
+
+-- 1: Assignment_Join_Where
+SELECT
+    JOURNALID,
+    PUBLISHERNAME
+FROM
+    Publisher P
+    JOIN Journal J ON P.PublisherId = J.PublisherId
+    AND P.ContactNo IS NOT NULL;
+
+-- 1: Assignment_Join_CustomerWiseSubscriptionCount
+SELECT
+    CustomerId,
+    CustomerName,
+    COUNT(S.CustomerId) "SUBSCRIPTIONCOUNT"
+FROM
+    Customer C
+    JOIN Subscription S ON C.CustomerId = S.CustomerId
+GROUP BY
+    CustomerId,
+    CustomerName
+HAVING
+    COUNT(S.JournalId) > 1;
+
+-- 1: Assignment_Join_FilterStartdate
+SELECT
+    C.CustomerName,
+    J.JournalName,
+    S.StartDate,
+    S.DurationInMonths
+FROM
+    Customer C
+    JOIN Subscription S ON C.CustomerId = S.CustomerId
+    JOIN Journal J ON S.JournalId = J.JournalId
+WHERE
+    S.StartDate <= ('2023-11-01');
+
+-- 1: Assignment_Join_SelectiveJournals
+SELECT
+    JournalName,
+    Genre
+FROM
+    Journal J
+    JOIN Subscription S ON J.JournalId = S.JournalId
+    AND S.DiscountPercent > 10;
+
+-- 1: Assignment_Join_SameGenre_DifferentPublisher
+SELECT DISTINCT
+    P.PublisherName,
+    J.Genre,
+    P.Rating
+FROM
+    Publisher P
+    JOIN Journal J ON P.PublisherId = J.PublisherId
+    JOIN Journal J1 ON J.Genre = J1.Genre
+    AND J.PublisherId <> J1.PublisherId;
+
+-- 1: Assignment_Join_CountPublisherWiseUniqueSubscriptions
+SELECT
+    P.PublisherName AS "PublisherName",
+    COUNT(DISTINCT CustomerId) AS "NoOfUniqueSubscribers"
+FROM
+    Publisher P
+    JOIN Journal J ON P.PublisherId = J.PublisherId
+    JOIN Subscription S ON J.JournalId = S.JournalId
+GROUP BY
+    PublisherName
+HAVING
+    COUNT(DISTINCT CustomerId) >= 3;
+
+--1: Assignment_Join_PublisherWiseMonthlyCharges
+SELECT
+    P.PublisherName AS "PUBLISHERNAME",
+    SUM(
+        J.MonthlyCharges * S.DurationInMonths * (1 - S.DiscountPercent / 100)
+    ) AS "TOTALREVENUE"
+FROM
+    Publisher P
+    JOIN Journal J ON P.PublisherId = J.PublisherId
+    JOIN Subscription S ON J.JournalId = S.JournalId
+GROUP BY
+    P.PublisherName
+ORDER BY
+    TOTALREVENUE DESC;
+
+-- 1: Assignment_Join_CountPublisherWiseSubscriptions
+SELECT
+    P.PublisherName AS "PUBLISHERNAME",
+    COUNT(S.CUSTOMERID) AS "NO_SUBSCRIPTION"
+FROM
+    Publisher P
+    JOIN Journal J ON P.PublisherId = J.PublisherId
+    JOIN Subscription S ON J.JournalId = S.JournalId
+GROUP BY
+    P.PublisherName
+HAVING
+    COUNT(s.CustomerId) >= 3;
+
+-- 1: Assignment_Join_FilterCustomers
+SELECT
+    CustomerName,
+    JournalName
+FROM
+    Customer C
+    JOIN Subscription S ON C.CustomerId = S.CustomerId
+    JOIN Journal J ON J.JournalId = S.JournalId
+    AND J.Genre = 'Trade'
+    AND C.State = 'Illinois';
+
+-- 1: Assignment_Join_SamePublisher_SameGenre
+SELECT DISTINCT
+    JOURNALID,
+    JOURNALNAME,
+    GENRE,
+    PUBLISHERID
+FROM
+    Journal J
+    CROSS JOIN Journal J1
+WHERE
+    J.PublisherId = J1.PublisherId
+    AND J.Genre = J1.Genre
+    AND J.JournalId <> J1.JournalId;
+
+-- 1: Assignment_Join_CountSubscriptions
+SELECT
+    P.PUBLISHERNAME,
+    NVL (J.GENRE, 'NOT PUBLISHED') "GENRE",
+    COUNT(S.CUSTOMERID) AS "SUBSCRIBERCOUNT"
+FROM
+    PUBLISHER P
+    LEFT JOIN JOURNAL J ON P.PUBLISHERID = J.PUBLISHERID
+    LEFT JOIN SUBSCRIPTION S ON S.JOURNALID = J.JOURNALID
+GROUP BY
+    PUBLISHERNAME,
+    J.GENRE;
+
+-- 1: Assignment_Join_AllPublishers
+SELECT
+    PUBLISHERNAME,
+    CONTACTNO,
+    NVL (JOURNALNAME, 'NO JOURNAL') AS "JOURNALNAME"
+FROM
+    PUBLISHER P
+    LEFT JOIN JOURNAL J ON P.PUBLISHERID = J.PUBLISHERID
+    AND P.PUBLISHERID IS NOT NULL;
+
+-- 1: Assignment_Join_Publisher'sJournals
+SELECT
+    PUBLISHERID,
+    NVL (JOURNALNAME, 'Yet To Publish') AS JOURNALPUBLISHED
+FROM
+    PUBLISHER P
+    LEFT JOIN JOURNAL J ON J.PUBLISHERID = P.PUBLISHERID;
+
+-- 1: Assignment_Join_FilterAcademicJournals
+SELECT
+    P.PUBLISHERNAME,
+    JOURNALNAME AS "JOURNALNAME"
+FROM
+    PUBLISHER P
+    LEFT JOIN JOURNAL J ON P.PUBLISHERID = J.PUBLISHERID
+    AND J.GENRE = 'Academics'
+WHERE
+    P.RATING >= 4

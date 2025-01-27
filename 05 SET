@@ -1,0 +1,33 @@
+-- 1: Exercise_Union_SelectiveInvoices
+SELECT InvoiceID, QuantityPurchased, Discount 
+FROM Invoice
+WHERE SUBSTR(ProductId,LENGTH(ProductId)) < 5
+    UNION ALL
+SELECT InvoiceID, QuantityPurchased, Discount 
+FROM Invoice
+WHERE Discount < 10
+
+-- 1: Exercise_Union_SelectiveProducts
+SELECT PName, Brand 
+FROM PRODUCT 
+WHERE Color NOT IN ('Brown','Yellow')
+    UNION
+SELECT PName, Brand 
+FROM PRODUCT 
+WHERE Review NOT IN ('Bad');
+
+-- 1: Exercise_Union_FilterVendors
+SELECT Vendorid, VendorName, VendorContactNo, Rating
+FROM Vendor
+WHERE Rating > 3 AND VendorContactNo IS NOT NULL
+    UNION ALL
+SELECT Vendorid, VendorName, VendorContactNo, Rating
+FROM Vendor
+WHERE VendorName LIKE '%a%' AND  VendorContactNo IS NOT NULL;
+
+-- 1: Assignment_CombiningData_E
+SELECT PublisherId
+FROM Publisher
+    EXCEPT
+SELECT PublisherId
+FROM Journal

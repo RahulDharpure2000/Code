@@ -1,0 +1,604 @@
+-- 1: Exercise_Subquery_MaxAvgDiscount
+SELECT
+    MAX(I.AVG_DIS) AS "MAX_DISCOUNT"
+From
+    (
+        SELECT
+            AVG(DISCOUNT) AVG_DIS
+        FROM
+            Invoice
+        GROUP BY
+            ProductId
+    ) I;
+
+-- 1: Exercise_Subquery_MaxCount
+SELECT
+    MAX(I.PUR) AS "MAX_PURCHASES"
+FROM
+    (
+        SELECT
+            Count(CustId) AS "PUR"
+        FROM
+            Invoice
+        GROUP BY
+            CustId
+    ) I;
+
+-- 1: Exercise_Subquery_MaxPurchaseDate
+SELECT
+    INVOICEID,
+    PURCHASEDATE
+FROM
+    Invoice
+WHERE
+    PURCHASEDATE = (
+        SELECT
+            MAX(PURCHASEDATE)
+        FROM
+            Invoice
+    );
+
+-- 1: Exercise_Subquery_AvgPrice
+SELECT
+    PRODUCTID,
+    AVG(Price) AVERAGEPRICE
+FROM
+    VendorOffering
+GROUP BY
+    PRODUCTID
+HAVING
+    AVG(Price) > (
+        SELECT
+            AVG(Price)
+        from
+            VendorOffering
+    );
+
+-- 1: Exercise_Subquery_Having
+SELECT
+    PRODUCTID
+FROM
+    Invoice
+GROUP BY
+    PRODUCTID
+HAVING
+    AVG(DISCOUNT) > (
+        SELECT
+            AVG(DISCOUNT)
+        FROM
+            Invoice
+        WHERE
+            PRODUCTID = 'P101'
+    );
+
+-- 1: Exercise_Subquery_CustomerCount
+SELECT
+    CUSTNAME
+FROM
+    Customer
+WHERE
+    CustId IN (
+        SELECT
+            CustId
+        FROM
+            Invoice
+        GROUP BY
+            CustId
+        HAVING
+            COUNT(CustId) >= 2
+    );
+
+-- 1: Exercise_GroupBy_MinTotalQuantity
+SELECT
+    PRODUCTID
+FROM
+    Invoice
+GROUP BY
+    PRODUCTID
+HAVING
+    SUM(QuantityPurchased) = (
+        SELECT
+            MIN(QuantityPurchased)
+        FROM
+            (
+                SELECT
+                    SUM(QuantityPurchased) QuantityPurchased
+                FROM
+                    Invoice
+                GROUP BY
+                    PRODUCTID
+            )
+    );
+
+-- 1: Exercise_Subquery_MinTotalQty
+SELECT
+    PRODUCTID
+FROM
+    Invoice
+GROUP BY
+    PRODUCTID
+HAVING
+    SUM(QuantityPurchased) = (
+        SELECT
+            MIN(QuantityPurchased)
+        FROM
+            (
+                SELECT
+                    SUM(QuantityPurchased) QuantityPurchased
+                FROM
+                    Invoice
+                GROUP BY
+                    PRODUCTID
+            )
+    );
+
+-- 1: Exercise_Subquery_MinTotalQuantity
+SELECT
+    PRODUCTID,
+    PNAME
+FROM
+    PRODUCT
+WHERE
+    PRODUCTID IN (
+        SELECT
+            PRODUCTID
+        FROM
+            Invoice
+        GROUP BY
+            PRODUCTID
+        HAVING
+            SUM(QUANTITYPURCHASED) = (
+                SELECT
+                    MIN(TOTAL_QUANTITY)
+                FROM
+                    (
+                        SELECT
+                            SUM(QUANTITYPURCHASED) TOTAL_QUANTITY
+                        FROM
+                            Invoice
+                        GROUP BY
+                            PRODUCTID
+                    ) Q1
+            )
+    );
+
+-- Correlated Query
+-- 1: Exercise_Correlated_LeastPrice
+SELECT
+    PRODUCTID,
+    VENDORID,
+    PRICE
+FROM
+    VENDOROFFERING V
+WHERE
+    PRICE = (
+        SELECT
+            MIN(PRICE)
+        FROM
+            VENDOROFFERING V1
+        WHERE
+            V.PRODUCTID = V1.PRODUCTID
+    )
+ORDER BY
+    PRODUCTID;
+
+-- 1: Exercise_Correlated_ThirdCostliest
+SELECT
+    VENDORID,
+    PRODUCTID,
+    PRICE
+FROM
+    VENDOROFFERING V
+WHERE
+    2 = (
+        SELECT
+            COUNT(DISTINCT V1.PRICE)
+        FROM
+            VENDOROFFERING V1
+        WHERE
+            V1.PRICE > V.PRICE
+            AND V1.PRICE <> V.PRICE
+    );
+
+-- === OR ===
+SELECT
+    VENDORID,
+    PRODUCTID,
+    PRICE
+FROM
+    VENDOROFFERING
+WHERE
+    PRICE = (
+        SELECT
+            MAX(PRICE)
+        FROM
+            VENDOROFFERING
+        WHERE
+            PRICE < (
+                SELECT
+                    MAX(PRICE)
+                FROM
+                    VENDOROFFERING
+                WHERE
+                    PRICE < (
+                        SELECT
+                            MAX(PRICE)
+                        FROM
+                            VENDOROFFERING
+                    )
+            )
+    );
+
+-- 1: Exercise_Correlated_Select
+SELECT
+    CUSTID,
+    CUSTNAME,
+    (
+        SELECT
+            MAX(DISCOUNT)
+        FROM
+            Invoice I
+        WHERE
+            I.CUSTID = C.CUSTID
+    ) AS "HIGHESTDISCOUNT"
+FROM
+    CUSTOMER C
+WHERE
+    CUSTLOCATION = 'Yonkers';
+
+-- 1: Exercise_Subquery_RatedVendor
+SELECT
+    VENDORNAME
+FROM
+    VENDOR V
+WHERE
+    RATING IS NOT NULL
+    AND (
+        SELECT
+            COUNT(*)
+        FROM
+            INVOICE I
+        WHERE
+            V.VENDORID = I.VENDORID
+    ) >= 1;
+
+-- 1: Exercise_Subquery_RatedVendor
+SELECT
+    VENDORNAME
+FROM
+    VENDOR V
+WHERE
+    RATING IS NOT NULL
+    AND VENDORID IN (
+        SELECT
+            VENDORID
+        FROM
+            INVOICE
+    );
+
+-- 1: Exercise_Subquery_UnSoldProducts
+SELECT
+    PRODUCTID,
+    PCATEGORY,
+    BRAND
+FROM
+    PRODUCT
+WHERE
+    PRODUCTID NOT IN (
+        SELECT
+            PRODUCTID
+        FROM
+            INVOICE
+    );
+
+-- 1: Exercise_Subquery_VendorWhoSoldProductsBefore1July
+SELECT
+    VENDORNAME
+FROM
+    VENDOR
+WHERE
+    VENDORID IN (
+        SELECT
+            VENDORID
+        FROM
+            INVOICE
+        WHERE
+            TO_CHAR (PURCHASEDATE, 'MM') < '07'
+    );
+
+-- 1: Assignment_Subquery_SubscribedJournals
+SELECT DISTINCT
+    JOURNALID,
+    JOURNALNAME,
+    GENRE
+FROM
+    JOURNAL
+WHERE
+    JOURNALID IN (
+        SELECT DISTINCT
+            JOURNALID
+        FROM
+            SUBSCRIPTION
+    );
+
+-- 1: Assignment_Subquery_JoinstoSubsquery
+SELECT
+    JOURNALNAME,
+    GENRE
+FROM
+    JOURNAL
+WHERE
+    JOURNALID IN (
+        SELECT
+            JOURNALID
+        FROM
+            SUBSCRIPTION
+    );
+
+-- 1: Assignment_Subquery_RoundedAvgRating
+SELECT
+    ROUND(AVG(RATING)) AS "RATING"
+FROM
+    PUBLISHER
+WHERE
+    PUBLISHERID IN (
+        SELECT
+            PUBLISHERID
+        FROM
+            JOURNAL
+    );
+
+-- 1: Assignment_Subquery_SelectiveCustomers
+SELECT
+    CUSTOMERID,
+    CUSTOMERNAME,
+    STATE
+FROM
+    CUSTOMER C
+WHERE
+    STATE = (
+        SELECT DISTINCT
+            STATE
+        FROM
+            CUSTOMER C
+        WHERE
+            CUSTOMERNAME = 'Robert'
+    )
+    AND CUSTOMERNAME <> 'Robert';
+
+-- 1: Assignment_Subquery_CustomerWith>1Subscription
+SELECT
+    CUSTOMERID,
+    CUSTOMERNAME
+FROM
+    CUSTOMER
+WHERE
+    CUSTOMERID IN (
+        SELECT
+            CUSTOMERID
+        FROM
+            SUBSCRIPTION
+        GROUP BY
+            CUSTOMERID
+        HAVING
+            COUNT(CUSTOMERID) > 1
+    );
+
+-- 1: Assignment_Subquery_MinMonthlyCharges
+SELECT
+    PUBLISHERID,
+    PUBLISHERNAME
+FROM
+    PUBLISHER
+WHERE
+    PUBLISHERID IN (
+        SELECT
+            PUBLISHERID
+        FROM
+            JOURNAL
+        WHERE
+            MONTHLYCHARGES = (
+                SELECT
+                    MIN(MONTHLYCHARGES)
+                FROM
+                    JOURNAL
+            )
+    );
+
+-- 1: Assignment_Subquery_MinMonthlyChargesOfTradeGenre
+SELECT
+    PUBLISHERID,
+    PUBLISHERNAME
+FROM
+    PUBLISHER
+WHERE
+    PUBLISHERID IN (
+        SELECT
+            PUBLISHERID
+        FROM
+            JOURNAL
+        WHERE
+            MONTHLYCHARGES = (
+                SELECT
+                    MIN(MONTHLYCHARGES)
+                FROM
+                    JOURNAL
+                WHERE
+                    GENRE = 'Trade'
+            )
+    );
+
+-- 1: Assignment_Subquery_MaxMonthlyChargesOfTradeGenre
+SELECT
+    JOURNALNAME,
+    MONTHLYCHARGES
+FROM
+    JOURNAL
+WHERE
+    GENRE = 'Trade'
+    AND MONTHLYCHARGES = (
+        SELECT
+            MAX(MONTHLYCHARGES)
+        FROM
+            JOURNAL
+        WHERE
+            GENRE = 'Trade'
+    );
+
+-- 1: Assignment_Subquery_CustomerFromSameStateDiffCity
+SELECT
+    STATE,
+    CITY,
+    CUSTOMERNAME
+FROM
+    CUSTOMER C
+WHERE
+    CUSTOMERID IN (
+        SELECT
+            CUSTOMERID
+        FROM
+            CUSTOMER C1
+            JOIN CUSTOMER C2 ON C1.STATE = C2.STATE
+            AND C1.CITY <> C2.CITY
+    )
+ORDER BY
+    STATE;
+
+-- 1: Assignment_Subquery_SelectiveSubscriptions
+SELECT
+    SUBSCRIPTIONID,
+    JOURNALID
+FROM
+    SUBSCRIPTION S1
+WHERE
+    DISCOUNTPERCENT <= (
+        SELECT
+            AVG(DISCOUNTPERCENT)
+        FROM
+            SUBSCRIPTION S2
+        WHERE
+            S1.JOURNALID = S2.JOURNALID
+    );
+
+--1: Assignment_Subquery_CustomerSubscriptions
+SELECT DISTINCT
+    CUSTOMERID,
+    CUSTOMERNAME,
+    STARTDATE
+FROM
+    CUSTOMER C1
+    JOIN SUBSCRIPTION S1 ON C1.CUSTOMERID = S1.CUSTOMERID
+WHERE
+    S1.DISCOUNTPERCENT < (
+        SELECT
+            MAX(S2.DISCOUNTPERCENT)
+        FROM
+            SUBSCRIPTION S2
+        WHERE
+            S1.STARTDATE = S2.STARTDATE
+    );
+
+-- 1: Assignment_Subquery_CustomerWithNoSubscription
+SELECT
+    CUSTOMERID,
+    CUSTOMERNAME
+FROM
+    CUSTOMER C
+WHERE
+    CUSTOMERID NOT IN (
+        SELECT DISTINCT
+            CUSTOMERID
+        FROM
+            SUBSCRIPTION
+    );
+
+-- 1: Assignment_Subquery_UniqueDiscountPerCustomer
+SELECT DISTINCT
+    CustomerName,
+    DiscountPercent
+FROM
+    Subscription S1
+    JOIN Customer C ON S1.Customerid = C.Customerid
+WHERE
+    DiscountPercent < (
+        SELECT
+            MAX(DiscountPercent)
+        FROM
+            Subscription S2
+        WHERE
+            S1.JournalID = S2.JournalID
+            AND S1.Customerid <> S2.Customerid
+    );
+
+-- 1: Assignment_Subquery_MaxMonthlyChargesPerGenre
+SELECT
+    JOURNALID,
+    JOURNALNAME,
+    GENRE,
+    MONTHLYCHARGES
+FROM
+    JOURNAL J1
+WHERE
+    MONTHLYCHARGES = (
+        SELECT
+            MAX(MONTHLYCHARGES)
+        FROM
+            JOURNAL J2
+        WHERE
+            J1.GENRE = J2.GENRE
+    );
+
+-- 1: Assignment_Subquery_NestedQuery
+SELECT
+    S.SUBSCRIPTIONID,
+    J.JOURNALNAME
+FROM
+    (
+        SELECT
+            JOURNALID,
+            JOURNALNAME
+        FROM
+            JOURNAL
+        WHERE
+            GENRE = 'Trade'
+            AND PublisherID IN (
+                SELECT
+                    PublisherId
+                from
+                    Publisher
+                where
+                    rating > 3
+            )
+    ) J
+    INNER JOIN SUBSCRIPTION S ON J.JOURNALID = S.JOURNALID;
+
+-- === OR ====
+SELECT
+    S.SUBSCRIPTIONID,
+    J.JOURNALNAME
+FROM
+    SUBSCRIPTION S
+    INNER JOIN JOURNAL J ON J.JOURNALID = S.JOURNALID
+WHERE
+    J.GENRE = 'Trade'
+    AND J.PublisherID IN (
+        SELECT
+            P.PublisherId
+        FROM
+            Publisher P
+        WHERE
+            P.rating > 3
+    );
+
+-- 1: Assignment_Subquery_UpdateMonthlyCharges
+UPDATE JOURNAL J1
+SET
+    MONTHLYCHARGES = (
+        SELECT
+            AVG(J2.MONTHLYCHARGES)
+        FROM
+            JOURNAL J2
+        WHERE
+            J1.PUBLISHERID = J2.PUBLISHERID
+    );
+
