@@ -1,0 +1,137 @@
+-- 1: HO_1
+SELECT
+    BOOKINGID,
+    FLIGHTID,
+    TO_CHAR (BOOKINGDATE, 'MON') BOOKINGMONTH,
+    TO_CHAR (BOOKINGDATE, 'DD') BOOKINGDATE
+FROM
+    BOOKING
+WHERE
+    TO_CHAR (BOOKINGDATE, 'YYYY-MM') >= '2018-10'
+    AND TO_CHAR (BOOKINGDATE, 'YYYY-MM') <= '2019-03';
+
+-- 1: HQ_2
+SELECT
+    CUSTID,
+    CUSTNAME
+FROM
+    CUSTOMER
+WHERE
+    CUSTID IN (
+        SELECT
+            CUSTID
+        FROM
+            BOOKING
+        WHERE
+            TO_CHAR (BOOKINGDATE, 'YYYY') = '2018'
+    );
+
+-- 1: HQ_3
+SELECT
+    CUSTID,
+    TRAVELCLASS,
+    COUNT(TRAVELCLASS) AS NOOFTRAVELS
+FROM
+    BOOKING
+GROUP BY
+    CUSTID,
+    TRAVELCLASS
+HAVING
+    COUNT(TRAVELCLASS) > 1;
+
+-- 1: HQ_4
+SELECT
+    BOOKINGID,
+    FLIGHTID,
+    FLIGHTCHARGE
+FROM
+    BOOKING
+WHERE
+    FLIGHTCHARGE > (
+        SELECT
+            MAX(FLIGHTCHARGE)
+        FROM
+            BOOKING
+        WHERE
+            TRAVELCLASS = 'Economy'
+    );
+
+-- 1: HQ_5
+SELECT
+    BOOKINGID,
+    CUSTID,
+    FLIGHTID,
+    BOOKINGDATE
+FROM
+    BOOKING B
+WHERE
+    FLIGHTID IN (
+        SELECT
+            FLIGHTID
+        FROM
+            BOOKING B1
+        WHERE
+            B.CUSTID <> B1.CUSTID
+            AND B1.FLIGHTID = B.FLIGHTID
+            AND B1.BOOKINGDATE = B.BOOKINGDATE
+    )
+ORDER BY
+    BOOKINGDATE;
+
+-- 1: HQ_6
+SELECT
+    CUSTID,
+    CUSTNAME,
+    NVL (TO_CHAR (BOOKINGDATE), 'No Booking') AS "BDATE"
+FROM
+    CUSTOMER C
+    LEFT JOIN BOOKING B ON C.CUSTID = B.CUSTID
+    AND TRAVELCLASS = 'Business';
+
+-- 1: HQ_7
+SELECT DISTINCT
+    CUSTID,
+    CUSTNAME
+FROM
+    BOOKING B
+    INNER JOIN CUSTOMER C ON B.CUSTID = C.CUSTID
+WHERE
+    CUSTID IN (
+        SELECT
+            CUSTID
+        FROM
+            BOOKING
+        GROUP BY
+            CUSTID
+        HAVING
+            COUNT(CUSTID) = (
+                SELECT
+                    MAX(NOOFCUSTOMER)
+                FROM
+                    (
+                        SELECT
+                            COUNT(CUSTID) AS NOOFCUSTOMER
+                        FROM
+                            BOOKING
+                        GROUP BY
+                            CUSTID
+                    )
+            )
+    );
+
+-- 1: HQ_8
+SELECT DISTINCT
+    FLIGHTID,
+    FLIGHTCHARGE,
+    BOOKINGDATE
+FROM
+    BOOKING B1
+WHERE
+    FLIGHTCHARGE IN (
+        SELECT
+            MIN(FLIGHTCHARGE)
+        FROM
+            BOOKING B2
+        WHERE
+            B1.FLIGHTID = B2.FLIGHTID
+    );
