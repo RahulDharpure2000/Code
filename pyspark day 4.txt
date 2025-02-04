@@ -1,0 +1,249 @@
+>>> from collections import namedtuple
+>>> rloc=namedtuple('rloc',['rid','rname','rcity'])
+>>> rpur=namedtuple('rpur',['routerid','rdate','mem1','mem2','rcost'])
+>>> rl=sc.textFile("routerlocation.tsv").map(lambda t:t.split("\t")).map(lambda r:rloc(r[0],r[1],r[2]))
+>>> rp=sc.textFile("routerpurchase.tsv").map(lambda t:t.split("\t")).map(lambda r:rpur(r[0],r[1],r[2],r[3],r[4]))
+>>> rl_df=rl.toDF()
+>>> rp_df=rp.toDF()
+>>> rp_df.show()
++--------+---------+---------+---------+-------+
+|routerid|    rdate|     mem1|     mem2|  rcost|
++--------+---------+---------+---------+-------+
+|       1| 9/3/2012|453232267|175913333|1000USD|
+|       2| 9/7/2012|453232345|255913333|1500USD|
+|       3|6/10/2013|453232267|325913333|1200USD|
+|       4| 9/3/2014|653235467|245913333|1000USD|
+|       5| 7/7/2014|373232267|465913333|1300USD|
++--------+---------+---------+---------+-------+
+
+>>> rl_df.show()
++---+-----+---------+
+|rid|rname|    rcity|
++---+-----+---------+
+|  1| RTR1|  Chennai|
+|  2| RTR2|Bangalore|
+|  3| RTR3|     Pune|
+|  4| RTR4|    Delhi|
+|  5| RTR5|   Mumbai|
++---+-----+---------+
+
++++++++++++++++++++++
+inner 
+leftouter or left
+rightouter or right
+fullouter or full
+cross
++++++++++++++++++++++
+
+>>> rl_df.join(rp_df,rl_df.rid == rp_df.routerid).show()
++---+-----+---------+--------+---------+---------+---------+-------+
+|rid|rname|    rcity|routerid|    rdate|     mem1|     mem2|  rcost|
++---+-----+---------+--------+---------+---------+---------+-------+
+|  3| RTR3|     Pune|       3|6/10/2013|453232267|325913333|1200USD|
+|  5| RTR5|   Mumbai|       5| 7/7/2014|373232267|465913333|1300USD|
+|  1| RTR1|  Chennai|       1| 9/3/2012|453232267|175913333|1000USD|
+|  4| RTR4|    Delhi|       4| 9/3/2014|653235467|245913333|1000USD|
+|  2| RTR2|Bangalore|       2| 9/7/2012|453232345|255913333|1500USD|
++---+-----+---------+--------+---------+---------+---------+-------+
+
+>>> rl_df.join(rp_df,rl_df.rid == rp_df.routerid,"rightouter").show()
++---+-----+---------+--------+---------+---------+---------+-------+
+|rid|rname|    rcity|routerid|    rdate|     mem1|     mem2|  rcost|
++---+-----+---------+--------+---------+---------+---------+-------+
+|  3| RTR3|     Pune|       3|6/10/2013|453232267|325913333|1200USD|
+|  5| RTR5|   Mumbai|       5| 7/7/2014|373232267|465913333|1300USD|
+|  1| RTR1|  Chennai|       1| 9/3/2012|453232267|175913333|1000USD|
+|  4| RTR4|    Delhi|       4| 9/3/2014|653235467|245913333|1000USD|
+|  2| RTR2|Bangalore|       2| 9/7/2012|453232345|255913333|1500USD|
++---+-----+---------+--------+---------+---------+---------+-------+
+
+>>> rl_df.join(rp_df,rl_df.rid == rp_df.routerid,"full").show()
++---+-----+---------+--------+---------+---------+---------+-------+
+|rid|rname|    rcity|routerid|    rdate|     mem1|     mem2|  rcost|
++---+-----+---------+--------+---------+---------+---------+-------+
+|  3| RTR3|     Pune|       3|6/10/2013|453232267|325913333|1200USD|
+|  5| RTR5|   Mumbai|       5| 7/7/2014|373232267|465913333|1300USD|
+|  1| RTR1|  Chennai|       1| 9/3/2012|453232267|175913333|1000USD|
+|  4| RTR4|    Delhi|       4| 9/3/2014|653235467|245913333|1000USD|
+|  2| RTR2|Bangalore|       2| 9/7/2012|453232345|255913333|1500USD|
++---+-----+---------+--------+---------+---------+---------+-------+
+
+>>> rl_df.join(rp_df,rl_df.rid == rp_df.routerid,"leftouter").show()
++---+-----+---------+--------+---------+---------+---------+-------+
+|rid|rname|    rcity|routerid|    rdate|     mem1|     mem2|  rcost|
++---+-----+---------+--------+---------+---------+---------+-------+
+|  3| RTR3|     Pune|       3|6/10/2013|453232267|325913333|1200USD|
+|  5| RTR5|   Mumbai|       5| 7/7/2014|373232267|465913333|1300USD|
+|  1| RTR1|  Chennai|       1| 9/3/2012|453232267|175913333|1000USD|
+|  4| RTR4|    Delhi|       4| 9/3/2014|653235467|245913333|1000USD|
+|  2| RTR2|Bangalore|       2| 9/7/2012|453232345|255913333|1500USD|
++---+-----+---------+--------+---------+---------+---------+-------+
+
+>>> rl_df.printSchema()
+root
+ |-- rid: string (nullable = true)
+ |-- rname: string (nullable = true)
+ |-- rcity: string (nullable = true)
+
+>>> rp_df.printSchema()
+root
+ |-- routerid: string (nullable = true)
+ |-- rdate: string (nullable = true)
+ |-- mem1: string (nullable = true)
+ |-- mem2: string (nullable = true)
+ |-- rcost: string (nullable = true)
+
+******************************************
+
+>>> from pyspark.sql.functions import max
+>>> DF.limit(5).groupBy("TypeOfMessage").count().agg(max("count").alias("MaxCount")).show()
++--------+
+|MaxCount|
++--------+
+|       2|
++--------+
+
+>>> res=DF.limit(5).groupBy("TypeOfMessage").count()
+>>> res.show()
++-------------+-----+
+|TypeOfMessage|count|
++-------------+-----+
+|    INF_69836|    2|
+|    ERR_37520|    1|
+|    ERR_37521|    1|
+|    ERR_37522|    1|
++-------------+-----+
+
+>>> res.groupBy("TypeOfMessage").max("count").show()
++-------------+----------+
+|TypeOfMessage|max(count)|
++-------------+----------+
+|    INF_69836|         2|
+|    ERR_37520|         1|
+|    ERR_37521|         1|
+|    ERR_37522|         1|
++-------------+----------+
+
+>>> res.select(max("count")).show()
++----------+
+|max(count)|
++----------+
+|         2|
++----------+
+
+>>> res.select(max("count").alias("MaxCount")).show()
++--------+
+|MaxCount|
++--------+
+|       2|
++--------+
+
+*************************************************************
+SQL OPERATIONS::
+{'SELECT', 'FROM', 'ADD', 'AS', 'ALL', 'ANY', 'DISTINCT', 'WHERE', 'GROUP', 'BY', 'GROUPING', 'SETS', 'CUBE', 'ROLLUP', 'ORDER', 'HAVING', 'LIMIT', 'AT', 'OR', 'AND', 'IN', NOT, 'NO', 'EXISTS', 'BETWEEN', 'LIKE', RLIKE, 'IS', 'NULL', 'TRUE', 'FALSE', 'NULLS', 'ASC', 'DESC', 'FOR', 'INTERVAL', 'CASE', 'WHEN', 'THEN', 'ELSE', 'END', 'JOIN', 'CROSS', 'OUTER', 'INNER', 'LEFT', 'SEMI', 'RIGHT', 'FULL', 'NATURAL', 'ON', 'PIVOT', 'LATERAL', 'WINDOW', 'OVER', 'PARTITION', 'RANGE', 'ROWS', 'UNBOUNDED', 'PRECEDING', 'FOLLOWING', 'CURRENT', 'FIRST', 'AFTER', 'LAST', 'ROW', 'WITH', 'VALUES', 'CREATE', 'TABLE', 'DIRECTORY', 'VIEW', 'REPLACE', 'INSERT', 'DELETE', 'INTO', 'DESCRIBE', 'EXPLAIN', 'FORMAT', 'LOGICAL', 'CODEGEN', 'COST', 'CAST', 'SHOW', 'TABLES', 'COLUMNS', 'COLUMN', 'USE', 'PARTITIONS', 'FUNCTIONS', 'DROP', 'UNION', 'EXCEPT', 'MINUS', 'INTERSECT', 'TO', 'TABLESAMPLE', 'STRATIFY', 'ALTER', 'RENAME', 'ARRAY', 'MAP', 'STRUCT', 'COMMENT', 'SET', 'RESET', 'DATA', 'START', 'TRANSACTION', 'COMMIT', 'ROLLBACK', 'MACRO', 'IGNORE', 'BOTH', 'LEADING', 'TRAILING', 'IF', 'POSITION', 'EXTRACT', 'DIV', 'PERCENT', 'BUCKET', 'OUT', 'OF', 'SORT', 'CLUSTER', 'DISTRIBUTE', 'OVERWRITE', 'TRANSFORM', 'REDUCE', 'SERDE', 'SERDEPROPERTIES', 'RECORDREADER', 'RECORDWRITER', 'DELIMITED', 'FIELDS', 'TERMINATED', 'COLLECTION', 'ITEMS', 'KEYS', 'ESCAPED', 'LINES', 'SEPARATED', 'FUNCTION', 'EXTENDED', 'REFRESH', 'CLEAR', 'CACHE', 'UNCACHE', 'LAZY', 'FORMATTED', 'GLOBAL', TEMPORARY, 'OPTIONS', 'UNSET', 'TBLPROPERTIES', 'DBPROPERTIES', 'BUCKETS', 'SKEWED', 'STORED', 'DIRECTORIES', 'LOCATION', 'EXCHANGE', 'ARCHIVE', 'UNARCHIVE', 'FILEFORMAT', 'TOUCH', 'COMPACT', 'CONCATENATE', 'CHANGE', 'CASCADE', 'RESTRICT', 'CLUSTERED', 'SORTED', 'PURGE', 'INPUTFORMAT', 'OUTPUTFORMAT', DATABASE, DATABASES, 'DFS', 'TRUNCATE', 'ANALYZE', 'COMPUTE', 'LIST', 'STATISTICS', 'PARTITIONED', 'EXTERNAL', 'DEFINED', 'REVOKE', 'GRANT', 'LOCK', 'UNLOCK', 'MSCK', 'REPAIR', 'RECOVER', 'EXPORT', 'IMPORT', 'LOAD', 'ROLE', 'ROLES', 'COMPACTIONS', 'PRINCIPALS', 'TRANSACTIONS', 'INDEX', 'INDEXES', 'LOCKS', 'OPTION', 'ANTI', 'LOCAL', 'INPATH', IDENTIFIER, BACKQUOTED_IDENTIFIER}
+
+*************************************************************
+
+>>> from pyspark.sql.types import StructType,StructField,IntegerType,StringType
+>>> rlschema=StructType([StructField("routerid",IntegerType(),False),StructField("rname",StringType(),True),StructField("rcity",StringType(),False)])
+>>> rlschema
+o/p:: StructType(List(StructField(routerid,IntegerType,false),StructField(rname,StringType,true),StructField(rcity,StringType,false)))
+>>> r_df = spark.read.format("csv").schema(rlschema).option("header", False).option("delimiter", "\t").load("routerlocation.tsv")
+>>> r_df.printSchema()
+root
+ |-- routerid: integer (nullable = true)
+ |-- rname: string (nullable = true)
+ |-- rcity: string (nullable = true)
+
+******************************************************************
+
+>>> test=spark.read.csv("routerlocation.tsv")
+>>> test.show()
++----------------+
+|             _c0|
++----------------+
+|  1    RTR1    Chennai|
+|2      RTR2    Bangalore|
+|     3 RTR3    Pune|
+|    4  RTR4    Delhi|
+|   5   RTR5    Mumbai|
++----------------+
+
+>>> test=spark.read.csv("routerlocation.tsv",sep="\t")
+>>> test.show()
++---+----+---------+
+|_c0| _c1|      _c2|
++---+----+---------+
+|  1|RTR1|  Chennai|
+|  2|RTR2|Bangalore|
+|  3|RTR3|     Pune|
+|  4|RTR4|    Delhi|
+|  5|RTR5|   Mumbai|
++---+----+---------+
+
+>>> test=spark.read.csv("routerlocation.tsv",sep="\t",inferSchema=True)
+#inferSchema is default false, In PySpark, the inferSchema attribute is used when reading data from a source like a CSV file. It is a parameter that controls whether or not Spark should automatically infer the schema of the DataFrame from the data.#
+>>> test.show()
++---+----+---------+
+|_c0| _c1|      _c2|
++---+----+---------+
+|  1|RTR1|  Chennai|
+|  2|RTR2|Bangalore|
+|  3|RTR3|     Pune|
+|  4|RTR4|    Delhi|
+|  5|RTR5|   Mumbai|
++---+----+---------+
+
+***********************************************************
+
+>>> DF.show(5)
++--------+---------+--------+----------+------------+--------------------------+-------------+----------------------+----------+-------------+----------------+
+|sensorid|    carid|latitude| longitude|engine_speed|accelerator_pedal_position|vehicle_speed|torque_at_transmission|fuel_level|TypeOfMessage|       timestamp|
++--------+---------+--------+----------+------------+--------------------------+-------------+----------------------+----------+-------------+----------------+
+|SEN_9387|CAR_34853|40.77091|-73.953783|         544|
+              0|            0|                     3| 89.674202|    INF_69836|1.364323939468E9|
+|SEN_9387|CAR_34853|42.77092|-63.953793|         244|
+              0|            0|                     3| 89.674202|    INF_69836|1.364323940468E9|
+|SEN_9387|CAR_34853|47.77094|-40.953773|         104|
+              0|            0|                     3| 89.674202|    ERR_37520|1.364323941468E9|
+|SEN_9387|CAR_34853|41.77034|-73.953773|         994|
+              0|            0|                     3| 89.674202|    ERR_37521|1.364323942468E9|
+|SEN_9387|CAR_34853|40.77045|-93.953723|         724|
+              0|            0|                     3| 89.674202|    ERR_37522|1.364323943468E9|
++--------+---------+--------+----------+------------+--------------------------+-------------+----------------------+----------+-------------+----------------+
+only showing top 5 rows
+
+>>> DF1=DF
+>>> DF1.drop("carid","sensorid")
+DataFrame[latitude: double, longitude: string, engine_speed: bigint, accelerator_pedal_position: bigint, vehicle_speed: bigint, torque_at_transmission: bigint, fuel_level: double, TypeOfMessage: string, timestamp: double]
+>>> DF1.printSchema()
+root
+ |-- sensorid: string (nullable = true)
+ |-- carid: string (nullable = true)
+ |-- latitude: double (nullable = true)
+ |-- longitude: string (nullable = true)
+ |-- engine_speed: long (nullable = true)
+ |-- accelerator_pedal_position: long (nullable = true)
+ |-- vehicle_speed: long (nullable = true)
+ |-- torque_at_transmission: long (nullable = true)
+ |-- fuel_level: double (nullable = true)
+ |-- TypeOfMessage: string (nullable = true)
+ |-- timestamp: double (nullable = true)
+
+>>> DF2=DF1.drop("carid","sensorid")
+>>> DF2.printSchema()
+root
+ |-- latitude: double (nullable = true)
+ |-- longitude: string (nullable = true)
+ |-- engine_speed: long (nullable = true)
+ |-- accelerator_pedal_position: long (nullable = true)
+ |-- vehicle_speed: long (nullable = true)
+ |-- torque_at_transmission: long (nullable = true)
+ |-- fuel_level: double (nullable = true)
+ |-- TypeOfMessage: string (nullable = true)
+ |-- timestamp: double (nullable = true)
+
+********************************************************************
+
+spark = SparkSession.builder.appName("Read Avro Example").config("spark.jars.packages", "org.apache.spark:spark-avro_2.12:3.0.1").getOrCreate()
+df = spark.read.format("avro").load("Cars.avro")

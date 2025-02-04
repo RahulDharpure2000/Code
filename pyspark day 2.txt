@@ -1,0 +1,354 @@
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\
+      /_/
+
+
+******************************************
+CONFIGURATION:
+
+pyspark --conf spark.ui.port=8010
+
+*******************************************
+
+rdd1 = sc.parallelize([1,2,3,4,5], 2) -->parallelize the list into given number of partitions
+rdd1.collect() -->collect is used to print the data
+o/p:: [1, 2, 3, 4, 5]
+rdd1.getNumPartitions() -->gives number of partitions
+o/p:: 2
+rdd2 = rdd1.glom() -->glom shows partitions
+rdd2.collect()
+o/p::  [[1, 2], [3, 4, 5]]
+
+
+***************************************************
+
+>>> rdd1 = sc.parallelize(['ab','cd','ef','gh','ij','kl','mn','o
+p'], 3)
+>>> rdd1.collect()
+['ab', 'cd', 'ef', 'gh', 'ij', 'kl', 'mn', 'op']
+>>> rdd1.getNumPartitions()
+3
+>>> rdd1 = rdd1.glom()
+>>> rdd1.collect()
+[['ab', 'cd'], ['ef', 'gh'], ['ij', 'kl', 'mn', 'op']]
+
+
+*******************************************************
+
+>>> rdd3=sc.parallelize(['This','is','a','session','on','Pyspark','.'])
+>>> rdd3.getNumPartitions()
+60
+>>> rdd4=rdd3.glom()
+>>> for e in rdd4.collect():
+...     print(e)
+...
+
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+['This']
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+['is']
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+['a']
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+['session']
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+['on']
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+['Pyspark']
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+['.']
+>>>
+>>> rdd4.collect()
+[Stage 5:===========================================>
+
+[[], [], [], [], [], [], [], [], ['This'], [], [], [], [], [], [], [], [], ['is'], [], [], [], [], [], [], [], ['a'], [], [], [], [], [], [], [], [], ['session'], [], [], [], [], [], [], [], ['on'], [], [], [], [], [], [], [], [], ['Pyspark'], [], [], [], [], [], [], [], ['.']]
+
+
+****************************************************************
+
+cat >telecom.csv -->in Linux shell and enter data
+
+>>> telecomRDD=sc.textFile("telecom.csv")
+>>> for row in telecomRDD.collect():
+...     print row
+
+sample o/p::
+TXCUST00001,982120000,Male,N,PrePaid,Active,Active,InActive,20,N
+TXCUST00002,982120001,Male,N,PostPaid,Active,Active,InActive,25,N
+
+question 1 :: List all senior citizens who have opted out (Churn = Y) of the service provider. Save the output into the HDFS directory.
+
+>>>
+>>> filteredRDD=telecomRDD.filter(lambda r:r.split(",")[3]=='Y' and r.split(",")[9]=='Y')
+>>> for f in filteredRDD.collect():
+...     print f
+...
+
+sample o/p::
+TXCUST00406,982120405,Female,Y,PostPaid,Active,Active,Active,25,Y
+TXCUST00407,982120406,Female,Y,PostPaid,Active,Active,Active,15,Y
+
+>>> filteredRDD.count()
+o/p::54
+
+question 2 ::Compute revenue from all postpaid and prepaid service customers. Print the output on the console.
+
+
+>>> servicesRDD=telecomRDD.map(lambda r:(r.split(",")[4], int(r.
+split(",")[8])))
+>>> servicesRDD2=servicesRDD.groupByKey()
+>>> servicesRDD3=servicesRDD2.map(lambda u:(u[0],sum(u[1])))
+>>> servicesRDD3.collect()
+[(u'PrePaid', 10364), (u'PostPaid', 8638)]
+
+or 
+
+>>> servicesRDD=telecomRDD.map(lambda r:(r.split(",")[4], int(r.
+split(",")[8])))
+>>> servicesRDD3=servicesRDD.reduceByKey(lambda a,b:a+b)
+>>> servicesRDD3.collect()
+[(u'PrePaid', 10364), (u'PostPaid', 8638)]
+
+
+question 3 ::How many customers have their Internet services active? Provide the results gender-wise. Modify the number of partitions in between to improve the performance.
+
+>>> internetRDD=telecomRDD.filter(lambda t:t.split(",")[7]=='Active')
+>>> for i in internetRDD.collect():
+...     print i
+...
+sample o/p:: TXCUST00100,982120099,Female,Y,PrePaid,Active,Active,Active,15,N
+TXCUST00101,982120100,Female,Y,PostPaid,Active,Active,Active,15,N
+
+>>> internetRDD.getNumPartitions()
+2
+>>> internetRDD1=internetRDD.repartition(6)
+>>> internetRDD1.getNumPartitions()
+6
+>>> internetRDD2=internetRDD1.coalesce(3)
+>>> internetRDD2.getNumPartitions()
+3
+
+>>> genderRDD=internetRDD.map(lambda t:(t.split(",")[2],1))
+>>> for g in genderRDD.collect():
+...     print g
+...
+sample o/p::
+(u'Female', 1)
+(u'Female', 1)
+>>> countRDD=genderRDD.reduceByKey(lambda r,s:r+s)
+>>> countRDD.collect()
+[(u'Male', 178), (u'Female', 123)]
+
+
+***************************************************
+
+>>> testRDD=sc.parallelize(['Australia','America','Africa','Asia'])
+>>> testOut=testRDD.flatMap(lambda y:y.split(","))
+>>> for u in testOut.collect():
+...     print u
+...
+
+o/p: 
+Australia
+America
+Africa
+Asia
+
+>>> testRDD=sc.parallelize([['Australia','America','Africa','Asia'],['Canada','North America','Canberra','Sydney']])
+>>> testOut=testRDD.flatMap(lambda y:y)
+>>> testOut.collect()
+o/p: ['Australia', 'America', 'Africa', 'Asia', 'Canada', 'North America', 'Canberra', 'Sydney']
+
+>>> testRDD1=sc.parallelize([[('Australia','America'),('Africa',
+'Asia')],['Canada','North America','Canberra','Sydney']])
+>>> testOut1=testRDD1.flatMap(lambda y:y)
+>>> testOut1.collect()
+o/p: [('Australia', 'America'), ('Africa', 'Asia'), 'Canada', 'North America', 'Canberra', 'Sydney']
+
+************************************************************
+
+>>> rdd1=sc.parallelize([1,2,3,4,5])
+>>> rdd2=sc.parallelize([4,5,6,7,8])
+>>> rdd3=rdd1.union(rdd2)
+>>> rdd3.collect()
+o/p: [1, 2, 3, 4, 5, 4, 5, 6, 7, 8]
+>>> rdd4=rdd3.distinct()
+>>> rdd4.collect()
+o/p:    
+[1, 2, 3, 4, 5, 6, 7, 8]
+>>>
+
+****************************************************************
+
+>>> rdd5=sc.parallelize(range(10,100),3)
+>>> rdd5.glom().collect()
+o/p: [[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39], [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69], [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]]
+>>>
+
+***************************************************************
+
+>>> rdd6=sc.parallelize(["Emily, 10","Mike, 7","Smith, 9","Jenny, 10","Joshua, 8","Sarah, 6"])
+>>> rdd6.collect()
+o/p: ['Emily, 10', 'Mike, 7', 'Smith, 9', 'Jenny, 10', 'Joshua, 8', 'Sarah, 6']
+>>> rdd7=rdd6.map(lambda r:(r.split(",")[0],r.split(",")[1]))
+>>> rdd7.collect()
+o/p: [('Emily', ' 10'), ('Mike', ' 7'), ('Smith', ' 9'), ('Jenny', ' 10'), ('Joshua', ' 8'), ('Sarah', ' 6')]
+>>> for f in rdd7.collect():
+...     print f
+...
+o/p: ('Emily', ' 10')
+('Mike', ' 7')
+('Smith', ' 9')
+('Jenny', ' 10')
+('Joshua', ' 8')
+('Sarah', ' 6')
+>>> rdd8=rdd7.sortByKey()
+>>> rdd8.collect()
+o/p: [('Emily', ' 10'), ('Jenny', ' 10'), ('Joshua', ' 8'), ('Mike', ' 7'), ('Sarah', ' 6'), ('Smith', ' 9')]
+>>> for f in rdd8.collect():
+...     print f
+...
+o/p: ('Emily', ' 10')
+('Jenny', ' 10')
+('Joshua', ' 8')
+('Mike', ' 7')
+('Sarah', ' 6')
+('Smith', ' 9')
+>>> rdd9=rdd6.map(lambda r:(int(r.split(",")[1]),r.split(",")[0]))
+>>> for f in rdd9.collect():
+...     print f
+...
+o/p: (10, 'Emily')
+(7, 'Mike')
+(9, 'Smith')
+(10, 'Jenny')
+(8, 'Joshua')
+(6, 'Sarah')
+>>> rdd9=rdd9.sortByKey()
+>>> for f in rdd9.collect():
+...     print f
+...
+o/p: (6, 'Sarah')
+(7, 'Mike')
+(8, 'Joshua')
+(9, 'Smith')
+(10, 'Emily')
+(10, 'Jenny')
+>>> rdd9=rdd9.sortByKey(False)
+>>> for f in rdd9.collect():
+...     print f
+...
+o/p: (10, 'Emily')
+(10, 'Jenny')
+(9, 'Smith')
+(8, 'Joshua')
+(7, 'Mike')
+(6, 'Sarah')
+>>>
+>>> rdd6=sc.parallelize(["Emily, 10","Mike, 7","Smith, 9","Jenny
+, 10","Joshua, 8","Sarah, 6"])
+>>> rdd8=rdd6.map(lambda r:(r.split(",")[0],int(r.split(",")[1])
+))
+>>> rdd9=rdd8.mapValues(lambda t:t+5)
+>>> rdd9.collect()
+o/p: [('Emily', 15), ('Mike', 12), ('Smith', 14), ('Jenny', 15), ('Joshua', 13), ('Sarah', 11)]
+>>> rdd8.join(rdd9).collect()    
+o/p: [('Sarah', (6, 11)), ('Mike', (7, 12)), ('Joshua', (8, 13)), ('Jenny', (10, 15)), ('Emily', (10, 15)), ('Smith', (9, 14))]
+>>> rdd10=rdd8.join(rdd9)
+>>> rdd11=rdd10.reduceByKey(lambda c,d:c+d)
+>>> rdd11.collect()      
+o/p: [('Sarah', (6, 11)), ('Mike', (7, 12)), ('Joshua', (8, 13)), ('Jenny', (10, 15)), ('Emily', (10, 15)), ('Smith', (9, 14))]
+>>>
+
+*********************************************************
+
+>>> testRDD=sc.parallelize(range(1,10))
+>>> testRDD1=testRDD.reduce(lambda a,b:a+b)
+>>> testRDD1
+o/p: 45
+
+***************************************************
+
+>>> teleRDD=sc.textFile("telecom.csv")
+>>> teleRDD.take(10)
+o/p: [u'TXCUST00001,982120000,Male,N,PrePaid,Active,Active,InActive,20,N', u'TXCUST00002,982120001,Male,N,PostPaid,Active,Active,InActive,25,N', u'TXCUST00003,982120002,Male,N,PrePaid,Active,Active,InActive,20,Y', u'TXCUST00004,982120003,Male,Y,PrePaid,Active,Active,InActive,25,N', u'TXCUST00005,982120004,Male,N,PrePaid,Active,Active,InActive,15,N', u'TXCUST00006,982120005,Male,N,PrePaid,Active,Active,InActive,15,N', u'TXCUST00007,982120006,Male,N,PrePaid,Active,Active,InActive,12,N', u'TXCUST00008,982120007,Male,N,PrePaid,Active,Active,InActive,10,N', u'TXCUST00009,982120008,Male,Y,PrePaid,Active,Active,InActive,15,Y', u'TXCUST00010,982120009,Female,N,PrePaid,Active,Active,InActive,15,N']
+
+>>> teleRDD.first()
+o/p: u'TXCUST00001,982120000,Male,N,PrePaid,Active,Active,InActive,20,N'
+>>> teleRDD.take(1)
+o/p: [u'TXCUST00001,982120000,Male,N,PrePaid,Active,Active,InActive,20,N']
+
+>>> header=teleRDD.first()
+>>> telecomRDD1=teleRDD.filter(lambda u:u!=header)
+>>> for i in teleRDD.take(5):
+...     print i
+...
+o/p: TXCUST00001,982120000,Male,N,PrePaid,Active,Active,InActive,20,N
+TXCUST00002,982120001,Male,N,PostPaid,Active,Active,InActive,25,N
+TXCUST00003,982120002,Male,N,PrePaid,Active,Active,InActive,20,Y
+TXCUST00004,982120003,Male,Y,PrePaid,Active,Active,InActive,25,N
+TXCUST00005,982120004,Male,N,PrePaid,Active,Active,InActive,15,N
+>>> for i in telecomRDD1.take(5):
+...     print i
+...
+o/p: TXCUST00002,982120001,Male,N,PostPaid,Active,Active,InActive,25,N
+TXCUST00003,982120002,Male,N,PrePaid,Active,Active,InActive,20,Y
+TXCUST00004,982120003,Male,Y,PrePaid,Active,Active,InActive,25,N
+TXCUST00005,982120004,Male,N,PrePaid,Active,Active,InActive,15,N
+TXCUST00006,982120005,Male,N,PrePaid,Active,Active,InActive,15,N
+>>>
+>>> genderCount=teleRDD.map(lambda e:(e.split(",")[2],1))
+>>> genderCount.countByKey()
+o/p: defaultdict(<type 'int'>, {u'Male': 269, u'Female': 231})
+
+
+************************************************************
+

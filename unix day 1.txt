@@ -1,0 +1,59 @@
+DATA (employees.txt)
+
+1001 John Doe Accounting 50000 2015-01-10 ACC01
+1002 Jane Smith HR 60000 2017-03-22 HR02
+1003 Sam Johnson IT 55000 2018-07-15 IT03
+1004 Lisa Brown Finance 70000 2012-11-20 FIN04
+1005 Michael White Marketing 45000 2019-05-30 MKT05
+1006 Susan Green Operations 50000 2014-06-18 OPS06
+1007 Tim Blue Sales 65000 2016-09-05 SAL07
+1008 Anna Black Research 60000 2013-12-01 RES08
+1009 Peter Grey Support 58000 2020-02-25 SUP09
+
+PROBLEM STATEMENTS
+
+1. Find all employees hired before 2016 and display their details.
+
+[prashant_medapati@chnntxetarh10 ~]$ cat employees.txt | grep -E "201[0-5]-"
+OR
+[prashant_medapati@chnntxetarh10 ~]$ cat employees.txt | grep -E "20[0,1][0-5]-"
+
+2. Display all employees with a salary between 50000 and 60000.
+
+[prashant_medapati@chnntxetarh10 ~]$ cat employees.txt | grep -E "\s(50000|[5-6][0-9]{4})\s"
+
+3. Replace all instances of the word "Support" with "Customer Support" and save the output to a new file updated_employees.txt.
+
+[prashant_medapati@chnntxetarh10 ~]$ file_content=$(cat employees.txt)
+[prashant_medapati@chnntxetarh10 ~]$ echo "${file_content//Support/Customer Support}" > upgraded_employees.txt;cat upgraded_employees.txt
+
+4. Extract and display only the employee names (second and third columns) and their hire dates (sixth column).
+
+[prashant_medapati@chnntxetarh10 ~]$ cat employees.txt | cut -d ' ' -f2,3,6
+
+5. Find all employees whose department code starts with 'A' and display their details.
+
+[prashant_medapati@chnntxetarh10 ~]$ cat employees.txt | grep -E "^[^ ]+ [^ ]+ [^ ]+ A[A-Za-z]* "
+
+6. Sort the contents of employees.txt by hire date in ascending order.
+
+[prashant_medapati@chnntxetarh10 ~]$ cat employees.txt | sort -t " " -k6
+
+7. Display the name and department of the employee with the highest salary.
+
+[prashant_medapati@chnntxetarh10 ~]$ cat employees.txt | sort -t " " -k5 -r | cut -d " " -f2,3,4 | head -1
+
+8. Count the number of employees in each department and display the department name along with the count.
+
+[prashant_medapati@chnntxetarh10 ~]$ cat employees.txt | cut -d " " -f4 | sort | uniq -c
+
+9. Display the details of employees whose names contain the letter 'n' (case-insensitive).
+
+[prashant_medapati@chnntxetarh10 ~]$ cat employees.txt | grep -iE "^[^ ]+ [^ ]*n[^ ]*+ +[^ ]*|^[^ ]+ [^ ]* [^ ]*n[^ ]*"
+
+
+
+************************************************************************************************************************************************************
+
+
+

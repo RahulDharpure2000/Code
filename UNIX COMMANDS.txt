@@ -1,0 +1,176 @@
+1. cal - gives calendar for current date,month,year
+
+	OPTIONS with cal:
+       -1, --one
+              Display single month output.  (This is the default.) ex: cal -1
+
+       -3, --three
+              Display prev/current/next month output.
+
+       -s, --sunday
+              Display Sunday as the first day of the week.  ex: cal -s
+
+       -m, --monday
+              Display Monday as the first day of the week.
+
+       -j, --julian
+              Display Julian dates (days one-based, numbered from January 1).  ex: cal -j
+
+       -y, --year
+              Display a calendar for the current year.
+	
+	**cal 4 2024 -- it will give cal with month 4 and year 2024(format cal month year)
+	**cal 2024 -- it wil give calendar for the whole 2024 year(format cal year)
+	**cal -y 2001 -- displays calendar for the given year
+
+_________________________________________________________________________________________________________________________________________________________
+
+2. man - gives information about a particular command-how it can be used ex: man cal
+
+_________________________________________________________________________________________________________________________________________________________
+
+3. date - returns date with time
+formatting:
+	**date -d "10/10/2019" -- output: Thu Oct 10 00:00:00 IST 2019
+	**date +"%A, the %dth %B %Y"    ---   (%A for full day name, %d for dayth number, %B for full month name,%Y for full year) --o/p:Monday, the 16th December 2024
+	**date +"%a, the %dth %b %y" --- o/p: Mon, the 16th Dec 24
+	**date +"%X"  -- o/p: 10:16:38 AM
+	**date +"%r %Z" -- o/p: 10:16:56 AM IST
+_________________________________________________________________________________________________________________________________________________________
+
+4. who - displays who all are working on server
+	who -H ---- gives details with heading
+	who -a ---- gives more extra details of who are working on server
+	who -q ----- gives usernames of users
+	who -b ------ boot time
+	whoami ------ my username
+	uname -------- gives os username
+	uname -s ---------- gives os username
+	uname -r ------- more info
+	uname -v ------- boot time date,month etc...
+	uname -p -------
+	uname -o ------- os name
+	uname -a ------- more details of the main connected user
+_________________________________________________________________________________________________________________________________________________________
+
+
+5. tty-terminal details
+
+_________________________________________________________________________________________________________________________________________________________
+
+
+6.which cal-command location
+
+_________________________________________________________________________________________________________________________________________________________
+
+
+7.type cal-type of the command
+
+_________________________________________________________________________________________________________________________________________________________
+
+8.echo "hi all" ---- print details and give new line
+
+_________________________________________________________________________________________________________________________________________________________
+
+9.printf "%s" hi all --- combines all data and no next line
+
+_________________________________________________________________________________________________________________________________________________________
+
+10. echo -e "this is \n next line"  --- \n inbetween quotes prints the data in next line with help of -e
+	echo "this is \n next line" --- without -e it doesn't work takes \n as a string
+	**echo "2+3;2*3"| bc   (bc- arbitrary precision calculator)
+
+_________________________________________________________________________________________________________________________________________________________
+
+
+11. pwd - present working directory -- o/p: /home/prashant.medapati
+
+_________________________________________________________________________________________________________________________________________________________
+
+12. cd - change directory(using symbols is relative method and specifying names is absolute methods)
+	cd / --- it goes to the root directory
+	cd ~ --- it goes to the working directory, ~ means working directory
+	cd .. -- it goes to the home directory
+	cd /home/Prashant.medapati -- it goes to the current working directory
+
+_________________________________________________________________________________________________________________________________________________________
+
+13. ls ---- listing of directories present
+	ls -l ----- gives more information
+	ls -i ----- i node numbers fof the directories or files present in terminal
+	ls -R ---- recursion format
+	ls -1 ---- ls with vertical order elements
+	ls -a ---- ls like a list
+	ls -d --- to check any hidden files
+	
+
+_________________________________________________________________________________________________________________________________________________________
+
+14. mkdir --- making directories(directories present are blue in color)
+
+
+_________________________________________________________________________________________________________________________________________________________
+
+15. cat - create a file with commands
+	cat > a ----- after running we can write data
+	cat a ----- we can print with this
+
+	cat >b.txt
+
+	cat >a -------- if we use this it oberrides the existing data instead we can use
+	cat >>a --------- it adds data to the existing data
+	
+	cat a>c -- data from a to c
+	cat >d<c  -- data to d from c
+
+	cat a b.txt --- content of both files will be present
+
+_________________________________________________________________________________________________________________________________________________________
+
+16. touch - it will create a empty file without content
+	touch file1 -- to create file
+	cat >file1 -- to write data into it
+_________________________________________________________________________________________________________________________________________________________
+
+17.wc
+	cat a | wc 
+	cat a|wc -l ---- no of lines
+	cat a|wc -w ---- no of words
+	cat a|wc -c ---- no of characters
+	cat a b.txt | wc -l --- no of lines in both the files
+
+_________________________________________________________________________________________________________________________________________________________
+
+18. rm
+	cd demo -- firstly to go into directory
+	
+	rm b.txt -- removes text file
+	rm d file1 -- remover directory
+	rm -i c 
+	rm -f c -- forceful deletion
+
+	rmdir adir -- to remove direvtory which doesn't have any content(empty directory)
+	rm -r adir -- to remove an non empty directory
+_________________________________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

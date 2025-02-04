@@ -1,0 +1,389 @@
+while writing shell program, this should be given ----- [prashant.medapati@chnntxetarh10 /]$   #!/usr/bin/bash
+
+
+*************************************************************************************************************
+
+
+[prashant.medapati@chnntxetarh10 ~]$ #!/usr/bin/bash
+[prashant.medapati@chnntxetarh10 ~]$ num1=10
+[prashant.medapati@chnntxetarh10 ~]$ num2=5
+[prashant.medapati@chnntxetarh10 ~]$ echo $num1+$num2 | bc            ----($ is to access particular variable)
+15
+
+
+*************************************************************************************************************
+
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod u+x shl.sh
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 124
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati    38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati    60 Dec 17 12:24 aaa
+-rw-------. 1 prashant.medapati prashant.medapati    13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati     6 Dec 17 12:37 abcdef
+-rw-------. 1 prashant.medapati prashant.medapati    19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati    76 Dec 17 16:25 che
+-rw-------. 1 prashant.medapati prashant.medapati 20480 Dec 17 11:30 data_ar.tar
+drwxrw----. 3 prashant.medapati prashant.medapati   125 Dec 17 11:34 demo
+drwx------. 3 prashant.medapati prashant.medapati    41 Dec 17 10:56 demo1
+-rw-------. 1 prashant.medapati prashant.medapati    96 Dec 17 12:14 empf
+-rw-------. 1 prashant.medapati prashant.medapati   281 Dec 17 16:20 employee
+-rw-------. 1 prashant.medapati prashant.medapati  6430 Dec 17 16:15 f3
+-rw-------. 1 prashant.medapati prashant.medapati    17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati    16 Dec 16 15:13 fin
+drwx------. 3 prashant.medapati prashant.medapati    30 Dec 17 11:31 home
+-rw-------. 1 prashant.medapati prashant.medapati 30720 Dec 17 11:32 newfile
+-rw-------. 1 prashant.medapati prashant.medapati     0 Dec 17 11:05 new_file1
+-rw-------. 1 prashant.medapati prashant.medapati    10 Dec 17 11:10 new_file2
+lrwxrwxrwx. 1 prashant.medapati prashant.medapati     8 Dec 17 11:12 new_file3 -> new_file
+-----w-r--. 1 prashant.medapati prashant.medapati     0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati   397 Dec 17 16:17 pme1
+-rwx------. 1 prashant.medapati prashant.medapati    46 Dec 18 09:46 shl.sh
+-rw-------. 1 prashant.medapati prashant.medapati    28 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati    28 Dec 17 10:49 temp.txt
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati     4 Dec 17 10:07 z
+
+[prashant.medapati@chnntxetarh10 ~]$ cat > shl.sh
+a=10
+b=10
+echo $a $b
+c=`expr $a + $b`
+echo $c
+
+[prashant.medapati@chnntxetarh10 ~]$ sh shl.sh
+10 10
+20
+
+
+*************************************************************************************************************
+
+
+[prashant.medapati@chnntxetarh10 ~]$ cat >shl.sh
+arr=(777 444 0 "111" "aaaa" 10.0)
+echo "display first element of the array:"
+echo $arr
+echo ${arr}
+echo "to display all elements of the array:"
+echo ${arr[*]}
+echo ${arr[@]}
+echo "length of the array:"
+echo ${#arr[*]}
+echo "display any particular element of the array:"
+echo ${arr[2]}
+echo ${arr[-2]}
+echo "display length of particular element:"
+echo ${#arr[4]}
+
+[prashant.medapati@chnntxetarh10 ~]$ sh shl.sh
+display first element of the array:
+777
+777
+to display all elements of the array:
+777 444 0 111 aaaa 10.0
+777 444 0 111 aaaa 10.0
+length of the array:
+6
+display any particular element of the array:
+0
+aaaa
+display length of particular element:
+4
+
+
+
+
+
+*************************************************************************************************************
+
+[prashant.medapati@chnntxetarh10 ~]$ cat >shl.sh
+echo -e "\n the first argument received is $1, the second $2 and third $3 \n"
+echo "$# no of arguments were passed"
+echo $@
+
+[prashant.medapati@chnntxetarh10 ~]$ sh shl.sh 10 20 30
+
+ the first argument received is 10, the second 20 and third 30
+
+3 no of arguments were passed
+10 20 30
+
+
+*************************************************************************************************************
+
+[prashant.medapati@chnntxetarh10 ~]$ cat >shl.sh
+d=`date`
+q=$(date)
+echo $d
+echo $q
+
+[prashant.medapati@chnntxetarh10 ~]$ sh shl.sh
+Wed Dec 18 10:09:10 IST 2024
+Wed Dec 18 10:09:10 IST 2024
+
+*************************************************************************************************************
+
+
+[prashant.medapati@chnntxetarh10 ~]$ cat >shl.sh
+read -p "enter any value:" num
+echo $num
+
+[prashant.medapati@chnntxetarh10 ~]$ sh shl.sh
+enter any value:27
+27
+
+[prashant.medapati@chnntxetarh10 ~]$ sh shl.sh
+enter any value:abcd
+abcd
+
+*************************************************************************************************************
+
+
+vi testvi.sh    ---(to open vi use vi filename.sh)
+
+
+
+
+
+Operations in insert mode
+Sl No	Option	Action
+1	i	Insert data before cursor
+2	I	Insert data at start of current line
+3	a	Insert data after cursor
+4	A	Inserts data at end of current line
+5	o	Starts a new line after cursor
+6	O	Starts a new line before cursor
+
+
+
+
+
+File traversal in command mode
+Sl No	Option	Action
+1	(n)h	Move n positions left
+2	(n)j	Move n lines down
+3	(n)k	Move n lines up 
+4	(n)l	Move n positions right
+5	$	Move to end of current line
+
+
+
+
+Copy and paste text
+Sl No	Option	Action
+1	(n)yy / y(n)y	Yank copy n lines
+2	p	Paste copied line after current line
+3	P	Paste copied line before current line
+
+
+
+
+
+Delete the text
+Sl No	Option	Action
+1	(n)x	Delete n characters under the cursor
+2	(n)X	Delete n characters before the cursor
+3	(n)dd	Delete n lines from current line
+
+
+
+
+
+Copy and paste lines
+Sl No	Option	Action
+1	1, 4co7	Copy 1 to 4 line and paste it after line 7
+
+
+
+
+
+
+Delete the lines
+Sl No	Option	Action
+1	1, 4d	Delete lines 1 to 4
+
+
+
+
+
+
+Save and quit
+Sl No	Option	Action
+1	:w	Save changes
+2	:wq	Save changes and exit from editor
+3	:q	Exit from editor
+4	:q!	Exit from editor and discard changes made
+
+
+
+
+
+
+Read and write operations on multiple files
+Sl No	Option	Action
+1	:1, 4w abc.txt	Write line 1 to 4 to a file 'abc.txt'
+2	: 4r abc.txt	Read the content from abc.txt and write after 4th line
+
+
+
+
+
+
+
+
+Advanced text processing operations(in escape mode):
+:s (or :substitute) is the command, adding % symbol will expand the range of search to entire file, which is the current line by default.
+\d is the pattern to find digits.
+# is the string to replace with the matches found.
+g is the global flag to replace all occurrences of the search pattern.
+
+
+*************************************************************************************************************
+
+
+
+
+-bash-4.2$ cat >shll.sh
+#!/bin/bash
+read -p "number:" number
+case $number in
+1)
+echo "entered 1"
+;;
+2)
+echo "entered 2"
+;;
+3)
+echo "you entered 3"
+;;
+*)
+echo "Invalid Number"
+;;
+esac
+^C
+-bash-4.2$ sh shll.sh
+number:3
+you entered 3
+
+
+
+
+
+
+
+
+-bash-4.2$ cat >shll.sh
+#!/usr/bin/bash
+# For Loop
+sample_array=(10 20 30 a b c 50 60)
+for element in ${sample_array[*]}
+do
+        echo "Value now is: $element"
+done
+^C
+-bash-4.2$ sh shll.sh
+Value now is: 10
+Value now is: 20
+Value now is: 30
+Value now is: a
+Value now is: b
+Value now is: c
+Value now is: 50
+Value now is: 60
+
+
+
+
+
+
+
+
+
+-bash-4.2$ cat >shll.sh
+#!/usr/bin/bash
+# While Loop Demo
+num1=3
+while [ $num1 -gt 0 ]
+do
+        num2=`expr $num1 - 1`   # This is how calculations are done in Shell, using expr command #
+        while [ $num2 -gt 0 ]
+        do
+                echo "Value of num1: $num1"
+                echo "Value of num2: $num2"
+                num2=`expr $num2 - 1`
+        done
+        num1=`expr $num1 - 1`
+done
+
+^C
+-bash-4.2$ sh shll.sh
+Value of num1: 3
+Value of num2: 2
+Value of num1: 3
+Value of num2: 1
+Value of num1: 2
+Value of num2: 1
+
+
+
+
+
+
+
+
+
+
+
+-bash-4.2$ cat >shll.sh
+#!/usr/bin/bash
+# Until Loop Demo
+num=0
+until [ $num -gt 5 ]
+do
+        echo $num
+        num=`expr $num + 1`
+done
+
+^C
+-bash-4.2$ sh shll.sh
+0
+1
+2
+3
+4
+5
+
+
+
+*************************************************************************************************************
+
+FUNCTIONS::
+
+#!/bin/bash
+#function to increase salary by percentage
+increase_salary () {
+empid="$1"
+increase_percentage="$2"
+if [ ! -e "emp.txt" ]
+then
+        echo "Error: File 'emp.txt' not found."
+        return 1
+fi
+while IFS=: read -r EmpID Name Designation UnitName Location DateOfJoining Salary
+do
+        if [ "$EmpID"="$empid" ]
+	then
+        #calculate new salary
+                new_salary=$((echo "scale=2; $Salary * (1+$increase_percentage / 100)"))
+                echo "$EmpID:$Name:$Designation:$UnitName:$Location:$DateOfJoining:$new_salary"
+        else
+                echo "$EmpID:$Name:$Designation:$UnitName:$Location:$DateOfJoining:$Salary"
+        fi
+done < emp.txt
+}
+
+#call the function to increase salary for employee 1001 by 10%
+increase_salary 1001 10
+#call the function to increase salary for employee 1003 by 5%
+increase_salary 1003 5
+

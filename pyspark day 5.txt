@@ -1,0 +1,157 @@
+>>> from pyspark.sql import SparkSession
+>>> from pyspark.sql.types import StringType
+>>> from pyspark.sql.functions import udf
+>>> spark = SparkSession.builder.appName("example").getOrCreate()
+>>> def convert_uppercase(x):
+...     return x.upper()
+...
+>>> spark.udf.register("convert_uppercase", convert_uppercase, StringType())
+<function convert_uppercase at 0x7f1657703c80>
+>>> df = spark.createDataFrame([("hello",), ("world",)], ["word"])
+>>> df.createOrReplaceTempView("words")
+>>> result = spark.sql("SELECT convert_uppercase(word) as upper_word FROM words")
+>>> result.show()
+
++----------+
+|upper_word|
++----------+
+|     HELLO|
+|     WORLD|
++----------+
+
+****************************************************************
+
+
+>>> emploc = [(1001,"Sajal","India"),(1002,"John","USA"),(1003,"Harry","India")]
+>>> import pyspark
+>>> from pyspark.sql.types import StructType,StructField,IntegerType,StringType
+>>> empSchema=pyspark.sql.types.StructType([StructField("eid",IntegerType(),True),StructField("ename",StringType(),True),StructField("location",StringType(),True)])
+>>> rdd=sc.parallelize(emploc)
+>>> df=spark.createDataFrame(rdd,empSchema)
+>>> df.createOrReplaceTempView("employee")
+>>> valrecords= spark.sql("SELECT eid,convert_uppercase(ename),location from employee")
+>>> valrecords.show()
++----+------------------------+--------+
+| eid|convert_uppercase(ename)|location|
++----+------------------------+--------+
+|1001|                   SAJAL|   India|
+|1002|                    JOHN|     USA|
+|1003|                   HARRY|   India|
++----+------------------------+--------+
+
+
+****************************************************************
+
+>>> from pyspark.sql.types import StringType
+>>> from pyspark.sql.functions import udf
+>>> convert_uppercase = udf(lambda x:x.upper(), returnType=StringType())
+>>> emploc = [(1001,"Sajal","India"),(1002,"John","USA"),(1003,"Harry","India")]
+>>> import pyspark
+>>> from pyspark.sql.types import StructType,StructField,IntegerType,StringType
+>>> empSchema=pyspark.sql.types.StructType([StructField("eid",IntegerType(),True),StructField("ename",StringType(),True),StructField("location",StringType(),True)])
+>>> rdd=sc.parallelize(emploc)
+>>> df=spark.createDataFrame(rdd,empSchema)
+>>> df.select(convert_uppercase(df.ename)).show()
++---------------+
+|<lambda>(ename)|
++---------------+
+|          SAJAL|
+|           JOHN|
+|          HARRY|
++---------------+
+
+****************************************************************
+
+>>> from pyspark.sql import SparkSession
+>>> from pyspark.sql.types import FloatType
+>>> from pyspark.sql.functions import udf
+>>> spark = SparkSession.builder.appName("example").getOrCreate()
+>>> def agg_salaries(x):
+...     return sum(x)
+...
+>>> spark.udf.register("agg_salaries", agg_salaries, FloatType())
+<function agg_salaries at 0x7f3df9329140>
+>>> df = spark.createDataFrame([(1.0,), (2.0,), (3.0,)], ["salary"])
+>>> df.createOrReplaceTempView("salaries")
+>>> result = spark.sql("SELECT agg_salaries(collect_list(salary)) as total_salary FROM salaries")
+>>> result.show()
+[Stage 12:=====================================>
+
++------------+
+|total_salary|
++------------+
+|         6.0|
++------------+
+
+****************************************************************
+
+>>> empSal = [(1001,"Sajal","India",23455.50),(1002,"John","USA",23454.50),(1003,"Harry","India",22455.99)]
+>>> import pyspark
+>>> from pyspark.sql.types import StructType,StructField,IntegerType,StringType,FloatType
+>>> empSchema = pyspark.sql.types.StructType([StructField("eid", IntegerType(),True),StructField("ename",StringType(),True),StructField("location",StringType(),True),StructField("salary",FloatType(),True)])
+>>> rdd=sc.parallelize(empSal)
+>>> df=spark.createDataFrame(rdd,empSchema)
+>>> df.createOrReplaceTempView("employee")
+>>> valrecords= spark.sql("SELECT agg_salaries(salary)from employee")
+>>> valrecords.show()
+
+++++++++++++++++++++++++++++++++++++++++
+When the above code is executed, it will throw an error.
+This is because the aggregate function 'agg_salaries' is applied to every element of the 'salary' column individually, while the expected input is a list.
+
+Solution: One of the preliminary steps to using aggregated functions is to convert the entire column data to a list of values and then pass it on as the input. One of the methods of achieving this is using the 'collect_list' function, as shown below:
+++++++++++++++++++++++++++++++++++++++++
+
+>>> from pyspark.sql import functions as f
+>>> employeerecords=spark.sql("select * from employee")
+>>> employee_list = df.agg(f.collect_list(employeerecords['salary']).alias('agg_col'))
+>>> employee_list.show()
+[Stage 11:================================================>     
++--------------------+
+|             agg_col|
++--------------------+
+|[23455.5, 23454.5...|
++--------------------+
+
+****************************************************************
+
+>>> from pyspark.sql.functions import udf
+>>> from pyspark.sql.types import FloatType
+>>> aggregate_salaries= udf(lambda sal: sum(sal), returnType=FloatType())
+>>> empSal = [(1001,"Sajal","India",23455.50),(1002,"John","USA",23454.50),(1003,"Harry","India",22455.99)]
+>>> import pyspark
+>>> from pyspark.sql.types import StructType,StructField,IntegerType,StringType,FloatType
+>>> empSchema = pyspark.sql.types.StructType([StructField("eid", IntegerType(),True),StructField("ename",StringType(),True),StructField("location",StringType(),True),StructField("salary",FloatType(),True)])
+>>> rdd=sc.parallelize(empSal)
+>>> df=spark.createDataFrame(rdd,empSchema)
+>>> from pyspark.sql import functions as f
+>>> employee_list=df.agg(f.collect_list(df['salary']).alias('agg_col'))
+>>> employee_list.select(aggregate_salaries(employee_list.agg_col)).show()
++-----------------+
+|<lambda>(agg_col)|
++-----------------+
+|         69365.99|
++-----------------+
+
+****************************************************************
+
+Pyspark core Join exercise:
+
+>>> uin=sc.textFile("UINCardData.csv").map(lambda s:(s.split(",")[1],s))
+>>> ban=sc.textFile("BankAccountLink.csv").map(lambda b:(b.split(",")[0],b))
+>>> uin.take(1)
+sample o/p:: [(u'982120000', u'UIN00001,982120000,Male,N,65000')]
+>>> ban.take(1)
+sample o/p:: [(u'982120000', u'982120000,Y,20004562111')]
+
+>>> jo=uin.leftOuterJoin(ban)
+>>> jo.take(2)
+sample o/p:: [(u'982120069', (u'UIN00070,982120069,Male,N,34000', u'982120069,Y,20004562180')),(u'982120256',(u'UIN00257,982120256,Female,Y,5000', u'982120256,Y,20004562367'))]
+>>> res=jo.filter(lambda x:x[1][1].split(",")[1]=="N").map(lambda y:(y[1][0].split(",")[0],y[1][1].split(",")[2]))
+>>> res.take(10)
+sample o/p:: 
+[(u'UIN00051', u'20004552126'), (u'UIN00052', u'20004552127'), (u'UIN00053', u'20004552128'), (u'UIN00054', u'20004552129'), (u'UIN00055', u'20004552130'), (u'UIN00056', u'20004552131'), (u'UIN00057', u'20004552132'), (u'UIN00323', u'20004552937'), (u'UIN00324', u'20004552938'), (u'UIN00321', u'20004552935')]
+
+****************************************************************
+
+

@@ -1,0 +1,1180 @@
+BASIC COMMANDS EXERCISE::
+
+EXERCISE::
+
+1. Display the present working directory in your logged in session
+
+-bash-4.2$ pwd
+/home/prashant.medapati
+
+
+2. Change the present working directory to its parent and display all the files in it
+
+-bash-4.2$ cd /home/prashant.medapati/demo
+-bash-4.2$ pwd
+/home/prashant.medapati/demo
+-bash-4.2$ cd ..
+-bash-4.2$ pwd
+/home/prashant.medapati
+-bash-4.2$ ls -a
+.   aaa         abc.txt        .bash_profile  che          demo1     f3     hfjfkd   new_file1  newfl    shl.sh     testttttttt
+..  abb.python  .bash_history  .bashrc        data_ar.tar  empf      file1  home     new_file2  pme1     temp1.txt  testvi.sh
+a   abcdef      .bash_logout   b.txt          demo         employee  fin    newfile  new_file3  shll.sh  temp.txt   z
+-bash-4.2$
+
+
+3. Tryout 'r', 'R', '-a', 'l' options with "ls" command
+
+-bash-4.2$ ls -a
+.   aaa         abc.txt        .bash_profile  che          demo1     f3     hfjfkd   new_file1  newfl    shl.sh     testttttttt
+..  abb.python  .bash_history  .bashrc        data_ar.tar  empf      file1  home     new_file2  pme1     temp1.txt  testvi.sh
+a   abcdef      .bash_logout   b.txt          demo         employee  fin    newfile  new_file3  shll.sh  temp.txt   z
+-bash-4.2$ ls -r
+z            shll.sh    newfile  employee     b.txt
+testvi.sh    pme1       home     empf         abc.txt
+testttttttt  newfl      hfjfkd   demo1        abcdef
+temp.txt     new_file3  fin      demo         abb.python
+temp1.txt    new_file2  file1    data_ar.tar  aaa
+shl.sh       new_file1  f3       che          a
+-bash-4.2$ ls -R
+.:
+a           che          f3       new_file1  shl.sh
+aaa         data_ar.tar  file1    new_file2  temp1.txt
+abb.python  demo         fin      new_file3  temp.txt
+abcdef      demo1        hfjfkd   newfl      testttttttt
+abc.txt     empf         home     pme1       testvi.sh
+b.txt       employee     newfile  shll.sh    z
+
+./demo:
+a     ar.cpio  c   f2        new_file2  numm
+adir  b        f1  new_file  num
+
+./demo/adir:
+a  demo
+
+./demo/adir/demo:
+adir
+
+./demo/adir/demo/adir:
+a
+
+./demo1:
+a  b  c  demo
+
+./demo1/demo:
+a  adir  b  f1  f2  num  numm
+
+./demo1/demo/adir:
+a  demo
+
+./demo1/demo/adir/demo:
+adir
+
+./demo1/demo/adir/demo/adir:
+a
+
+./home:
+prashant.medapati
+
+./home/prashant.medapati:
+demo
+
+./home/prashant.medapati/demo:
+a  adir  b  c  f1  f2  new_file  new_file2  num  numm
+
+./home/prashant.medapati/demo/adir:
+a  demo
+
+./home/prashant.medapati/demo/adir/demo:
+adir
+
+./home/prashant.medapati/demo/adir/demo/adir:
+a
+-bash-4.2$ ls -a
+.              .bash_profile  f3         newfl
+..             .bashrc        file1      pme1
+a              b.txt          fin        shll.sh
+aaa            che            hfjfkd     shl.sh
+abb.python     data_ar.tar    home       temp1.txt
+abcdef         demo           newfile    temp.txt
+abc.txt        demo1          new_file1  testttttttt
+.bash_history  empf           new_file2  testvi.sh
+.bash_logout   employee       new_file3  z
+-bash-4.2$ ls -l
+total 144
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati    38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati    60 Dec 17 12:24 aaa
+-rw-------. 1 prashant.medapati prashant.medapati    13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati     6 Dec 17 12:37 abcdef
+-rw-------. 1 prashant.medapati prashant.medapati    16 Dec 18 11:15 abc.txt
+-rw-------. 1 prashant.medapati prashant.medapati    19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati    76 Dec 17 16:25 che
+-rw-------. 1 prashant.medapati prashant.medapati 20480 Dec 17 11:30 data_ar.tar
+drwxrw----. 3 prashant.medapati prashant.medapati   125 Dec 17 11:34 demo
+drwx------. 3 prashant.medapati prashant.medapati    41 Dec 17 10:56 demo1
+-rw-------. 1 prashant.medapati prashant.medapati    96 Dec 17 12:14 empf
+-rw-------. 1 prashant.medapati prashant.medapati   281 Dec 17 16:20 employee
+-rw-------. 1 prashant.medapati prashant.medapati  6430 Dec 17 16:15 f3
+-rw-------. 1 prashant.medapati prashant.medapati    17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati    16 Dec 16 15:13 fin
+-rw-------. 1 prashant.medapati prashant.medapati     4 Dec 18 12:20 hfjfkd
+drwx------. 3 prashant.medapati prashant.medapati    30 Dec 17 11:31 home
+-rw-------. 1 prashant.medapati prashant.medapati 30720 Dec 17 11:32 newfile
+-rw-------. 1 prashant.medapati prashant.medapati     0 Dec 17 11:05 new_file1
+-rw-------. 1 prashant.medapati prashant.medapati    10 Dec 17 11:10 new_file2
+lrwxrwxrwx. 1 prashant.medapati prashant.medapati     8 Dec 17 11:12 new_file3 -> new_file
+-----w-r--. 1 prashant.medapati prashant.medapati     0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati   397 Dec 17 16:17 pme1
+-rwx------. 1 prashant.medapati prashant.medapati   259 Dec 18 12:01 shll.sh
+-rwx------. 1 prashant.medapati prashant.medapati    41 Dec 18 10:12 shl.sh
+-rw-------. 1 prashant.medapati prashant.medapati    28 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati    28 Dec 17 10:49 temp.txt
+-rw-------. 1 prashant.medapati prashant.medapati     4 Dec 18 10:43 testttttttt
+-rw-------. 1 prashant.medapati prashant.medapati    36 Dec 18 11:16 testvi.sh
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati     4 Dec 17 10:07 z
+
+
+4. Create a directory called "dir1" in your HOME directory. Create another directory called "dir2" under "dir1"
+
+-bash-4.2$ cd /home/prashant.medapati
+-bash-4.2$ pwd
+/home/prashant.medapati
+-bash-4.2$ ls
+a           abcdef   che          demo1     f3     hfjfkd   new_file1  newfl    shl.sh     testttttttt
+aaa         abc.txt  data_ar.tar  empf      file1  home     new_file2  pme1     temp1.txt  testvi.sh
+abb.python  b.txt    demo         employee  fin    newfile  new_file3  shll.sh  temp.txt   z
+-bash-4.2$ mkdir dir1
+-bash-4.2$ cd /home/prashant.medapati/dir1
+-bash-4.2$ ls
+-bash-4.2$ mkdir dir2
+-bash-4.2$ ls
+dir2
+
+
+5. Change the directory to dir2 from HOME directory
+
+-bash-4.2$ cd /home
+-bash-4.2$ pwd
+/home
+-bash-4.2$ cd /home/prashant.medapati/dir1/dir2
+-bash-4.2$ pwd
+/home/prashant.medapati/dir1/dir2
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TEXT PROCESSING EXERCISE::
+
+EXERCISE:: Consider the following content in a file "Sample.txt". The format of the data  is <CustomerID><CustomerName><Account number><AccountType>
+
+C1000 Anil 100001 SB
+C1001 Vijaya 100002 SB
+C1001 Vijaya 200001 FD
+C1002 Gaythri 100003 SB
+C1000 Anil 200001 FD
+
+
+1. Extract the fields "CustomerID" and "CustomerName" from "Sample.txt" file and store them in another file "custInfo"
+
+-bash-4.2$ cut -d " " -f1,2 sample.txt >custInfo
+
+-bash-4.2$ cat custInfo
+C1000 Anil
+C1001 Vijaya
+C1001 Vijaya
+C1002 Gaythri
+C1000 Anil
+
+
+2. Extract "CustomerName", "AccountType" fields and store them in another file called "ActInfo"
+
+-bash-4.2$ cut -d " " -f2,4 sample.txt >ActInfo
+-bash-4.2$ cat ActInfo
+Anil SB
+Vijaya SB
+Vijaya FD
+Gaythri SB
+Anil FD
+
+
+3. Concatenate the two files "CustInfo" and "ActInfo’ and store the results into another file called "temp1"
+
+VERTICAL::
+-bash-4.2$ cat custInfo ActInfo > temp1
+-bash-4.2$ cat temp1
+C1000 Anil
+C1001 Vijaya
+C1001 Vijaya
+C1002 Gaythri
+C1000 Anil
+Anil SB
+Vijaya SB
+Vijaya FD
+Gaythri SB
+Anil FD
+
+
+HORIZONTAL::
+-bash-4.2$ paste custInfo ActInfo > temp1
+-bash-4.2$ cat temp1
+C1000 Anil      Anil SB
+C1001 Vijaya    Vijaya SB
+C1001 Vijaya    Vijaya FD
+C1002 Gaythri   Gaythri SB
+C1000 Anil      Anil FD
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PATTERN MATCHING EXERCISES::
+
+EXERCISE 1 :: Use Unix commands and perform the following tasks.
+
+LoginID#Passwd#DateOfBirth#Location#Mobile#Email
+Rajaravi#ETA@123#18-09-1993#Delhi#8888888888#raja.ravi@infosys.com
+Rajesh#Infy123#16-08-1990#Chennai#9999999999#Rajesh@infosys.com
+Raktim#123Infy#10-08-1992#Bangalore#8989898998#Raktim_talukdar@infosys.com;
+Aravind#Dell123#12-08-1993#Hyderabad#7878787890#Aravind.raghavan@infosys.com
+Sankavi#InfyDell#14-09-1992#Mumbai#7777777777#vidya@infosys.com
+
+
+1.Display all the login ids along with the terminal numbers of users who have logged into the server.s
+
+[prashant.medapati@chnntxetarh10 ~]$ who >f3
+[prashant.medapati@chnntxetarh10 ~]$ cut -d " " -f 1,2 f3
+kannanagavenkata.v pts/0
+kasimdevula.tataji pts/1
+ramireddy.mythili pts/2
+leelanavyaharika.s pts/3
+pavankalyan.pampana pts/4
+varsha.p09 pts/5
+sajid.ahmed02 pts/6
+thasleema.m pts/7
+sowmyasree.janjanam pts/8
+satish.zore pts/9
+venkatesh.s80 pts/10
+animeshkumar_pandey pts/11
+santhosh.k38 pts/12
+chityala.damini pts/13
+tejaswini.mavilla pts/15
+nethi.tirumalabasha pts/16
+shivva.nikhitha pts/17
+viswa.teja pts/18
+gowthamraj.sambath pts/19
+akshay.pandhare pts/20
+ashwin.rs pts/21
+sukesh.n pts/22
+srija.gatla pts/23
+chintakunta.venkat pts/24
+sunitha.pattapagalu pts/25
+sravani.divvela pts/26
+suresh.gullapally pts/27
+rohith.babu01 pts/28
+sarathpavan.k pts/29
+bantu.kavyasri pts/30
+kiyasudeen.m pts/31
+rahoofa.c pts/32
+prashant.medapati pts/33
+abirami.p07 pts/35
+varri.rao pts/36
+pavan.kalyan06 pts/37
+rishi.ranjan02 pts/38
+divya.rankireddy pts/39
+malagondu.d pts/40
+bhargavi.batta pts/41
+akkireddy.mounika pts/42
+badiga.rupasri pts/43
+amisha.gupta03 pts/44
+anuradha.gadi pts/45
+ajay.bandari pts/46
+rajat.gupta23 pts/48
+bhaavya.bhushan pts/49
+krishna.tamada pts/50
+saikumar.k10 pts/51
+rajkumar.ray pts/52
+asish.konkimalla pts/53
+suraj.kamble02 pts/54
+arvind.tiwari pts/55
+naresh.gunti pts/56
+dinesh.ganta pts/57
+sonali.kumari06 pts/58
+chitransh.s01 pts/59
+rahul.battin pts/60
+aparna.v11 pts/61
+abhishek.singh238 pts/62
+vamshikrishna.k08 pts/63
+gopikrishna.n02 pts/64
+amruth.s04 pts/65
+rahul.dharpure pts/66
+akanshu.rana pts/67
+amir.farooqui pts/68
+pusuluri.sai pts/69
+nimish.pandit pts/70
+roshan.singh10 pts/71
+satyavanikotakota.k pts/72
+roshan.singh10 pts/73
+suraj.kumar61 pts/74
+satyakamalnaidu.p pts/75
+abhishek.dubey12 pts/76
+biranav.p pts/77
+kowsalya.s05 pts/78
+navadeepan.b pts/79
+raghul.t pts/80
+divya.morrumpalli pts/81
+ankita.singh67 pts/82
+eshwarprabhakar.k pts/83
+prakhar.singh06 pts/84
+pritam.pan pts/85
+pitta.reddy pts/86
+abishek.s05 pts/87
+kashish.aggarwal01 pts/88
+shrawani.deshpande pts/89
+gunnidhi.sharma pts/117
+nandyalaveera.teja pts/118
+
+
+2.Given a login id, count the number of times that particular user has logged in.
+
+
+[prashant.medapati@chnntxetarh10 ~]$ who|grep -c prashant.medapati
+1
+
+
+3.Display the count of directories in your present working directory.
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l |grep ^d | wc -l
+3
+
+
+4.Display all the lines in a file which ends with a semicolon.
+
+[prashant.medapati@chnntxetarh10 ~]$ cat >pme1
+LoginID#Passwd#DateOfBirth#Location#Mobile#Email
+Rajaravi#ETA@123#18-09-1993#Delhi#8888888888#raja.ravi@infosys.com
+Rajesh#Infy123#16-08-1990#Chennai#9999999999#Rajesh@infosys.com
+Raktim#123Infy#10-08-1992#Bangalore#8989898998#Raktim_talukdar@infosys.com;
+Aravind#Dell123#12-08-1993#Hyderabad#7878787890#Aravind.raghavan@infosys.com
+Sankavi#InfyDell#14-09-1992#Mumbai#7777777777#vidya@infosys.com
+
+[prashant.medapati@chnntxetarh10 ~]$ grep ";$" pme1
+Raktim#123Infy#10-08-1992#Bangalore#8989898998#Raktim_talukdar@infosys.com;
+
+
+5.Count the number of lines in a file which do not end with a semicolon.
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ grep -vc ";$" pme1
+5
+
+
+
+
+***************************************************************************
+
+EXERCISE 2 ::Create the "employee" file with the following content:
+
+EmpNo#Email#Name#JobLevel#Experience
+641357#Amrit_Mohanty#Amrit Mohanty#3#2
+678522#Puneet_Mishra#Puneet Mishra#3#1
+670242#Vikas_Bharti#Vikas Bharti#3#1.5
+661822#Aravind_Raghavan#Aravind Raghavan#3#1.5
+706209#Sankavi.Boopathy#Sankavi Boopathy#3#0.5
+706452#Raja.Ravi#Raja Ravi#3#0.5
+
+1. Write a command to display the employee with the highest experience in years (last column)
+
+method-1:
+[prashant.medapati@chnntxetarh10 ~]$ cut -d "#" -f1,3 <(sort -t "#" -k5 -r employee) | head -2 | tail -1
+641357#Amrit Mohanty
+
+method-2:
+[prashant.medapati@chnntxetarh10 ~]$ sort -t "#" -k5 -r employee| cut -d "#" -f1,3 | head -2 | tail -1
+
+641357#Amrit Mohanty
+
+2. Write a command to display all the employees whose first name have more than 6 characters
+
+[prashant.medapati@chnntxetarh10 ~]$ cut -d "#" -f3 employee | cut -d " " -f1 | grep -E '.{7,}'
+
+Aravind
+Sankavi
+
+
+3. Write a command to display two employees with least years of experience
+
+[prashant.medapati@chnntxetarh10 ~]$ sort -t "#" -k5 employee | head -2
+
+706209#Sankavi.Boopathy#Sankavi Boopathy#3#0.5
+706452#Raja.Ravi#Raja Ravi#3#0.5
+
+
+4. Write a command to display all repetitive years of experience values
+
+[prashant.medapati@chnntxetarh10 ~]$ cut -d "#" -f5 employee | uniq -d
+1.5
+0.5
+
+
+***************************************************************************
+
+
+EXERCISE 3::Create a marks file with the following content:
+
+EmpNo#FA1#FA2#FA3
+641357#67#75#78
+678522#89#98#92
+670242#89#97#99
+661822#78#94#91
+706209#67#34#65
+706452#80#70#68
+
+1. Write a command to display two least marks in FA2
+
+[prashant.medapati@chnntxetarh10 ~]$ sort -t "#" -k3 empf |head -n 2| cut -d "#" -f3
+34
+70
+
+
+2. Write a command to get all marks in 80s range scored in FA2
+
+[prashant.medapati@chnntxetarh10 ~]$ cut -d "#" -f3 empf | grep '^9[0-9]'
+98
+97
+94
+
+
+3. Write a command to display the employee numbers who have same marks in FA1
+
+[prashant.medapati@chnntxetarh10 ~]$ grep -f <(cut -d "#" -f2 empf | sort | uniq -d) empf | cut -d "#" -f1
+641357
+678522
+670242
+706209
+
+
+***************************************************************************
+
+EXERCISE 4::The following file contains the marks obtained by each of the employee in three focus areas.
+
+EmpNo#FA1#FA2#FA3
+641357#67#75#78
+678522#89#98#92
+670242#89#97#99
+661822#78#94#91
+706209#67#34#65
+706452#80#70#68
+
+
+
+1. Display the employee numbers who got maximum marks in FA1 and FA3
+
+-bash-4.2$ cat empmarks | sort -t "#" -k2 | cut -d "#" -f1 | tail -2 | head -1;cat empmarks | sort -t "#" -k4 | cut -d "#" -f1 | tail -2 | head
+-1
+678522
+670242
+
+
+2. Display the employee details - Employee Number and FA1 marks who has the least marks in FA1
+
+-bash-4.2$ cat empmarks | sort -t "#" -k2 | cut -d "#" -f1,2 | head -2
+706209#67
+641357#67
+
+
+
+3. Display the employee details - Employee Number and FA2 marks who has the 3rd maximum marks in FA2
+
+-bash-4.2$ cat empmarks | sort -t "#" -k3 -r | cut -d "#" -f1,3 | head -4 | tail -1
+661822#94
+
+
+
+***************************************************************************
+
+
+
+EXERCISE 5::Use the below file employee.txt which is having a set of fields separated by colon (:). The fields of the record are: Emp ID, Name, Designation, Unit Name, Location, Date of Joining and Salary as mentioned in the below table:
+
+EmpID:Name:Designation:UnitName:Location:DateofJoining:Salary
+1001:Thomson:SE:IVS:Mumbai:10-Feb-1999:60000
+1002:Johnson:TE::Bangalore:18-Jun-2000:50000
+1003:Jackson:DM:IMS:Hyderabad:23-Apr-1985:90000
+1004:BobGL::ETA:Mumbai:05-Jan-2004:55000
+1005:Alice:PA:::26-Aug-2014:25000
+1006:LilySE::IVS:Bangalore:17-Dec-2015:40000
+1007:Kirsten:PM:IMS:Mumbai:26-Aug-2014:45000
+1004:BobGL::ETA:Mumbai:05-Jan-2021:55000
+
+
+
+1. List only the employee names working in unit "ETA"
+
+method-1:
+-bash-4.2$ cat employee.txt |grep ":ETA"| cut -d ":" -f2 | uniq -d
+BobGL
+
+method-2:
+-bash-4.2$ grep ":ETA" employee.txt | cut -d ":" -f2 | uniq -d
+BobGL
+
+2. List only the employee IDs and Names working as "SE"
+
+-bash-4.2$ grep ":SE:" employee.txt | cut -d ":" -f1
+1001
+
+3. List all the employee IDs who have joined in year 2018
+
+method-1:
+-bash-4.2$ cat employee.txt | grep 2018 | cut -d ":" -f1
+-bash-4.2$
+
+method-2:
+-bash-4.2$ grep "2018:" employee.txt| cut -d ":" -f1
+
+
+4. List all the employee IDs whose Unit name begins or ends with 'S'
+
+-bash-4.2$ grep -E ":[S][^:]*:|:[^:]*[S]:" employee.txt | cut -d ":" -f1
+1001
+1003
+1006
+1007
+
+
+
+5. Display the count of employees working for 'IMS' unit
+
+-bash-4.2$ grep ":IMS:" employee.txt | wc -l
+2
+
+
+6. Display the Employee details of all those working in a location which has 'a' in its location name
+
+-bash-4.2$ grep ":[^:]*a[^:]*:" employee.txt
+EmpID:Name:Designation:UnitName:Location:DateofJoining:Salary
+1001:Thomson:SE:IVS:Mumbai:10-Feb-1999:60000
+1002:Johnson:TE::Bangalore:18-Jun-2000:50000
+1003:Jackson:DM:IMS:Hyderabad:23-Apr-1985:90000
+1004:BobGL::ETA:Mumbai:05-Jan-2004:55000
+1006:LilySE::IVS:Bangalore:17-Dec-2015:40000
+1007:Kirsten:PM:IMS:Mumbai:26-Aug-2014:45000
+1004:BobGL::ETA:Mumbai:05-Jan-2021:55000
+
+
+7. Display the Employee details of all those working in a location which ends with 'ore' in its location name
+
+-bash-4.2$ grep ":[^:]*ore:" employee.txt
+1002:Johnson:TE::Bangalore:18-Jun-2000:50000
+1006:LilySE::IVS:Bangalore:17-Dec-2015:40000
+
+
+8. Count the number of blank records in the file
+
+-bash-4.2$ grep "::" employee.txt | wc -l
+5
+
+
+9. List only the employee names for whom the unit details are blank
+
+-bash-4.2$ grep -E "^([^:]*:){3}:[^:]*:" employee.txt | cut -d ":" -f2
+Johnson
+Alice
+
+10. List employee IDs and designation for employees who are not working as "PA"
+
+-bash-4.2$ grep -v ":PA:" employee.txt | cut -d ":" -f1,3 --output-delimiter=' '
+EmpID Designation
+1001 SE
+1002 TE
+1003 DM
+1004
+1006
+1007 PM
+1004
+
+
+11. Count all the employees working in 'Mumbai' location
+
+method-1:
+-bash-4.2$ grep -c ":Mumbai:" employee.txt
+4
+
+method-2:
+-bash-4.2$ grep ":Mumbai:" employee.txt | wc -l
+4
+
+12. Display all employees who have joined in current year
+
+-bash-4.2$ grep "2021:" employee.txt
+1004:BobGL::ETA:Mumbai:05-Jan-2021:55000
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ACCESS PERMISSIONS IN UNIX EXERCISE::
+
+EXERCISE:1: Perform the following tasks
+
+1. Execute the command 'umask 0000'
+
+-bash-4.2$ umask 0000
+-bash-4.2$ umask
+0000
+
+
+2. Execute the command 'touch file1' to create a new file and execute 'ls -l'
+
+-bash-4.2$ touch file1
+-bash-4.2$ ls -l
+total 0
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati 0 Dec 20 16:33 file1
+
+
+3. Execute the command 'umask 0006'
+
+-bash-4.2$ umask 0006
+-bash-4.2$ umask
+0006
+
+
+4. Execute the command 'touch file2' to create a new file and execute 'ls -l' , Observe the results
+
+-bash-4.2$ touch file2
+-bash-4.2$ ls -l
+total 0
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati 0 Dec 20 16:33 file1
+-rw-rw----. 1 prashant.medapati prashant.medapati 0 Dec 20 16:33 file2
+
+
+5. Manage the file permissions such that the new files created cannot be modified by 'group' and 'other' users
+
+-bash-4.2$ umask 0022
+-bash-4.2$ umask
+0022
+
+6. Manage the file permissions in such a way that the new files created do not have any permission for 'group' and 'other' users
+
+-bash-4.2$ umask 0077
+-bash-4.2$ umask
+0077
+
+
+
+EXERCISE:2: 2. Create a file sample.txt. Change the permissions of this file such that the 'user' (owner) can read, write and execute this file, 'group' users can 'read' and 'write' into this file and 'others' can only read from this file
+
+-bash-4.2$ touch sample.txt
+-bash-4.2$ ls -l
+total 4
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati 3 Dec 20 16:39 file1
+-rw-rw----. 1 prashant.medapati prashant.medapati 0 Dec 20 16:33 file2
+-rw-------. 1 prashant.medapati prashant.medapati 0 Dec 20 16:44 sample.txt
+-bash-4.2$ chmod -R u=rwx,g=rw,o=r sample.txt
+-bash-4.2$ ls -l
+total 4
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati 3 Dec 20 16:39 file1
+-rw-rw----. 1 prashant.medapati prashant.medapati 0 Dec 20 16:33 file2
+-rwxrw-r--. 1 prashant.medapati prashant.medapati 0 Dec 20 16:44 sample.txt
+
+
+
+EXERCISE:3: 3. Create a directory 'dir1' and change its permissions such that the group and other users cannot delete the file "sample.txt" inside the 'dir1'
+
+-bash-4.2$ mkdir dir1
+-bash-4.2$ chmod 1775 dir1
+
+
+EXERCISE:4: 4. Analyze the difference between 'chmod ugo=x' and 'chmod ugo+x' in sample.txt
+
+
+-bash-4.2$ chmod -R ugo=x sample.txt
+-bash-4.2$ ls -l
+total 0
+---x--x--x. 1 prashant.medapati prashant.medapati 0 Dec 20 17:12 sample.txt
+-bash-4.2$ chmod -R ugo+x sample.txt
+-bash-4.2$ ls -l
+total 0
+
+
+***************************************************************************
+
+
+ARCHIVING FILES IN UNIX EXERCISE::
+
+EXERCISE:: Login to Unix server and perform the following:
+
+
+1. Create a sample log file, in the format as described earlier in the course
+
+-bash-4.2$ touch apache_access.log
+
+2. Insert 10 sample records in it
+
+-bash-4.2$ cat >apache_access.log
+10.123.80.65 - Admin [11:10:15] "GET /sony-Inverter-IN8009/index.html HTTP/1.0" 200 2048
+10.123.80.65 - Admin [11:10:15] "GET /samsung-Inverter-sam98009/index.html HTTP/1.0" 206
+10.123.80.65 - User3 [11:10:15] "GET /sony-Inverter-IN8009/index.html HTTP/1.0" 304
+10.123.80.65 - User4 [11:10:15] "GET /sony-Inverter-IN8009/index.html HTTP/1.0" 404
+10.123.80.65 - User5 [11:10:15] "GET /sony-Inverter-IN8009/index.html HTTP/1.0" 200 512
+10.123.80.65 - User5 [11:10:15] "GET /sony-Inverter-IN8009/index.html HTTP/1.0" 200 4096
+10.123.80.65 - User4 [11:10:15] "GET /sony-Inverter-IN8009/index.html HTTP/1.0" 403
+10.123.80.65 - Admin [11:10:15] "GET /sony-Inverter-IN8009/index.html HTTP/1.0" 304
+12.123.80.60 - Admin [11:10:15] "GET /sony-Inverter-IN8009/index.html HTTP/1.0" 200 2048
+12.123.80.60 - Admin [11:10:15] "GET /sony-Inverter-IN8009/index.html HTTP/1.0" 200 1024
+
+3. Create a directory called 'back_up' and archive the log file here using 'tar' command
+
+-bash-4.2$ mkdir back_up
+-bash-4.2$ tar -cvf back_up/apache_access.tar apache_access.log
+apache_access.log
+-bash-4.2$ cd back_up
+-bash-4.2$ ls -l
+total 20
+-rw-------. 1 prashant.medapati prashant.medapati 20480 Dec 20 17:40 apache_access.tar
+
+
+4. Create another archive with help of "cpio"
+
+-bash-4.2$ ls | cpio -ov >apache_access.log.cpio
+a           ActInfo                 b.txt        demo1  employee      fin        new_file2  sample.txt  temp.txt
+aaa         apache_access.log       che          demo2  employee.txt  hfjfkd     new_file3  shll.sh     testttttttt
+abb.python  apache_access.log.cpio  custInfo     dir1   empmarks      home       newfileee  shl.sh      testvi.sh
+abcdef      back_up                 data_ar.tar  dir3   f3            newfile    newfl      temp1       tpt
+abc.txt     bbb                     demo         empf   file1         new_file1  pme1       temp1.txt   z
+
+5. Move these two files into a directory called "daily_backup" (create the directory)
+
+-bash-4.2$ mkdir daily_backup
+-bash-4.2$ mv apache_access.log apache_access.log.cpio /home/prashant.medapati/daily_backup
+-bash-4.2$ cd daily_backup
+-bash-4.2$ ls
+apache_access.log  apache_access.log.cpio
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+CONTROL STRUCTURES IN SHELL SCRIPTING EXERCISES::
+
+EXERCISE::
+
+1. Create a Shell script file
+
+Take user input of name, employee number and job level
+Make employee number a constant
+Display all the above variables in a formatted manner
+
+
+#!/usr/bin/bash
+
+# Taking user input
+echo "Enter your name:"
+read name
+echo "Enter your employee number:"
+read -r emp_number
+echo "Enter your job level:"
+read job_level
+
+# Making employee number a constant
+readonly emp_number
+
+# Displaying variables in a formatted manner
+echo "Employee Details:"
+echo "Name: $name"
+echo "Employee Number: $emp_number"
+echo "Job Level: $job_level"
+
+output:::::::::::
+-bash-4.2$ sh first.sh
+Enter your name:
+prashant
+Enter your employee number:
+1368273
+Enter your job level:
+Trainee
+Employee Details:
+Name: prashant
+Employee Number: 1368273
+Job Level: Trainee
+
+
+
+2. Create a Shell script file
+
+Take user input for email id, phone and bank account number
+Sanitize and trim the input taken
+Check the validity of the input. i.e. valid email, 10-digit phone number and 5-digit account number
+Display ‘All inputs are valid’, else ‘Some inputs are invalid’
+
+
+#!/bin/bash
+
+# Function to validate email
+validate_email() {
+  [[ "$1" =~ ^[a-zA-Z0-9.]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$ ]]
+}
+
+# Function to validate phone number
+validate_phone() {
+  [[ "$1" =~ ^[0-9]{10}$ ]]
+}
+
+# Function to validate bank account number
+validate_account() {
+  [[ "$1" =~ ^[0-9]{5}$ ]]
+}
+
+# Take user input
+echo "Enter your email ID:"
+read email
+echo "Enter your phone number:"
+read phone
+echo "Enter your bank account number:"
+read account
+
+# Sanitize and trim input
+email=$(echo "$email" | xargs)
+phone=$(echo "$phone" | xargs)
+account=$(echo "$account" | xargs)
+
+# Check validity of inputs
+if validate_email "$email" && validate_phone "$phone" && validate_account "$account"; then
+  echo "All inputs are valid"
+else
+  echo "Some inputs are invalid"
+fi
+
+
+output:::::::::::
+-bash-4.2$ sh second.sh
+Enter your email ID:
+prashant.medapati@infosys.com
+Enter your phone number:
+9121854686
+Enter your bank account number:
+13682
+All inputs are valid
+
+
+3. Create a Shell script file
+
+Take user inputs as in above assignment(Exercise 2) and assign it to an array
+Make the array a constant and display the employee’s phone number using the array
+
+
+#!/bin/bash
+
+# Take user input
+echo "Enter your email ID:"
+read email
+echo "Enter your phone number:"
+read phone
+echo "Enter your bank account number:"
+read account
+
+# Assign inputs to an array
+employee_details=("$email" "$phone" "$account")
+
+# Make the array a constant
+readonly employee_details
+
+# Display the employee's phone number
+echo "Employee's Phone Number: ${employee_details[1]}"
+
+
+
+output:::::::::::
+-bash-4.2$ sh third.sh
+Enter your email ID:
+prashant@infosys.com
+Enter your phone number:
+9121854686
+Enter your bank account number:
+13682
+Employee's Phone Number: 9121854686
+
+
+
+4. Create a Shell script file
+
+Check if a file exists or not, if yes, find if its empty or not
+Check if a variable has a definite size or not
+If the variable has a size and file exists and is not empty, return true, else false
+Check if user input is a valid directory name or not, if yes, return true, else false
+
+
+#!/bin/bash
+
+# Check if a file exists and if it's empty
+echo "Enter the file name:"
+read file_name
+
+if [ -e "$file_name" ]
+then
+  if [ -s "$file_name" ]
+	then
+    echo "File exists and is not empty"
+  else
+    echo "File exists but is empty"
+  fi
+else
+  echo "File does not exist"
+fi
+
+# Check if a variable has a definite size
+echo "Enter a variable:"
+read var
+
+if [ -n "$var" ]
+then
+  echo "Variable has a definite size"
+else
+  echo "Variable does not have a definite size"
+fi
+
+# Check if user input is a valid directory name
+echo "Enter a directory name:"
+read dir_name
+
+if [ -d "$dir_name" ]; then
+  echo "Valid directory name"
+else
+  echo "Invalid directory name"
+fi
+
+
+output:::::::::::
+-bash-4.2$ sh fourth.sh
+Enter the file name:
+sample.txt
+File exists and is not empty
+Enter a variable:
+new
+Variable has a definite size
+Enter a directory name:
+dir1
+Invalid directory name
+
+
+
+
+
+5. Write a shell script that takes an argument & finds if it is prime or not. (Name the shell script as prime.sh)
+
+#!/bin/bash
+
+# Check if a number is prime
+is_prime() {
+  local num=$1
+  if [ "$num" -le 1 ]; then
+    echo "Not a prime number"
+    return
+  fi
+  for ((i=2; i*i<=num; i++)); do
+    if [ $((num % i)) -eq 0 ]; then
+      echo "Not a prime number"
+      return
+    fi
+  done
+  echo "Prime number"
+}
+
+# Take an argument and check if it's prime
+is_prime "$1"
+
+
+output:::::::::::
+-bash-4.2$ sh prime.sh 13
+Prime number
+-bash-4.2$ sh prime.sh 14
+Not a prime number
+
+
+
+6. Write a shell script to find if the number passed as an argument is even or odd. (Name the shell script as even_odd.sh)
+
+#!/bin/bash
+
+# Check if a number is even or odd
+if [ $(( $1 % 2 )) -eq 0 ]
+then
+  echo "Even number"
+else
+  echo "Odd number"
+fi
+
+
+output:::::::::::
+-bash-4.2$ sh even_odd.sh 5
+Odd number
+-bash-4.2$ sh even_odd.sh 10
+Even number
+
+
+
+7. Write a shell script to see if a particular user has logged in. (Name the shell script as user.sh)
+
+#!/bin/bash
+
+# Check if a user is logged in
+if who | grep -q "$1"
+then
+  echo "User $1 is logged in"
+else
+  echo "User $1 is not logged in"
+fi
+
+
+output:::::::::::
+-bash-4.2$ vi user.sh
+-bash-4.2$ sh user.sh
+User  is logged in
+
+
+8. Write a shell script that takes a directory as command line argument and displays the files and sub-directories in that directory.
+
+#!/bin/bash
+
+# List files and sub-directories in a given directory
+if [ -d "$1" ]; then
+  echo "Contents of directory $1:"
+  ls -l "$1"
+else
+  echo "Directory $1 does not exist"
+fi
+
+
+output:::::::::::
+-bash-4.2$ sh eighth.sh /home/prashant.medapati/demo
+Contents of directory /home/prashant.medapati/demo:
+total 40
+-rw-rw----. 1 prashant.medapati prashant.medapati  131 Dec 16 11:38 a
+drwxrw----. 3 prashant.medapati prashant.medapati   25 Dec 17 10:52 adir
+-rw-------. 1 prashant.medapati prashant.medapati 1024 Dec 17 11:34 ar.cpio
+-rw-rw----. 1 prashant.medapati prashant.medapati   10 Dec 16 11:50 b
+-rw-------. 1 prashant.medapati prashant.medapati   38 Dec 16 11:09 c
+-rw-rw----. 1 prashant.medapati prashant.medapati   16 Dec 16 12:14 f1
+-rw-rw----. 1 prashant.medapati prashant.medapati   20 Dec 16 12:15 f2
+-rw-------. 1 prashant.medapati prashant.medapati   17 Dec 17 11:04 new_file
+-rw-------. 1 prashant.medapati prashant.medapati    9 Dec 17 11:08 new_file2
+-rw-rw----. 1 prashant.medapati prashant.medapati   61 Dec 16 11:54 num
+-rw-rw----. 1 prashant.medapati prashant.medapati   59 Dec 16 11:54 numm
+
+***************************************************************************
+
+
+FUNCTIONS IN SHELL SCRIPTING EXERCISE::
+
+1. Write a Shell script that does the following:
+
+Write a function fact_sum().
+
+Write an additional function calc_fact() which accepts a number and returns the factorial of the number. Use this function to compute the factorial of each digit.
+
+The function fact_sum() should accept a number as an argument and return the sum of the factorials of every digit in that number (Hint: Use calc_fact() function to calculate the factorial of each digit).
+
+
+
+#!/bin/bash
+
+# Function to calculate factorial of a number
+calc_fact() {
+  local num=$1
+  local fact=1
+  for ((i=2; i<=num; i++)); do
+    fact=$((fact * i))
+  done
+  echo $fact
+}
+
+# Function to calculate the sum of factorials of each digit in a number
+fact_sum() {
+  local num=$1
+  local sum=0
+  while [ $num -gt 0 ]; do
+    digit=$((num % 10))
+    num=$((num / 10))
+    sum=$((sum + $(calc_fact $digit)))
+  done
+  echo $sum
+}
+
+# Example usage
+echo "Enter a number:"
+read number
+result=$(fact_sum $number)
+echo "The sum of the factorials of the digits in $number is: $result"
+
+output:::::::::::
+-bash-4.2$ vi exerfunc1.sh
+-bash-4.2$ sh exerfunc1.sh
+Enter a number:
+4
+The sum of the factorials of the digits in 4 is: 24
+-bash-4.2$ sh exerfunc1.sh
+Enter a number:
+69
+The sum of the factorials of the digits in 69 is: 363600
+
+
+2. Consider the following file ‘names.txt’ consisting of the following data:
+
+Shirin
+Rajshri
+Alex
+Vinod
+Ritesh
+Aditya
+Write a shell script to do the following:
+
+Write a function vowel_string(), which accepts a string as an argument and forms a string out of only the vowels in that string and returns it.
+Read each name from the file names.txt, pass it to the function vowel_string() and append the return value to a file names_vowel.txt.
+
+
+#!/bin/bash
+
+# Function to extract vowels from a string
+vowel_string() {
+  local str=$1
+  echo "$str" | grep -o -i '[aeiou]' | tr -d '\n'
+}
+
+# Process each name in names.txt and append the vowel string to names_vowel.txt
+while IFS= read -r name 
+do
+  vowels=$(vowel_string "$name")
+  echo "$vowels" >> names_vowel.txt
+done < names.txt
+
+# Example usage
+echo "Vowel strings have been extracted and saved to names_vowel.txt"
+
+
+output:::::::::::
+-bash-4.2$ cat >names.txt
+Shirin
+Rajshri
+Alex
+Vinod
+Ritesh
+Aditya
+-bash-4.2$ vi exerfunc2.sh
+ [New] 17L, 423C written
+-bash-4.2$ sh exerfunc2.sh
+Vowel strings have been extracted and saved to names_vowel.txt
+-bash-4.2$ cat names_vowel.txt
+ii
+ai
+Ae
+io
+ie
+Aia
+
+
+

@@ -1,0 +1,806 @@
+[prashant.medapati@chnntxetarh10 ~]$ ls -l             ---(existing permissions for files and directories)
+total 24
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwx------. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+chmod - changes the permission(changes the existing permission also)
+
+
+File
+User/Owner
+Group
+Others
+(numbering order wrt to chmod)
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 28
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwx------. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod 0660 a
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod 0060 b
+
+chmod: cannot access ‘b’: No such file or directory
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod 0060 c
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 28
+-rw-rw----. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+----rw----. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwx------. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod 0660 c
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod 0600 c
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 28
+-rw-rw----. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwx------. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod g+rw a
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 28
+-rw-rw----. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwx------. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod g-rw a
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 28
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwx------. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod o=rwx a
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 28
+-rw----rwx. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwx------. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod g=rwx a
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 28
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwx------. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ ls
+a  abb.python  b.txt  c  d  demo  file1  fin
+
+[prashant.medapati@chnntxetarh10 ~]$ cd demo
+
+[prashant.medapati@chnntxetarh10 demo]$ ls
+a  adir  b  f1  f2  num  numm
+
+[prashant.medapati@chnntxetarh10 demo]$ chmod -R g+rw /home/prashant.medapati/demo
+
+[prashant.medapati@chnntxetarh10 demo]$ ls -l
+total 24
+-rw-rw----. 1 prashant.medapati prashant.medapati 131 Dec 16 11:38 a
+drwxrw----. 2 prashant.medapati prashant.medapati  14 Dec 16 11:19 adir
+-rw-rw----. 1 prashant.medapati prashant.medapati  10 Dec 16 11:50 b
+-rw-rw----. 1 prashant.medapati prashant.medapati  16 Dec 16 12:14 f1
+-rw-rw----. 1 prashant.medapati prashant.medapati  20 Dec 16 12:15 f2
+-rw-rw----. 1 prashant.medapati prashant.medapati  61 Dec 16 11:54 num
+-rw-rw----. 1 prashant.medapati prashant.medapati  59 Dec 16 11:54 numm
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod --reference /home/prashant.medapati/demo/a /home/prashant.medapati/demo/b    --(passing permissions as reference)
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 28
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwxrw----. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ chmod --reference /home/prashant.medapati/demo /home/prashant.medapati/demo/adir
+
+[prashant.medapati@chnntxetarh10 ~]$ ls
+a  abb.python  b.txt  c  d  demo  file1  fin
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 28
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwxrw----. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+
+[prashant.medapati@chnntxetarh10 ~]$ cd /home/prashant.medapati/demo
+
+[prashant.medapati@chnntxetarh10 demo]$ ls -l
+total 24
+-rw-rw----. 1 prashant.medapati prashant.medapati 131 Dec 16 11:38 a
+drwxrw----. 2 prashant.medapati prashant.medapati  14 Dec 16 11:19 adir
+-rw-rw----. 1 prashant.medapati prashant.medapati  10 Dec 16 11:50 b
+-rw-rw----. 1 prashant.medapati prashant.medapati  16 Dec 16 12:14 f1
+-rw-rw----. 1 prashant.medapati prashant.medapati  20 Dec 16 12:15 f2
+-rw-rw----. 1 prashant.medapati prashant.medapati  61 Dec 16 11:54 num
+-rw-rw----. 1 prashant.medapati prashant.medapati  59 Dec 16 11:54 numm
+
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ umask
+0777
+
+[prashant.medapati@chnntxetarh10 ~]$ umask 0077
+
+[prashant.medapati@chnntxetarh10 ~]$ umask
+0077
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 32
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwxrw----. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati  4 Dec 17 10:07 z
+
+[prashant.medapati@chnntxetarh10 ~]$ umask 0642
+
+[prashant.medapati@chnntxetarh10 ~]$ umask
+0642
+
+[prashant.medapati@chnntxetarh10 ~]$ touch newfl
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 32
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwxrw----. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+-----w-r--. 1 prashant.medapati prashant.medapati  0 Dec 17 10:10 newfl
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati  4 Dec 17 10:07 z
+
+[prashant.medapati@chnntxetarh10 ~]$ umask 0077
+
+[prashant.medapati@chnntxetarh10 ~]$ umask
+0077
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 32
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwxrw----. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+-----w-r--. 1 prashant.medapati prashant.medapati  0 Dec 17 10:10 newfl
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati  4 Dec 17 10:07 z
+
+[prashant.medapati@chnntxetarh10 ~]$ umask -S
+u=rwx,g=,o=
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ cat >temp.txt
+4
+5
+5
+5
+5
+5
+6
+6
+6
+4
+33
+4
+45
+^C
+[prashant.medapati@chnntxetarh10 ~]$ cat >temp1.txt
+6
+^C
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 40
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwxrw----. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+-----w-r--. 1 prashant.medapati prashant.medapati  0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati  2 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati 28 Dec 17 10:49 temp.txt
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati  4 Dec 17 10:07 z
+[prashant.medapati@chnntxetarh10 ~]$ cp temp.txt temp1.txt
+[prashant.medapati@chnntxetarh10 ~]$ cat temp1.txt
+4
+5
+5
+5
+5
+5
+6
+6
+6
+4
+33
+4
+45
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ mkdir demo1
+[prashant.medapati@chnntxetarh10 ~]$ cp -R /home/prashant.medapati/demo /home/prashant.medapati/demo1
+[prashant.medapati@chnntxetarh10 ~]$ ls -l'
+> ^C
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 40
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati 38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati 13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati 19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati 38 Dec 16 11:09 d
+drwxrw----. 3 prashant.medapati prashant.medapati 72 Dec 16 12:15 demo
+drwx------. 3 prashant.medapati prashant.medapati 17 Dec 17 10:53 demo1
+-rw-------. 1 prashant.medapati prashant.medapati 17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati 16 Dec 16 15:13 fin
+-----w-r--. 1 prashant.medapati prashant.medapati  0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati 28 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati 28 Dec 17 10:49 temp.txt
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati  4 Dec 17 10:07 z
+[prashant.medapati@chnntxetarh10 ~]$ cd demo1
+[prashant.medapati@chnntxetarh10 demo1]$ ls -l
+total 0
+drwx------. 3 prashant.medapati prashant.medapati 72 Dec 17 10:53 demo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ cd demo
+[prashant.medapati@chnntxetarh10 demo]$ cp a c /home/prashant.medapati/demo1
+cp: cannot stat ‘c’: No such file or directory
+[prashant.medapati@chnntxetarh10 demo]$ ls -l
+total 24
+-rw-rw----. 1 prashant.medapati prashant.medapati 131 Dec 16 11:38 a
+drwxrw----. 3 prashant.medapati prashant.medapati  25 Dec 17 10:52 adir
+-rw-rw----. 1 prashant.medapati prashant.medapati  10 Dec 16 11:50 b
+-rw-rw----. 1 prashant.medapati prashant.medapati  16 Dec 16 12:14 f1
+-rw-rw----. 1 prashant.medapati prashant.medapati  20 Dec 16 12:15 f2
+-rw-rw----. 1 prashant.medapati prashant.medapati  61 Dec 16 11:54 num
+-rw-rw----. 1 prashant.medapati prashant.medapati  59 Dec 16 11:54 numm
+[prashant.medapati@chnntxetarh10 demo]$ cp a b /home/prashant.medapati/demo1
+[prashant.medapati@chnntxetarh10 demo]$ ls -l
+total 24
+-rw-rw----. 1 prashant.medapati prashant.medapati 131 Dec 16 11:38 a
+drwxrw----. 3 prashant.medapati prashant.medapati  25 Dec 17 10:52 adir
+-rw-rw----. 1 prashant.medapati prashant.medapati  10 Dec 16 11:50 b
+-rw-rw----. 1 prashant.medapati prashant.medapati  16 Dec 16 12:14 f1
+-rw-rw----. 1 prashant.medapati prashant.medapati  20 Dec 16 12:15 f2
+-rw-rw----. 1 prashant.medapati prashant.medapati  61 Dec 16 11:54 num
+-rw-rw----. 1 prashant.medapati prashant.medapati  59 Dec 16 11:54 numm
+[prashant.medapati@chnntxetarh10 demo]$ cd ..
+[prashant.medapati@chnntxetarh10 ~]$ cd /home/prashant.medapati/demo1
+[prashant.medapati@chnntxetarh10 demo1]$ ls -l
+total 12
+-rw-------. 1 prashant.medapati prashant.medapati 131 Dec 17 10:56 a
+-rw-------. 1 prashant.medapati prashant.medapati  10 Dec 17 10:56 b
+-rw-------. 1 prashant.medapati prashant.medapati  38 Dec 17 10:55 c
+drwx------. 3 prashant.medapati prashant.medapati  72 Dec 17 10:53 demo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 demo]$ cp -n b num
+[prashant.medapati@chnntxetarh10 demo]$ cat num
+1
+11
+2
+3
+v
+
+
+4
+5
+1
+12
+1
+2
+
+
+5
+9
+2
+3
+14
+20
+31
+1
+[prashant.medapati@chnntxetarh10 demo]$ cat b
+1
+2
+3
+4
+5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ cat new_file
+this is new file
+
+[prashant.medapati@chnntxetarh10 ~]$ cp -s new_file new_file2
+cp: cannot create symbolic link ‘new_file2’ to ‘new_file’: File exists
+
+[prashant.medapati@chnntxetarh10 ~]$ cp -s new_file new_file3
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 48
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati  38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati  13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati  19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati  38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati  38 Dec 16 11:09 d
+drwxrw----. 3 prashant.medapati prashant.medapati 103 Dec 17 11:07 demo
+drwx------. 3 prashant.medapati prashant.medapati  41 Dec 17 10:56 demo1
+-rw-------. 1 prashant.medapati prashant.medapati  17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati  16 Dec 16 15:13 fin
+-rw-------. 1 prashant.medapati prashant.medapati  17 Dec 17 11:04 new_file
+-rw-------. 1 prashant.medapati prashant.medapati   0 Dec 17 11:05 new_file1
+-rw-------. 1 prashant.medapati prashant.medapati  10 Dec 17 11:10 new_file2
+lrwxrwxrwx. 1 prashant.medapati prashant.medapati   8 Dec 17 11:12 new_file3 -> new_file
+-----w-r--. 1 prashant.medapati prashant.medapati   0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati  28 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati  28 Dec 17 10:49 temp.txt
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati   4 Dec 17 10:07 z
+
+[prashant.medapati@chnntxetarh10 ~]$ rm new_file
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 44
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati  38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati  13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati  19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati  38 Dec 16 11:09 c
+-rw-------. 1 prashant.medapati prashant.medapati  38 Dec 16 11:09 d
+drwxrw----. 3 prashant.medapati prashant.medapati 103 Dec 17 11:07 demo
+drwx------. 3 prashant.medapati prashant.medapati  41 Dec 17 10:56 demo1
+-rw-------. 1 prashant.medapati prashant.medapati  17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati  16 Dec 16 15:13 fin
+-rw-------. 1 prashant.medapati prashant.medapati   0 Dec 17 11:05 new_file1
+-rw-------. 1 prashant.medapati prashant.medapati  10 Dec 17 11:10 new_file2
+lrwxrwxrwx. 1 prashant.medapati prashant.medapati   8 Dec 17 11:12 new_file3 -> new_file     ---(new_file3 will become red because there can't be symbolic link because new_file deleted)
+-----w-r--. 1 prashant.medapati prashant.medapati   0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati  28 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati  28 Dec 17 10:49 temp.txt
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati   4 Dec 17 10:07 z
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+[prashant.medapati@chnntxetarh10 ~]$ mv d c
+[prashant.medapati@chnntxetarh10 ~]$ cat c
+this is file a
+
+this is the next line
+[prashant.medapati@chnntxetarh10 ~]$ mv c /home/prashant.medapati/demo
+[prashant.medapati@chnntxetarh10 ~]$ cd demo
+[prashant.medapati@chnntxetarh10 demo]$ cat c
+this is file a
+
+this is the next line
+[prashant.medapati@chnntxetarh10 demo]$ cd ..
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 36
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati  38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati  13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati  19 Dec 16 11:05 b.txt
+drwxrw----. 3 prashant.medapati prashant.medapati 111 Dec 17 11:21 demo
+drwx------. 3 prashant.medapati prashant.medapati  41 Dec 17 10:56 demo1
+-rw-------. 1 prashant.medapati prashant.medapati  17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati  16 Dec 16 15:13 fin
+-rw-------. 1 prashant.medapati prashant.medapati   0 Dec 17 11:05 new_file1
+-rw-------. 1 prashant.medapati prashant.medapati  10 Dec 17 11:10 new_file2
+lrwxrwxrwx. 1 prashant.medapati prashant.medapati   8 Dec 17 11:12 new_file3 -> new_file
+-----w-r--. 1 prashant.medapati prashant.medapati   0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati  28 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati  28 Dec 17 10:49 temp.txt
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati   4 Dec 17 10:07 z
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 36
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati  38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati  13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati  19 Dec 16 11:05 b.txt
+drwxrw----. 3 prashant.medapati prashant.medapati 111 Dec 17 11:21 demo
+drwx------. 3 prashant.medapati prashant.medapati  41 Dec 17 10:56 demo1
+-rw-------. 1 prashant.medapati prashant.medapati  17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati  16 Dec 16 15:13 fin
+-rw-------. 1 prashant.medapati prashant.medapati   0 Dec 17 11:05 new_file1
+-rw-------. 1 prashant.medapati prashant.medapati  10 Dec 17 11:10 new_file2
+lrwxrwxrwx. 1 prashant.medapati prashant.medapati   8 Dec 17 11:12 new_file3 -> new_file
+-----w-r--. 1 prashant.medapati prashant.medapati   0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati  28 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati  28 Dec 17 10:49 temp.txt
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati   4 Dec 17 10:07 z
+[prashant.medapati@chnntxetarh10 ~]$ gzip temp.txt
+[prashant.medapati@chnntxetarh10 ~]$ cat temp.txt
+cat: temp.txt: No such file or directory
+
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 36
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati  38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati  13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati  19 Dec 16 11:05 b.txt
+drwxrw----. 3 prashant.medapati prashant.medapati 111 Dec 17 11:21 demo
+drwx------. 3 prashant.medapati prashant.medapati  41 Dec 17 10:56 demo1
+-rw-------. 1 prashant.medapati prashant.medapati  17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati  16 Dec 16 15:13 fin
+-rw-------. 1 prashant.medapati prashant.medapati   0 Dec 17 11:05 new_file1
+-rw-------. 1 prashant.medapati prashant.medapati  10 Dec 17 11:10 new_file2
+lrwxrwxrwx. 1 prashant.medapati prashant.medapati   8 Dec 17 11:12 new_file3 -> new_file
+-----w-r--. 1 prashant.medapati prashant.medapati   0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati  28 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati  44 Dec 17 10:49 temp.txt.gz
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati   4 Dec 17 10:07 z
+
+
+[prashant.medapati@chnntxetarh10 ~]$ gunzip temp.txt.gz
+[prashant.medapati@chnntxetarh10 ~]$ ls -l
+total 88
+-rw-rwxrwx. 1 prashant.medapati prashant.medapati    38 Dec 16 11:07 a
+-rw-------. 1 prashant.medapati prashant.medapati    13 Dec 17 09:30 abb.python
+-rw-------. 1 prashant.medapati prashant.medapati    19 Dec 16 11:05 b.txt
+-rw-------. 1 prashant.medapati prashant.medapati 20480 Dec 17 11:30 data_ar.tar
+drwxrw----. 3 prashant.medapati prashant.medapati   125 Dec 17 11:34 demo
+drwx------. 3 prashant.medapati prashant.medapati    41 Dec 17 10:56 demo1
+-rw-------. 1 prashant.medapati prashant.medapati    17 Dec 16 11:11 file1
+-rw-------. 1 prashant.medapati prashant.medapati    16 Dec 16 15:13 fin
+drwx------. 3 prashant.medapati prashant.medapati    30 Dec 17 11:31 home
+-rw-------. 1 prashant.medapati prashant.medapati 30720 Dec 17 11:32 newfile
+-rw-------. 1 prashant.medapati prashant.medapati     0 Dec 17 11:05 new_file1
+-rw-------. 1 prashant.medapati prashant.medapati    10 Dec 17 11:10 new_file2
+lrwxrwxrwx. 1 prashant.medapati prashant.medapati     8 Dec 17 11:12 new_file3 -> new_file
+-----w-r--. 1 prashant.medapati prashant.medapati     0 Dec 17 10:10 newfl
+-rw-------. 1 prashant.medapati prashant.medapati    28 Dec 17 10:49 temp1.txt
+-rw-------. 1 prashant.medapati prashant.medapati    28 Dec 17 10:49 temp.txt
+-rw-rw-rw-. 1 prashant.medapati prashant.medapati     4 Dec 17 10:07 z
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ gzip demo1
+gzip: demo1 is a directory -- ignored
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------c-create,x-extract,t-list,r-append----------
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ tar -cvf data_ar.tar /home/prashant.medapati/demo
+tar: Removing leading `/' from member names
+/home/prashant.medapati/demo/
+/home/prashant.medapati/demo/adir/
+/home/prashant.medapati/demo/adir/a
+/home/prashant.medapati/demo/adir/demo/
+/home/prashant.medapati/demo/adir/demo/adir/
+/home/prashant.medapati/demo/adir/demo/adir/a
+/home/prashant.medapati/demo/a
+/home/prashant.medapati/demo/b
+/home/prashant.medapati/demo/num
+/home/prashant.medapati/demo/numm
+/home/prashant.medapati/demo/f1
+/home/prashant.medapati/demo/f2
+/home/prashant.medapati/demo/new_file
+/home/prashant.medapati/demo/new_file2
+/home/prashant.medapati/demo/c
+
+
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ tar -xvf data_ar.tar
+home/prashant.medapati/demo/
+home/prashant.medapati/demo/adir/
+home/prashant.medapati/demo/adir/a
+home/prashant.medapati/demo/adir/demo/
+home/prashant.medapati/demo/adir/demo/adir/
+home/prashant.medapati/demo/adir/demo/adir/a
+home/prashant.medapati/demo/a
+home/prashant.medapati/demo/b
+home/prashant.medapati/demo/num
+home/prashant.medapati/demo/numm
+home/prashant.medapati/demo/f1
+home/prashant.medapati/demo/f2
+home/prashant.medapati/demo/new_file
+home/prashant.medapati/demo/new_file2
+home/prashant.medapati/demo/c
+
+
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ tar -tvf data_ar.tar
+drwxrw---- prashant.medapati/prashant.medapati 0 2024-12-17 11:21 home/prashant.medapati/demo/
+drwxrw---- prashant.medapati/prashant.medapati 0 2024-12-17 10:52 home/prashant.medapati/demo/adir/
+-rw-rw---- prashant.medapati/prashant.medapati 15 2024-12-16 11:19 home/prashant.medapati/demo/adir/a
+drwx------ prashant.medapati/prashant.medapati  0 2024-12-17 10:52 home/prashant.medapati/demo/adir/demo/
+drwx------ prashant.medapati/prashant.medapati  0 2024-12-17 10:52 home/prashant.medapati/demo/adir/demo/adir/
+-rw------- prashant.medapati/prashant.medapati 15 2024-12-17 10:52 home/prashant.medapati/demo/adir/demo/adir/a
+-rw-rw---- prashant.medapati/prashant.medapati 131 2024-12-16 11:38 home/prashant.medapati/demo/a
+-rw-rw---- prashant.medapati/prashant.medapati  10 2024-12-16 11:50 home/prashant.medapati/demo/b
+-rw-rw---- prashant.medapati/prashant.medapati  61 2024-12-16 11:54 home/prashant.medapati/demo/num
+-rw-rw---- prashant.medapati/prashant.medapati  59 2024-12-16 11:54 home/prashant.medapati/demo/numm
+-rw-rw---- prashant.medapati/prashant.medapati  16 2024-12-16 12:14 home/prashant.medapati/demo/f1
+-rw-rw---- prashant.medapati/prashant.medapati  20 2024-12-16 12:15 home/prashant.medapati/demo/f2
+-rw------- prashant.medapati/prashant.medapati  17 2024-12-17 11:04 home/prashant.medapati/demo/new_file
+-rw------- prashant.medapati/prashant.medapati   9 2024-12-17 11:08 home/prashant.medapati/demo/new_file2
+-rw------- prashant.medapati/prashant.medapati  38 2024-12-16 11:09 home/prashant.medapati/demo/c
+
+
+
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 ~]$ tar -rvf newfile data_ar.tar
+data_ar.tar
+[prashant.medapati@chnntxetarh10 ~]$ tar -tvf data_ar.tar
+drwxrw---- prashant.medapati/prashant.medapati 0 2024-12-17 11:21 home/prashant.medapati/demo/
+drwxrw---- prashant.medapati/prashant.medapati 0 2024-12-17 10:52 home/prashant.medapati/demo/adir/
+-rw-rw---- prashant.medapati/prashant.medapati 15 2024-12-16 11:19 home/prashant.medapati/demo/adir/a
+drwx------ prashant.medapati/prashant.medapati  0 2024-12-17 10:52 home/prashant.medapati/demo/adir/demo/
+drwx------ prashant.medapati/prashant.medapati  0 2024-12-17 10:52 home/prashant.medapati/demo/adir/demo/adir/
+-rw------- prashant.medapati/prashant.medapati 15 2024-12-17 10:52 home/prashant.medapati/demo/adir/demo/adir/a
+-rw-rw---- prashant.medapati/prashant.medapati 131 2024-12-16 11:38 home/prashant.medapati/demo/a
+-rw-rw---- prashant.medapati/prashant.medapati  10 2024-12-16 11:50 home/prashant.medapati/demo/b
+-rw-rw---- prashant.medapati/prashant.medapati  61 2024-12-16 11:54 home/prashant.medapati/demo/num
+-rw-rw---- prashant.medapati/prashant.medapati  59 2024-12-16 11:54 home/prashant.medapati/demo/numm
+-rw-rw---- prashant.medapati/prashant.medapati  16 2024-12-16 12:14 home/prashant.medapati/demo/f1
+-rw-rw---- prashant.medapati/prashant.medapati  20 2024-12-16 12:15 home/prashant.medapati/demo/f2
+-rw------- prashant.medapati/prashant.medapati  17 2024-12-17 11:04 home/prashant.medapati/demo/new_file
+-rw------- prashant.medapati/prashant.medapati   9 2024-12-17 11:08 home/prashant.medapati/demo/new_file2
+-rw------- prashant.medapati/prashant.medapati  38 2024-12-16 11:09 home/prashant.medapati/demo/c
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+[prashant.medapati@chnntxetarh10 ~]$ cd demo
+[prashant.medapati@chnntxetarh10 demo]$ ls
+a  adir  b  c  f1  f2  new_file  new_file2  num  numm
+[prashant.medapati@chnntxetarh10 demo]$ ls | cpio -ov > ar.cpio
+a
+adir
+ar.cpio
+b
+c
+f1
+f2
+new_file
+new_file2
+num
+numm
+2 blocks
+
+[prashant.medapati@chnntxetarh10 demo]$ ls -l
+total 40
+-rw-rw----. 1 prashant.medapati prashant.medapati  131 Dec 16 11:38 a
+drwxrw----. 3 prashant.medapati prashant.medapati   25 Dec 17 10:52 adir
+-rw-------. 1 prashant.medapati prashant.medapati 1024 Dec 17 11:34 ar.cpio
+-rw-rw----. 1 prashant.medapati prashant.medapati   10 Dec 16 11:50 b
+-rw-------. 1 prashant.medapati prashant.medapati   38 Dec 16 11:09 c
+-rw-rw----. 1 prashant.medapati prashant.medapati   16 Dec 16 12:14 f1
+-rw-rw----. 1 prashant.medapati prashant.medapati   20 Dec 16 12:15 f2
+-rw-------. 1 prashant.medapati prashant.medapati   17 Dec 17 11:04 new_file
+-rw-------. 1 prashant.medapati prashant.medapati    9 Dec 17 11:08 new_file2
+-rw-rw----. 1 prashant.medapati prashant.medapati   61 Dec 16 11:54 num
+-rw-rw----. 1 prashant.medapati prashant.medapati   59 Dec 16 11:54 numm
+
+[prashant.medapati@chnntxetarh10 demo]$ cpio -it -F ar.cpio
+a
+adir
+ar.cpio
+b
+c
+f1
+f2
+new_file
+new_file2
+num
+numm
+2 blocks
+

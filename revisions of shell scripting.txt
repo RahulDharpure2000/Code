@@ -1,0 +1,606 @@
+VARIABLES AND ARRAY ETC....
+
+
+
+
+-bash-4.2$ mkdir oct24
+-bash-4.2$ cd oct25
+-bash: cd: oct25: No such file or directory
+-bash-4.2$ cd oct24
+
+-bash-4.2$ vi testvi.sh
+-bash-4.2$ sh testvi.sh
+hi all
+this is my first script
+-bash-4.2$ echo $path
+
+-bash-4.2$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/home/prashant.medapati/.local/bin:/home/prashant.medapati/bin
+-bash-4.2$ oct24|$ type printf
+-bash: $: command not found
+-bash: oct24: command not found
+-bash-4.2$ pwd
+/home/prashant.medapati/oct24
+-bash-4.2$ oct24)$ type printf
+-bash: syntax error near unexpected token `)'
+-bash-4.2$ oct24]$ type printf
+-bash: oct24]$: command not found
+-bash-4.2$ ls -l
+total 4
+-rw-------. 1 prashant.medapati prashant.medapati 45 Dec 23 12:00 testvi.sh
+-bash-4.2$ vi second.sh
+-bash-4.2$ ls
+second.sh  testvi.sh
+-bash-4.2$ pwd
+/home/prashant.medapati/oct24
+-bash-4.2$ PATH=$PATH:/home/prashant.medapati/oct24
+-bash-4.2$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/home/prashant.medapati/.local/bin:/home/prashant.medapati/bin:/home/prashant.medapati/oct24
+-bash-4.2$ first.vi
+-bash: first.vi: command not found
+-bash-4.2$ testvi.vi
+-bash: testvi.vi: command not found
+-bash-4.2$ testvi.sh
+-bash: /home/prashant.medapati/oct24/testvi.sh: Permission denied
+-bash-4.2$ chmod 700
+chmod: missing operand after ‘700’
+Try 'chmod --help' for more information.
+-bash-4.2$ chmod 700 testvi.sh
+-bash-4.2$ testvi.sh
+hi all
+this is my first script
+-bash-4.2$ second.sh
+-bash: /home/prashant.medapati/oct24/second.sh: Permission denied
+-bash-4.2$ chmod 700 second.sh
+-bash-4.2$ second.sh
+    December 2024
+Su Mo Tu We Th Fr Sa
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30 31
+
+second.sh  testvi.sh
+hi all
+-bash-4.2$ vi var.sh
+-bash-4.2$ chmod 700 var.sh
+-bash-4.2$ var.sh
+10
+10.5
+infy
+-bash-4.2$ vi var.sh
+-bash-4.2$ var.sh
+/home/prashant.medapati/oct24/var.sh: line 5: b: readonly variable
+10
+10.5
+infy
+-bash-4.2$ vi arr.sh
+-bash-4.2$ chmod 700 arr.sh
+-bash-4.2$ arr.sh
+10
+10[0]
+10
+20
+-bash-4.2$ vi arr.sh
+-bash-4.2$ arr.sh
+10
+10[0]
+10
+20
+10 20 infy A 10.456
+10 20 infy A 10.456
+5
+-bash-4.2$ vi arr.sh
+-bash-4.2$ echo $SHELL
+/bin/bash
+-bash-4.2$ echo $PWD
+/home/prashant.medapati/oct24
+-bash-4.2$ echo $HOME
+/home/prashant.medapati
+-bash-4.2$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/home/prashant.medapati/.local/bin:/home/prashant.medapati/bin:/home/prashant.medapati/oct24
+-bash-4.2$ vi flieargs.sh
+-bash-4.2$ sh flieargs.sh 10 20
+flieargs.sh:flieargs.sh
+10:10
+-bash-4.2$ vi flieargs.sh
+-bash-4.2$ sh flieargs.sh 10 20 30 40 50
+$0:flieargs.sh
+$\1:10
+$2:20
+$3:30
+$@:10 20 30 40 50
+$*:10 20 30 40 50
+$#:5
+-bash-4.2$ vi flieargs.sh
+-bash-4.2$ sh flieargs.sh 10 20 30 40 50
+$0:flieargs.sh
+$1:10
+$2:20
+$3:30
+$@:10 20 30 40 50
+$*:10 20 30 40 50
+$#:5
+-bash-4.2$ sh flieargs.sh 10 20 30
+$0:flieargs.sh
+$1:10
+$2:20
+$3:30
+$@:10 20 30
+$*:10 20 30
+$#:3
+-bash-4.2$ sh flieargs.sh 10 20
+$0:flieargs.sh
+$1:10
+$2:20
+$3:
+$@:10 20
+$*:10 20
+$#:2
+-bash-4.2$ sh flieargs.sh 10 20 30
+$0:flieargs.sh
+$1:10
+$2:20
+$3:30
+$@:10 20 30
+$*:10 20 30
+$#:3
+-bash-4.2$ vi flieargs.sh
+-bash-4.2$ sh flieargs.sh 10 20 30
+$0:flieargs.sh
+$1:10
+$2:20
+$3:30
+$@:10 20 30
+$*:10 20 30
+$#:3
+hi      all
+           vi flieargs.sh
+-bash-4.2$ sh flieargs.sh 10 20 30
+$0:flieargs.sh
+$1:10
+$2:20
+$3:30
+$@:10 20 30
+$*:10 20 30
+$#:3
+hi      all
+                \t
+
+-bash-4.2$ vi flieargs.sh
+-bash-4.2$ cat a.txt
+cat: a.txt: No such file or directory
+-bash-4.2$ echo $?
+1
+-bash-4.2$ dat
+-bash: dat: command not found
+-bash-4.2$ echo $?
+127
+-bash-4.2$ call
+-bash: call: command not found
+-bash-4.2$ echo $?
+127
+-bash-4.2$ cat b.txt
+cat: b.txt: No such file or directory
+-bash-4.2$ echo $?
+1
+-bash-4.2$ sh flieargs.sh 10 20 30
+$0:flieargs.sh
+$1:10
+$2:20
+$3:30
+$@:10 20 30
+$*:10 20 30
+$#:3
+hi      all
+                \t
+
+-bash-4.2$ echo $?
+0
+-bash-4.2$ echo $$
+222225
+-bash-4.2$ ps
+   PID TTY          TIME CMD
+222225 pts/9    00:00:00 bash
+230257 pts/9    00:00:00 ps
+-bash-4.2$ echo $!
+
+-bash-4.2$ sleep 20 %
+sleep: invalid time interval ‘%’
+Try 'sleep --help' for more information.
+-bash-4.2$ sleep 5
+-bash-4.2$ sleep 20 &
+[1] 230738
+-bash-4.2$ echo $!
+230738
+-bash-4.2$ sleep 200 &
+[2] 230869
+-bash-4.2$ sleep 100 &
+[3] 230872
+-bash-4.2$ echo $!
+230872
+[1]   Done                    sleep 20
+-bash-4.2$ ps
+   PID TTY          TIME CMD
+222225 pts/9    00:00:00 bash
+230869 pts/9    00:00:00 sleep
+230872 pts/9    00:00:00 sleep
+230915 pts/9    00:00:00 ps
+-bash-4.2$ echo $!
+230872
+
+
+
+
+
+
+
+****************************************************************************************************************************************************
+
+
+
+
+
+
+-bash-4.2$ vi cmdsub.sh
+[3]+  Done                    sleep 100
+-bash-4.2$ sh cmdsub.sh
+date
+Mon Dec 23 12:39:34 IST 2024
+[2]+  Done                    sleep 200
+-bash-4.2$ vi cmdsub.sh
+-bash-4.2$  8L, 52C written
+-bash-4.2$ sh cmdsub.sh
+date
+Mon Dec 23 12:40:48 IST 2024
+Mon Dec 23 12:40:48 IST 2024
+
+
+
+
+-bash-4.2$ vi expressval.sh
+-bash-4.2$ sh expressval.sh
+10+20
+30
+30
+-bash-4.2$ vi expressval.sh
+-bash-4.2$ sh expressval.sh
+10+20
+30
+30
+200
+0
+
+-bash-4.2$ vi expressval.sh
+-bash-4.2$ sh expressval.sh
+10+20
+30
+30
+200
+0
+expressval.sh: line 19: 10/20: No such file or directory
+
+.50
+
+-bash-4.2$ vi expressval.sh
+-bash-4.2$ sh expressval.sh
+10+20
+30
+30
+200
+0
+0
+.50
+
+
+
+
+
+
+
+
+
+-bash-4.2$ vi ifel.sh
+-bash-4.2$  11L, 158C written
+-bash-4.2$ vi swi.sh
+-bash-4.2$ vi swi.sh
+-bash-4.2$ sh swi.sh
+enter your choicea
+case 4
+-bash-4.2$ vi forex.sh
+-bash-4.2$ sh swi.sh
+enter your choice5
+-bash-4.2$ ls
+a           ActInfo  custInfo      demo2     employee.txt  forex.sh  new_file1  oct24       swi.sh       testvi.sh
+aaa         back_up  daily_backup  dir1      empmarks      hfjfkd    new_file2  pme1        temp1        tpt
+abb.python  bbb      data_ar.tar   dir3      f3            home      new_file3  sample.txt  temp1.txt    z
+abcdef      b.txt    demo          empf      file1         ifel.sh   newfileee  shll.sh     temp.txt
+abc.txt     che      demo1         employee  fin           newfile   newfl      shl.sh      testttttttt
+-bash-4.2$ sh forex.sh
+1
+2
+3
+4
+5
+1
+2
+3
+4
+5
+-bash-4.2$ vi forex.sh
+-bash-4.2$ sh forex.sh
+1
+2
+3
+4
+5
+1
+2
+3
+4
+5
+forex.sh: line 19: syntax error near unexpected token `('
+forex.sh: line 19: `    i=(($i+10))'
+-bash-4.2$ vi forex.sh
+-bash-4.2$ sh forex.sh
+1
+2
+3
+4
+5
+1
+2
+3
+4
+5
+forex.sh: line 19: syntax error near unexpected token `('
+forex.sh: line 19: `    i=(($i+1))'
+-bash-4.2$ vi func.sh
+ [New] 5L, 51C written
+-bash-4.2$ sh func.sh
+func.sh: line 2: syntax error near unexpected token `['
+func.sh: line 2: `['
+-bash-4.2$ vi func.sh
+-bash-4.2$  5L, 51C written
+-bash-4.2$ sh func.sh
+sample called
+-bash-4.2$ vi adds.sh
+-bash-4.2$ sh adds.sh
+adds.sh: line 2: syntax error near unexpected token `('
+adds.sh: line 2: `n add_num()'
+-bash-4.2$ vi adds.sh
+-bash-4.2$ sh adds.sh
+30
+-bash-4.2$ vi files.sh
+-bash-4.2$ cat >emppp.txt
+101:mpr:ETA:123545
+102:rpm:RPM:345324
+-bash-4.2$ vi files.sh
+-bash-4.2$ sh files.sh
+101:mpr:ETA:123545
+102:rpm:RPM:345324
+-bash-4.2$ vi files.sh
+-bash-4.2$ cat >>emppp.txt
+103:DJF:EHT:345987
+-bash-4.2$ vi files.sh
+-bash-4.2$ sh files.sh
+101:mpr:ETA:123545
+102:rpm:RPM:345324
+103:DJF:EHT:345987
+files.sh: line 9: dept: command not found
+mpr,
+files.sh: line 9: dept: command not found
+rpm,
+files.sh: line 9: dept: command not found
+DJF,
+-bash-4.2$ vi files.sh
+-bash-4.2$ vi filess.sh
+-bash-4.2$ sh filess.sh
+filess.sh: line 1: le: command not found
+filess.sh: line 2: syntax error near unexpected token `do'
+filess.sh: line 2: `do'
+-bash-4.2$ vi filess.sh
+-bash-4.2$ sh filess.sh
+filess.sh: line 2: syntax error near unexpected token `do'
+filess.sh: line 2: `do'
+-bash-4.2$ sh files.sh
+101:mpr:ETA:123545
+102:rpm:RPM:345324
+103:DJF:EHT:345987
+-bash-4.2$ vi files.sh
+-bash-4.2$ vi filess.sh
+-bash-4.2$ sh filess.sh
+filess.sh: line 4: dept: command not found
+mpr,
+filess.sh: line 4: dept: command not found
+rpm,
+filess.sh: line 4: dept: command not found
+DJF,
+-bash-4.2$ vi filess.sh
+-bash-4.2$ sh filess.sh
+filess.sh: line 4: dept: command not found
+mpr,
+filess.sh: line 4: dept: command not found
+rpm,
+filess.sh: line 4: dept: command not found
+DJF,
+-bash-4.2$ vi filess.sh
+ 6L, 158C written
+-bash-4.2$ sh filess.sh
+filess.sh: line 3: ename: command not found
+filess.sh: line 4: dept: command not found
+,
+filess.sh: line 3: ename: command not found
+filess.sh: line 4: dept: command not found
+,
+filess.sh: line 3: ename: command not found
+filess.sh: line 4: dept: command not found
+,
+-bash-4.2$ vi filess.sh
+-bash-4.2$ sh filess.sh
+mpr, ETA
+rpm, RPM
+DJF, EHT
+-bash-4.2$ ls
+a           ActInfo  che           demo1  employee      file1      func.sh  new_file1  oct24       swi.sh       testvi.sh
+aaa         adds.sh  custInfo      demo2  employee.txt  files.sh   hfjfkd   new_file2  pme1        temp1        tpt
+abb.python  back_up  daily_backup  dir1   empmarks      filess.sh  home     new_file3  sample.txt  temp1.txt    z
+abcdef      bbb      data_ar.tar   dir3   emppp.txt     fin        ifel.sh  newfileee  shll.sh     temp.txt
+abc.txt     b.txt    demo          empf   f3            forex.sh   newfile  newfl      shl.sh      testttttttt
+-bash-4.2$ vi filess.sh
+-bash-4.2$ sh filess.sh
+filess.sh: line 7: syntax error near unexpected token `then'
+filess.sh: line 7: `    then'
+-bash-4.2$ vi filess.sh
+-bash-4.2$ sh ifel.sh
+enter value for numa
+ifel.sh: line 3: a: command not found
+ifel.sh: line 6: a: command not found
+a is zero
+-bash-4.2$ vi ifel.sh
+-bash-4.2$ sh ifel.sh
+enter value for num4
+ifel.sh: line 3: [: missing `]'
+ifel.sh: line 6: [: missing `]'
+4 is zero
+-bash-4.2$ vi ifel.sh
+-bash-4.2$ sh ifel.sh
+enter value for num5
+ifel.sh: line 3: if[ 5 -gt 0]: command not found
+ifel.sh: line 4: syntax error near unexpected token `then'
+ifel.sh: line 4: `then'
+-bash-4.2$ vi ifel.sh
+-bash-4.2$ sh ifel.sh
+enter value for num5
+ifel.sh: line 3: [: missing `]'
+ifel.sh: line 5: [: missing `]'
+5 is zero
+-bash-4.2$ vi ifel.sh
+-bash-4.2$ sh ifel.sh
+enter value for num5
+5 is positive
+-bash-4.2$ vi ifel.sh
+-bash-4.2$ sh ifel.sh
+enter value for num5
+5 is positive
+-bash-4.2$ sh ifel.sh
+enter value for num-8
+-8 is negative
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+vi arr.sh ::
+
+a=(10 20 "infy" "A" 10.456)
+
+echo $a
+
+echo $a[0]
+
+echo ${a[0]}
+echo ${a[1]}
+
+echo ${a[*]}
+echo ${a[@]}
+
+echo ${#a[*]}
+
+******************************************
+
+vi cmdsub.sh ::
+
+d=date
+echo $d
+
+d=`date`
+echo $d
+
+d=$(date)
+echo $d
+
+******************************************
+
+vi expressval.sh ::
+
+a=10
+b=20
+
+c=$a+$b
+echo $c
+
+d=$(expr $a + $b)
+echo $d
+
+e=`expr $a + $b`
+echo $e
+
+f=$(expr $a \* $b)
+echo $f
+
+g=$(($a/$b))
+echo $g
+
+h=$(($a/$b | bc))
+echo $h
+
+i=$(echo "scale=2;$a / $b" | bc)
+echo $i
+
+******************************************
+
+vi flieargs.sh ::
+
+echo "\$0:$0"
+echo "\$1:$1"
+echo "\$2:$2"
+
+echo '$3':"$3"
+echo "\$@:$@"
+echo "\$*:$*"
+echo "\$#:$#"
+
+echo -e "hi\tall"
+printf "\\t"
+printf '\t'
+
+echo -e '\\t'
+echo -e '\t'
+
+******************************************
+
+vi second.sh ::
+
+cal
+ls
+echo "hi all"
+
+******************************************
+
+vi testvi.sh ::
+
+echo "hi all"
+echo "this is my first script"
+
+******************************************
+
+vi var.sh ::
+
+b=10
+
+readonly b
+
+b=100
+
+a=10
+
+echo "$a"
+
+a=10.5
+echo "$a"
+
+a="infy"
+echo "$a"

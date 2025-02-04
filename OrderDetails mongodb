@@ -1,0 +1,152 @@
+﻿RowID,OrderID,Product ID,OrderDate,ShipDate,Segment,City,State,Region,Priority,Customer Name,Sales,Profit,qty,Category,Subcategory,ProductName,Color
+1,W-Con-110674,311,1/2/2016,2/17/2016,Consumer,Concord,California,West,M,Marie Suarez,129.568,-24.294,10,Bikes,Road Bikes,"Road-150 Red, 44",Red
+2,W-Con-110674,311,2/16/2016,2/20/2016,Consumer,Concord,California,West,H,Marie Suarez,129.568,-24.294,10,Bikes,Road Bikes,"Road-150 Red, 44",Red
+3,E-Con-140004,311,3/24/2016,3/26/2016,Consumer,Hamilton,Ohio,East,H,Derrick Torres,7.408,1.2038,14,Bikes,Road Bikes,"Road-150 Red, 44",Red
+4,E-Cor-122336,311,4/18/2016,4/19/2016,Corporate,Philadelphia,Pennsylvania,East,L,Joel Raman,509.97,-407.976,14,Bikes,Road Bikes,"Road-150 Red, 44",Red
+5,E-Cor-122336,311,4/18/2016,4/19/2016,Corporate,Philadelphia,Pennsylvania,East,H,Joel Raman,509.97,-407.976,14,Bikes,Road Bikes,"Road-150 Red, 44",Red
+6,S-Cor-155208,310,4/20/2016,4/21/2016,Corporate,Wilmington,North Carolina,South,M,Angel Cooper,39.072,9.768,3,Bikes,Road Bikes,"Road-150 Red, 62",Red
+7,E-Hom-111003,310,6/2/2016,6/4/2016,Home Office,Lakewood,New Jersey,East,L,Gerald Alonso,45.48,20.9208,13,Bikes,Road Bikes,"Road-150 Red, 62",Red
+8,E-Hom-111003,310,6/2/2016,6/6/2016,Home Office,Lakewood,New Jersey,East,L,Gerald Alonso,45.48,20.9208,13,Bikes,Road Bikes,"Road-150 Red, 62",Red
+9,W-Con-104269,453,3/2/2016,3/4/2016,Consumer,Seattle,Washington,West,M,Marie Suarez,457.568,51.4764,14,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+10,W-Con-104269,453,3/2/2016,3/7/2016,Consumer,Seattle,Washington,West,H,Marie Suarez,457.568,51.4764,14,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+11,W-Con-167164,453,5/17/2016,5/20/2016,Consumer,West Jordan,Utah,West,H,Kenneth Andersen,55.5,9.99,2,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+12,W-Con-167164,453,5/17/2016,5/19/2016,Consumer,West Jordan,Utah,West,H,Kenneth Andersen,55.5,9.99,2,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+13,E-Con-140004,406,3/25/2016,3/26/2016,Consumer,Hamilton,Ohio,East,L,Amanda Hughes,6.048,1.5876,2,Components,Handlebars,ML Road Handlebars,Black
+14,C-Hom-131926,514,6/2/2016,6/3/2016,Home Office,Lakeville,Minnesota,Central,M,Angel Cooper,1503.25,496.0725,4,Components,Brakes,Rear Brakes,Silver
+15,C-Hom-131926,514,6/2/2016,6/6/2016,Home Office,Lakeville,Minnesota,Central,M,Angel Cooper,1503.25,496.0725,4,Components,Brakes,Rear Brakes,Silver
+16,C-Hom-131926,235,6/3/2016,6/5/2016,Home Office,Lakeville,Minnesota,Central,H,Darren Alvarez,47.88,23.94,10,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+17,E-Hom-111003,559,6/4/2016,6/6/2016,Home Office,Lakewood,New Jersey,East,H,Heidi Sanchez,289.2,83.868,3,Components,Chains,Chain Steel 672,Silver
+18,C-Hom-131926,514,6/6/2016,6/9/2016,Home Office,Lakeville,Minnesota,Central,M,Derrick Torres,2001.86,580.5394,8,Components,Brakes,Rear Brakes,Silver
+19,C-Hom-131926,514,6/6/2016,6/10/2016,Home Office,Lakeville,Minnesota,Central,L,Derrick Torres,2001.86,580.5394,8,Components,Brakes,Rear Brakes,Silver
+20,W-Con-115812,235,6/10/2016,6/13/2016,Consumer,Los Angeles,California,West,H,Marie Suarez,18.504,5.7825,5,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+21,W-Con-115812,235,6/10/2016,6/14/2016,Consumer,Los Angeles,California,West,H,Marie Suarez,18.504,5.7825,5,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+22,W-Con-115812,559,6/11/2016,6/15/2016,Consumer,Los Angeles,California,West,M,Dwayne Martin,1706.184,85.3092,3,Components,Chains,Chain Steel 672,Silver
+23,W-Con-115812,559,6/11/2016,6/13/2016,Consumer,Los Angeles,California,West,L,Dwayne Martin,1706.184,85.3092,3,Components,Chains,Chain Steel 672,Silver
+24,W-Con-115812,311,6/12/2016,6/13/2016,Consumer,Los Angeles,California,West,L,Dwayne Martin,114.9,34.47,8,Bikes,Road Bikes,"Road-150 Red, 44",Red
+25,W-Con-115812,453,6/12/2016,6/14/2016,Consumer,Los Angeles,California,West,L,Derrick Torres,48.86,14.1694,4,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+26,W-Con-115812,453,6/12/2016,6/16/2016,Consumer,Los Angeles,California,West,H,Derrick Torres,48.86,14.1694,4,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+27,C-Hom-133753,555,6/13/2016,6/15/2016,Home Office,Huntsville,Texas,Central,M,Joel Raman,70.368,6.1572,7,Components,Brakes,Front Brakes,Silver
+28,W-Cor-129924,310,7/15/2016,7/17/2016,Corporate,San Francisco,California,West,H,Derrick Torres,698.352,-17.4588,8,Bikes,Road Bikes,"Road-150 Red, 62",Red
+29,W-Cor-129924,310,7/15/2016,7/19/2016,Corporate,San Francisco,California,West,L,Derrick Torres,698.352,-17.4588,8,Bikes,Road Bikes,"Road-150 Red, 62",Red
+30,W-Con-133690,310,8/6/2016,8/7/2016,Consumer,Denver,Colorado,West,M,Marie Suarez,218.75,-161.875,7,Bikes,Road Bikes,"Road-150 Red, 62",Red
+31,W-Con-133690,310,8/6/2016,8/11/2016,Consumer,Denver,Colorado,West,M,Marie Suarez,218.75,-161.875,7,Bikes,Road Bikes,"Road-150 Red, 62",Red
+32,W-Con-118962,559,8/7/2016,8/8/2016,Consumer,Los Angeles,California,West,H,Dennis Li,20.94,9.8418,7,Components,Chains,Chain Steel 672,Silver
+33,W-Con-133690,344,8/7/2016,8/8/2016,Consumer,Denver,Colorado,West,M,Angel Cooper,2.6,0.2925,15,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+34,W-Con-133690,344,8/7/2016,8/9/2016,Consumer,Denver,Colorado,West,L,Angel Cooper,2.6,0.2925,15,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+35,W-Con-118962,559,8/11/2016,8/14/2016,Consumer,Los Angeles,California,West,L,Heidi Sanchez,340.144,21.259,2,Components,Chains,Chain Steel 672,Silver
+36,W-Con-118962,559,8/11/2016,8/16/2016,Consumer,Los Angeles,California,West,L,Heidi Sanchez,340.144,21.259,2,Components,Chains,Chain Steel 672,Silver
+37,S-Cor-167850,235,8/12/2016,8/16/2016,Corporate,Saint Petersburg,Florida,South,M,Melinda Serrano,178.384,22.298,15,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+38,W-Con-143336,344,9/1/2016,9/5/2016,Consumer,San Francisco,California,West,H,Pedro Sai,213.48,16.011,10,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+39,W-Con-143336,344,9/1/2016,9/3/2016,Consumer,San Francisco,California,West,M,Pedro Sai,213.48,16.011,10,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+40,C-Con-139892,406,9/11/2016,9/15/2016,Consumer,San Antonio,Texas,Central,L,Shaun She,143.976,8.9985,11,Components,Handlebars,ML Road Handlebars,Black
+41,C-Con-139892,406,9/11/2016,9/15/2016,Consumer,San Antonio,Texas,Central,M,Shaun She,143.976,8.9985,11,Components,Handlebars,ML Road Handlebars,Black
+42,C-Con-139892,514,9/13/2016,9/16/2016,Consumer,San Antonio,Texas,Central,M,Derrick Torres,177.98,-453.849,13,Components,Brakes,Rear Brakes,Silver
+43,C-Con-139892,514,9/13/2016,9/16/2016,Consumer,San Antonio,Texas,Central,H,Derrick Torres,177.98,-453.849,13,Components,Brakes,Rear Brakes,Silver
+44,C-Con-139892,235,9/14/2016,9/17/2016,Consumer,San Antonio,Texas,Central,L,Shaun She,9.936,2.7324,14,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+45,E-Con-113362,555,9/15/2016,9/19/2016,Consumer,Rochester,New York,East,L,Amanda Hughes,11.07,5.0922,6,Components,Brakes,Front Brakes,Silver
+46,E-Con-113362,555,9/15/2016,9/18/2016,Consumer,Rochester,New York,East,L,Amanda Hughes,11.07,5.0922,6,Components,Brakes,Front Brakes,Silver
+47,S-Cor-156216,406,9/18/2016,9/20/2016,Corporate,Charlotte,North Carolina,South,L,Kenneth Andersen,18.648,-12.432,15,Components,Handlebars,ML Road Handlebars,Black
+48,S-Cor-156216,406,9/18/2016,9/23/2016,Corporate,Charlotte,North Carolina,South,H,Kenneth Andersen,18.648,-12.432,15,Components,Handlebars,ML Road Handlebars,Black
+49,E-Hom-101476,406,9/19/2016,9/22/2016,Home Office,New Rochelle,New York,East,M,Derrick Torres,69.99,30.0957,11,Components,Handlebars,ML Road Handlebars,Black
+50,E-Con-113362,235,9/19/2016,9/23/2016,Consumer,Rochester,New York,East,L,Dwayne Martin,449.15,8.983,2,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+51,E-Hom-101476,406,9/19/2016,9/21/2016,Home Office,New Rochelle,New York,East,L,Derrick Torres,69.99,30.0957,11,Components,Handlebars,ML Road Handlebars,Black
+52,E-Con-113362,235,9/19/2016,9/23/2016,Consumer,Rochester,New York,East,H,Dwayne Martin,449.15,8.983,2,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+53,C-Cor-100853,602,9/20/2016,9/21/2016,Corporate,Chicago,Illinois,Central,H,Shaun She,20.16,6.552,12,Components,Bottom Brackets,ML Bottom Bracket,Silver
+54,C-Cor-100853,453,9/20/2016,9/22/2016,Corporate,Chicago,Illinois,Central,M,Marie Suarez,52.448,-131.12,15,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+55,C-Cor-100853,453,9/20/2016,9/22/2016,Corporate,Chicago,Illinois,Central,L,Marie Suarez,52.448,-131.12,15,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+56,C-Con-134614,453,9/21/2016,9/24/2016,Consumer,Bloomington,Illinois,Central,L,Edwin Zhao,617.7,-407.682,10,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+57,W-Con-135972,514,9/26/2016,9/29/2016,Consumer,Des Moines,Washington,West,H,Dwayne Martin,1799.97,701.9883,7,Components,Brakes,Rear Brakes,Silver
+58,W-Con-135972,514,9/26/2016,9/27/2016,Consumer,Des Moines,Washington,West,L,Dwayne Martin,1799.97,701.9883,7,Components,Brakes,Rear Brakes,Silver
+59,E-Cor-120887,514,10/1/2016,10/2/2016,Corporate,Hackensack,New Jersey,East,L,Amanda Hughes,87.54,37.6422,10,Components,Brakes,Rear Brakes,Silver
+60,W-Con-123344,310,10/1/2016,10/5/2016,Consumer,San Francisco,California,West,L,Angel Cooper,211.96,8.4784,5,Bikes,Road Bikes,"Road-150 Red, 62",Red
+61,E-Cor-120887,514,10/1/2016,10/3/2016,Corporate,Hackensack,New Jersey,East,L,Amanda Hughes,87.54,37.6422,10,Components,Brakes,Rear Brakes,Silver
+62,W-Con-123344,310,10/1/2016,10/5/2016,Consumer,San Francisco,California,West,M,Angel Cooper,211.96,8.4784,5,Bikes,Road Bikes,"Road-150 Red, 62",Red
+63,W-Con-134677,310,10/10/2016,10/13/2016,Consumer,San Diego,California,West,M,Derrick Torres,9.09,1.9089,15,Bikes,Road Bikes,"Road-150 Red, 62",Red
+64,W-Con-134677,310,10/10/2016,10/11/2016,Consumer,San Diego,California,West,L,Derrick Torres,9.09,1.9089,15,Bikes,Road Bikes,"Road-150 Red, 62",Red
+65,C-Con-146703,235,10/23/2016,10/24/2016,Consumer,Westland,Michigan,Central,L,Derrick Torres,211.96,8.4784,7,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+66,C-Con-146703,235,10/23/2016,10/27/2016,Consumer,Westland,Michigan,Central,L,Derrick Torres,211.96,8.4784,7,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+67,C-Con-154627,407,11/1/2016,11/2/2016,Consumer,Chicago,Illinois,Central,M,Joe Blanco,2735.952,341.994,3,Components,Handlebars,HL Road Handlebars,Red
+68,E-Hom-164973,561,11/7/2016,11/11/2016,Home Office,New York City,New York,East,L,Pedro Sai,135.882,24.1568,1,Bikes,Touring Bikes,"Touring-1000 Yellow, 46",Red
+69,E-Hom-164973,561,11/7/2016,11/10/2016,Home Office,New York City,New York,East,L,Pedro Sai,135.882,24.1568,1,Bikes,Touring Bikes,"Touring-1000 Yellow, 46",Red
+70,E-Hom-164973,453,11/11/2016,11/12/2016,Home Office,New York City,New York,East,L,Amanda Hughes,3991.98,1995.99,15,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+71,E-Hom-164973,453,11/11/2016,11/12/2016,Home Office,New York City,New York,East,H,Amanda Hughes,3991.98,1995.99,15,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+72,W-Con-144666,406,11/15/2016,11/18/2016,Consumer,San Francisco,California,West,M,Marie Suarez,92.52,24.9804,13,Components,Handlebars,ML Road Handlebars,Black
+73,W-Con-144666,406,11/15/2016,11/16/2016,Consumer,San Francisco,California,West,M,Marie Suarez,92.52,24.9804,13,Components,Handlebars,ML Road Handlebars,Black
+74,E-Con-115973,311,11/25/2016,11/28/2016,Consumer,Cincinnati,Ohio,East,H,Pedro Sai,2.624,0.4264,5,Bikes,Road Bikes,"Road-150 Red, 44",Red
+75,E-Con-115973,311,11/25/2016,11/26/2016,Consumer,Cincinnati,Ohio,East,L,Pedro Sai,2.624,0.4264,5,Bikes,Road Bikes,"Road-150 Red, 44",Red
+76,S-Hom-158274,344,11/26/2016,11/30/2016,Home Office,Monroe,Louisiana,South,M,Jaclyn Gao,503.96,131.0296,10,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+77,S-Hom-158274,587,11/26/2016,11/30/2016,Home Office,Monroe,Louisiana,South,L,Angel Cooper,29,7.25,1,Bikes,Mountain Bikes,"Mountain-400-W Silver, 38",Red
+78,S-Hom-158274,587,11/26/2016,12/1/2016,Home Office,Monroe,Louisiana,South,H,Angel Cooper,29,7.25,1,Bikes,Mountain Bikes,"Mountain-400-W Silver, 38",Red
+79,C-Con-147606,406,12/1/2016,12/3/2016,Consumer,Houston,Texas,Central,L,Shaun She,19.3,-14.475,2,Components,Handlebars,ML Road Handlebars,Black
+80,C-Con-147606,406,12/1/2016,12/3/2016,Consumer,Houston,Texas,Central,L,Shaun She,19.3,-14.475,2,Components,Handlebars,ML Road Handlebars,Black
+81,W-Cor-106376,602,12/6/2016,12/9/2016,Corporate,Gilbert,Arizona,West,L,Amanda Hughes,1113.024,111.3024,7,Components,Bottom Brackets,ML Bottom Bracket,Silver
+82,W-Cor-106376,602,12/6/2016,12/11/2016,Corporate,Gilbert,Arizona,West,H,Amanda Hughes,1113.024,111.3024,7,Components,Bottom Brackets,ML Bottom Bracket,Silver
+83,C-Cor-166191,344,12/12/2016,12/13/2016,Corporate,Decatur,Illinois,Central,M,Derrick Torres,408.744,76.6395,9,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+84,C-Cor-166191,344,12/12/2016,12/13/2016,Corporate,Decatur,Illinois,Central,H,Derrick Torres,408.744,76.6395,9,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+85,S-Con-150574,406,12/20/2016,12/23/2016,Consumer,Jacksonville,Florida,South,L,George Louverdis,247.8,-18.585,1,Components,Handlebars,ML Road Handlebars,Black
+86,S-Con-150574,311,12/23/2016,12/26/2016,Consumer,Jacksonville,Florida,South,H,Heidi Sanchez,4.812,-3.6892,6,Bikes,Road Bikes,"Road-150 Red, 44",Red
+87,S-Con-150574,311,12/23/2016,12/24/2016,Consumer,Jacksonville,Florida,South,M,Heidi Sanchez,4.812,-3.6892,6,Bikes,Road Bikes,"Road-150 Red, 44",Red
+88,W-Cor-111451,555,12/28/2016,12/29/2016,Corporate,Colorado Springs,Colorado,West,M,Crystal Zheng,300.416,78.8592,13,Components,Brakes,Front Brakes,Silver
+89,W-Cor-111451,555,12/28/2016,1/2/2017,Corporate,Colorado Springs,Colorado,West,M,Crystal Zheng,300.416,78.8592,13,Components,Brakes,Front Brakes,Silver
+90,W-Cor-111451,311,12/29/2016,12/30/2016,Corporate,Colorado Springs,Colorado,West,L,Heidi Sanchez,218.352,-24.5646,13,Bikes,Road Bikes,"Road-150 Red, 44",Red
+91,W-Cor-111451,555,12/29/2016,12/31/2016,Corporate,Colorado Springs,Colorado,West,M,Heidi Sanchez,230.352,20.1558,14,Components,Brakes,Front Brakes,Silver
+92,W-Cor-111451,311,12/29/2016,1/2/2017,Corporate,Colorado Springs,Colorado,West,M,Heidi Sanchez,218.352,-24.5646,13,Bikes,Road Bikes,"Road-150 Red, 44",Red
+93,W-Cor-111451,555,12/29/2016,1/1/2017,Corporate,Colorado Springs,Colorado,West,H,Heidi Sanchez,230.352,20.1558,14,Components,Brakes,Front Brakes,Silver
+94,C-Hom-152030,407,12/31/2016,1/1/2017,Home Office,Houston,Texas,Central,L,Shaun She,600.558,-8.5794,7,Components,Handlebars,HL Road Handlebars,Red
+95,C-Hom-152030,407,12/31/2016,1/4/2017,Home Office,Houston,Texas,Central,L,Shaun She,600.558,-8.5794,7,Components,Handlebars,HL Road Handlebars,Red
+96,E-Cor-164259,235,1/2/2017,1/6/2017,Corporate,Philadelphia,Pennsylvania,East,M,Shaun She,99.136,8.6744,7,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+97,W-Cor-111451,311,1/2/2017,1/3/2017,Corporate,Colorado Springs,Colorado,West,H,Edwin Zhao,78.6,-62.88,5,Bikes,Road Bikes,"Road-150 Red, 44",Red
+98,E-Cor-164259,235,1/2/2017,1/7/2017,Corporate,Philadelphia,Pennsylvania,East,L,Shaun She,99.136,8.6744,7,Clothing,Jerseys,"Long-Sleeve Logo Jersey, XLA",Black
+99,W-Cor-111451,311,1/2/2017,1/5/2017,Corporate,Colorado Springs,Colorado,West,M,Edwin Zhao,78.6,-62.88,5,Bikes,Road Bikes,"Road-150 Red, 44",Red
+100,E-Cor-146262,561,1/3/2017,1/4/2017,Corporate,Medina,Ohio,East,L,Heidi Sanchez,23.68,8.88,12,Bikes,Touring Bikes,"Touring-1000 Yellow, 46",Red
+101,E-Cor-146262,310,1/3/2017,1/5/2017,Corporate,Medina,Ohio,East,L,Joel Raman,1188,-950.4,7,Bikes,Road Bikes,"Road-150 Red, 62",Red
+102,E-Cor-146262,310,1/3/2017,1/6/2017,Corporate,Medina,Ohio,East,M,Joel Raman,1188,-950.4,7,Bikes,Road Bikes,"Road-150 Red, 62",Red
+103,C-Hom-101399,344,1/22/2017,1/24/2017,Home Office,Park Ridge,Illinois,Central,H,Pedro Sai,254.744,-312.0614,8,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+104,C-Hom-101399,344,1/22/2017,1/25/2017,Home Office,Park Ridge,Illinois,Central,H,Pedro Sai,254.744,-312.0614,8,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+105,C-Con-149587,407,2/4/2017,2/5/2017,Consumer,Minneapolis,Minnesota,Central,L,Shaun She,32.96,16.1504,6,Components,Handlebars,HL Road Handlebars,Red
+106,C-Con-149587,407,2/4/2017,2/5/2017,Consumer,Minneapolis,Minnesota,Central,L,Shaun She,32.96,16.1504,6,Components,Handlebars,HL Road Handlebars,Red
+107,S-Con-145436,407,3/2/2017,3/3/2017,Consumer,Columbia,Tennessee,South,M,Amanda Hughes,161.568,-28.2744,12,Components,Handlebars,HL Road Handlebars,Red
+108,S-Con-145436,453,3/2/2017,3/5/2017,Consumer,Columbia,Tennessee,South,H,George Louverdis,389.696,43.8408,14,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+109,S-Con-145436,407,3/2/2017,3/7/2017,Consumer,Columbia,Tennessee,South,L,Amanda Hughes,161.568,-28.2744,12,Components,Handlebars,HL Road Handlebars,Red
+110,S-Con-145436,453,3/2/2017,3/4/2017,Consumer,Columbia,Tennessee,South,L,George Louverdis,389.696,43.8408,14,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+111,W-Con-110457,453,3/6/2017,3/9/2017,Consumer,Seattle,Washington,West,M,Derrick Torres,787.53,165.3813,12,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+112,W-Con-110457,453,3/6/2017,3/11/2017,Consumer,Seattle,Washington,West,M,Derrick Torres,787.53,165.3813,12,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+113,S-Cor-136476,311,4/7/2017,4/8/2017,Corporate,Bristol,Tennessee,South,L,Kaitlin Gonzalez,157.794,-115.7156,5,Bikes,Road Bikes,"Road-150 Red, 44",Red
+114,S-Cor-136476,311,4/7/2017,4/10/2017,Corporate,Bristol,Tennessee,South,M,Kaitlin Gonzalez,157.794,-115.7156,5,Bikes,Road Bikes,"Road-150 Red, 44",Red
+115,C-Con-115742,559,4/21/2017,4/22/2017,Consumer,New Albany,Indiana,Central,M,Shaun She,75.18,35.3346,9,Components,Chains,Chain Steel 672,Silver
+116,C-Con-115742,514,4/23/2017,4/24/2017,Consumer,New Albany,Indiana,Central,H,Angel Cooper,38.22,17.9634,7,Components,Brakes,Rear Brakes,Silver
+117,C-Con-115742,514,4/23/2017,4/24/2017,Consumer,New Albany,Indiana,Central,L,Angel Cooper,38.22,17.9634,7,Components,Brakes,Rear Brakes,Silver
+118,C-Con-115742,406,4/24/2017,4/28/2017,Consumer,New Albany,Indiana,Central,M,Angel Cooper,89.99,17.0981,11,Components,Handlebars,ML Road Handlebars,Black
+119,C-Con-115742,406,4/24/2017,4/25/2017,Consumer,New Albany,Indiana,Central,M,Angel Cooper,89.99,17.0981,11,Components,Handlebars,ML Road Handlebars,Black
+120,C-Con-130792,406,4/30/2017,5/1/2017,Consumer,Houston,Texas,Central,H,Dwayne Martin,8.652,-20.3322,11,Components,Handlebars,ML Road Handlebars,Black
+121,C-Con-130792,406,4/30/2017,5/1/2017,Consumer,Houston,Texas,Central,L,Dwayne Martin,8.652,-20.3322,11,Components,Handlebars,ML Road Handlebars,Black
+122,S-Con-134026,344,5/1/2017,5/2/2017,Consumer,Memphis,Tennessee,South,M,George Louverdis,831.936,-114.3912,6,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+123,S-Con-134026,344,5/1/2017,5/5/2017,Consumer,Memphis,Tennessee,South,M,George Louverdis,831.936,-114.3912,6,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+124,C-Con-130792,555,5/3/2017,5/5/2017,Consumer,Houston,Texas,Central,M,George Louverdis,23.832,2.6811,4,Components,Brakes,Front Brakes,Silver
+125,C-Con-130792,559,5/4/2017,5/5/2017,Consumer,Houston,Texas,Central,L,Amanda Hughes,12.176,-18.8728,9,Components,Chains,Chain Steel 672,Silver
+126,C-Con-130792,559,5/4/2017,5/5/2017,Consumer,Houston,Texas,Central,H,Amanda Hughes,12.176,-18.8728,9,Components,Chains,Chain Steel 672,Silver
+127,C-Hom-164175,555,5/6/2017,5/7/2017,Home Office,Chicago,Illinois,Central,L,Edwin Zhao,213.115,-15.2225,13,Components,Brakes,Front Brakes,Silver
+128,C-Hom-164175,555,5/6/2017,5/11/2017,Home Office,Chicago,Illinois,Central,M,Edwin Zhao,213.115,-15.2225,13,Components,Brakes,Front Brakes,Silver
+129,E-Cor-144253,310,5/11/2017,5/15/2017,Corporate,New York City,New York,East,H,Pedro Sai,26.8,12.864,15,Bikes,Road Bikes,"Road-150 Red, 62",Red
+130,E-Cor-144253,310,5/11/2017,5/15/2017,Corporate,New York City,New York,East,H,Pedro Sai,26.8,12.864,15,Bikes,Road Bikes,"Road-150 Red, 62",Red
+131,C-Cor-163055,407,8/12/2017,8/16/2017,Corporate,Detroit,Michigan,Central,M,Dwayne Martin,622.45,136.939,9,Components,Handlebars,HL Road Handlebars,Red
+132,S-Cor-149734,407,9/4/2017,9/6/2017,Corporate,Durham,North Carolina,South,M,Marie Suarez,200.984,62.8075,3,Components,Handlebars,HL Road Handlebars,Red
+133,S-Cor-149734,407,9/4/2017,9/9/2017,Corporate,Durham,North Carolina,South,M,Marie Suarez,200.984,62.8075,3,Components,Handlebars,HL Road Handlebars,Red
+134,W-Con-137946,311,9/6/2017,9/10/2017,Consumer,Los Angeles,California,West,M,Amanda Hughes,14.368,4.49,12,Bikes,Road Bikes,"Road-150 Red, 44",Red
+135,W-Con-137946,311,9/6/2017,9/10/2017,Consumer,Los Angeles,California,West,M,Amanda Hughes,959.984,335.9944,6,Bikes,Road Bikes,"Road-150 Red, 44",Red
+136,W-Con-137946,311,9/6/2017,9/10/2017,Consumer,Los Angeles,California,West,M,Amanda Hughes,959.984,335.9944,6,Bikes,Road Bikes,"Road-150 Red, 44",Red
+137,E-Con-150630,453,9/19/2017,9/21/2017,Consumer,Philadelphia,Pennsylvania,East,M,Heidi Sanchez,9.618,-7.0532,2,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+138,E-Con-150630,344,9/20/2017,9/22/2017,Consumer,Philadelphia,Pennsylvania,East,M,Autumn Zhu,6.858,-5.715,10,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+139,E-Con-150630,560,9/20/2017,9/24/2017,Consumer,Philadelphia,Pennsylvania,East,L,Pedro Sai,86.304,9.7092,10,Bikes,Touring Bikes,"Touring-2000 Blue, 60",Black
+140,E-Con-150630,559,9/24/2017,9/26/2017,Consumer,Philadelphia,Pennsylvania,East,L,Marie Suarez,124.2,15.525,8,Components,Chains,Chain Steel 672,Silver
+141,E-Con-150630,559,9/24/2017,9/28/2017,Consumer,Philadelphia,Pennsylvania,East,M,Marie Suarez,124.2,15.525,8,Components,Chains,Chain Steel 672,Silver
+142,C-Con-161991,453,9/27/2017,10/1/2017,Consumer,Houston,Texas,Central,M,Dwayne Martin,1114.4,376.11,1,Shoes,Men's Shoes,"Men's Sports Shorts, M",Red
+143,W-Con-106320,407,9/27/2017,10/1/2017,Consumer,Orem,Utah,West,H,Pedro Sai,1044.63,240.2649,15,Components,Handlebars,HL Road Handlebars,Red
+144,W-Con-106320,407,9/27/2017,9/30/2017,Consumer,Orem,Utah,West,L,Pedro Sai,1044.63,240.2649,15,Components,Handlebars,HL Road Handlebars,Red
+145,W-Con-130883,344,10/2/2017,10/5/2017,Consumer,Portland,Oregon,West,M,Amanda Hughes,141.76,47.844,2,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+146,W-Con-130883,344,10/2/2017,10/3/2017,Consumer,Portland,Oregon,West,H,Amanda Hughes,141.76,47.844,2,Bikes,Mountain Bikes,"Mountain-100 Silver, 38",Silver
+147,E-Hom-102281,310,10/13/2017,10/15/2017,Home Office,New York City,New York,East,L,Dwayne Martin,71.76,20.0928,10,Bikes,Road Bikes,"Road-150 Red, 62",Red
+148,E-Hom-102281,310,10/13/2017,10/18/2017,Home Office,New York City,New York,East,M,Dwayne Martin,71.76,20.0928,10,Bikes,Road Bikes,"Road-150 Red, 62",Red
+149,E-Hom-102281,514,10/16/2017,10/17/2017,Home Office,New York City,New York,East,L,Heidi Sanchez,899.136,112.392,5,Components,Brakes,Rear Brakes,Silver
+150,S-Con-108966,514,10/16/2017,10/18/2017,Consumer,Fort Lauderdale,Florida,South,M,Angel Cooper,22.368,2.5164,13,Components,Brakes,Rear Brakes,Silver
+151,S-Con-108966,514,10/16/2017,10/19/2017,Consumer,Fort Lauderdale,Florida,South,H,Angel Cooper,22.368,2.5164,13,Components,Brakes,Rear Brakes,Silver

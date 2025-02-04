@@ -1,0 +1,153 @@
+1. write a shell function that checks if a given number is prime.
+
+is_prime()
+{
+        number=$1
+        if [ "$number" -le 1 ]
+        then
+                echo "Not Prime"
+                return
+        fi
+        for((i=2;i*i<=number;i++))
+        do
+                if [ $((number%i)) -eq 0 ]
+                then
+                        echo "Not Prime"
+                        return
+                fi
+        done
+        echo "Prime Number"
+}
+number=$1
+is_prime $number
+
+
+2. write a script that renames all the files with a specified extension in a directory. For example, "example.txt" would be renamed to "example.new.txt"
+
+for file in *.txt
+do
+        mv "$file" "${file%.txt}.new.txt"
+done
+
+
+3. write a shell script to create an array of five fruits and print each fruit using a loop
+
+fruits=("Apple" "Banana" "Chikoo" "Dragon Fruit" "Watermelon")
+for fruit in "${fruits[@]}"
+do
+        echo "$fruit"
+done
+
+
+4. write a shell function that calculates the factorial of a given number
+
+fact_cal()
+{
+        number=$1
+        fact=1
+        if [ $number -le 1 ]
+        then
+                echo "Fact is : $fact"
+                return
+        fi
+
+        for((i=2;i<=number;i++))
+        do
+                fact=$((fact*i))
+        done
+        echo "Fact is : $fact"
+}
+
+number=$1
+fact_cal $number
+
+
+5. write a command that extracts the contents of a specified CPIO
+
+cpio -idv < archive_name.cpio
+
+
+6. write a shell function that calculates GCD of given two numbers
+
+gcd()
+{
+        a=$1
+        b=$2
+        while [ $b -ne 0 ]
+        do
+                temp=$b
+                b=$((a%b))
+                a=$temp
+        done
+        echo "GCD : $a"
+}
+
+gcd $1 $2
+
+
+7. write a shell function that checks if a specified directory exists and prints a message accordingly
+
+check_directory()
+{
+        dir=$1
+        if [ -d "$dir" ]
+        then
+                echo "Directory exists"
+        else
+                echo "Directory doesn't exist"
+        fi
+}
+
+check_directory $1
+
+
+8. write a shell script to check if a given string is a palindrome. A palindrome is a word, phrase, or sequence that reads the same backward as forward
+
+is_palindrome()
+{
+        st=$1
+        rev_st=$(echo "$st"|rev)
+        if [ "$st" == "$rev_st" ]
+        then
+                echo "Given string is palindrome"
+        else
+                echo "Given string is not palindrome"
+        fi
+}
+
+is_palindrome $1
+
+
+9. write a shell script to check if given number is magic number. A magic number is a number that eventually leads to 1 when replaced by the sum of its digits repeatedly
+
+is_magic()
+{
+        number=$1
+        while [ "$number" -gt 9 ]
+        do
+                sum=0
+                while [ $number -gt 0 ]
+                do
+                        sum=$((sum + number%10))
+                        number=$((number/10))
+                done
+        number=$sum
+        done
+        if [ $number -eq 1 ]
+        then
+                echo "Given number is magic number"
+        else
+                echo "Given number is not magic number"
+        fi
+}
+
+is_magic $1
+
+
+10. write a shell script that creates a tar archive of all files in a specified directory, sets specific permissions (read and execute, for all) for the archive, and then extracts the contents of the archive to a new location while retaining the original permissions
+
+tar -cvf archive.tar directory_name
+chmod 755 archive.tar
+mv archive.tar /new/location/entry_path
+cd /new/location/entry_path
+tar -xvf archive.tar

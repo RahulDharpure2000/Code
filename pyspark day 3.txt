@@ -1,0 +1,187 @@
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\
+      /_/
+
+*****************************************************************
+
+>>> from collections import namedtuple
+>>> routerlocation = namedtuple('routerlocation',['rid','rname','rlocation'])
+>>> routerpurchase = namedtuple('routerpurchase',['rid','purchasedate','memory1','memory2','rprice'])
+>>> routerfeed=namedtuple("routerfeed",['rid','feedback'])
+>>> rloc=sc.textFile("routerlocation.tsv").map(lambda r:r.split("\t")).map(lambda r:(r[0], routerlocation(int(r[0]),r[1],r[2])))
+>>> rpur=sc.textFile("routerpurchase.tsv").map(lambda d:d.split("\t")).map(lambda r:(r[0], routerpurchase(int(r[0]),r[1],r[2],r[3],r[4])))
+>>> rfeed=sc.textFile("routerfeedback").map(lambda v:v.split("\t")).map(lambda t:(t[0],routerfeed(int(t[0]),t[1])))
+
+>>> res1=rloc.join(rpur).join(rfeed)
+
+>>> res=rloc.join(rpur)
+>>> for e in res.collect():
+...     print e
+...
+
+sample o/p:
+(u'4', (routerlocation(rid=4, rname=u'RTR4', rlocation=u'Delhi'), routerpurchase(rid=4, purchasedate=u'9/3/2014', memory1=u'653235467', memory2=u'245913333', rprice=u'1000USD')))
+
+
+********************************************************
+
+>>> import pyspark
+>>> res.persist(pyspark.StorageLevel.MEMORY_ONLY)
+PythonRDD[19] at collect at <stdin>:1
+>>> res.persist(pyspark.StorageLevel.MEMORY_ONLY_SER)
+PythonRDD[19] at collect at <stdin>:1
+>>> res.unpersist()
+PythonRDD[19] at collect at <stdin>:1
+
+********************************************************
+DATAFRAME API PROGRAMATIC VIEW::
+
+>>> from collections import namedtuple
+>>> Car_Info = sc.textFile("ArisconnDataset.txt")
+>>> Cars=namedtuple('Cars',['sensorid','carid','latitude','longitude','engine_speed','accelerator_pedal_position','vehicle_speed','torque_at_transmission','fuel_level','TypeOfMessage','timestamp'])
+>>> header = Car_Info.first()
+>>> DF = Car_Info.filter(lambda c: c!=header).map(lambda l :l.split(",")).map(lambda c : Cars(c[0],c[1],float(c[2]),c[3],int(c[4]),int(c[5]),int(c[6]),int(c[7]),float(c[8]),c[9],float(c[10]))).toDF()
+>>> DF.createOrReplaceTempView("cars")
+>>> valrecords= spark.sql("SELECT sensorid,carid,latitude,longitude,vehicle_speed,TypeOfMessage FROM cars WHERE sensorid Like 'SEN_%' AND carid Like 'CAR_%' AND sensorid!='sensorID'")
+>>> valrecords.show()
++--------+---------+--------+----------+-------------+-------------+
+|sensorid|    carid|latitude| longitude|vehicle_speed|TypeOfMessage|
++--------+---------+--------+----------+-------------+-------------+
+|SEN_9387|CAR_34853|40.77091|-73.953783|            0|    INF_69836|
+|SEN_9387|CAR_34853|42.77092|-63.953793|            0|    INF_69836|
+|SEN_9387|CAR_34853|47.77094|-40.953773|            0|    ERR_37520|
+|SEN_9387|CAR_34853|41.77034|-73.953773|            0|    ERR_37521|
+|SEN_9387|CAR_34853|40.77045|-93.953723|            0|    ERR_37522|
+|SEN_9387|CAR_34853|43.77032|-83.953773|            0|   WARN_83731|
+|SEN_9387|CAR_34853|51.77042|-66.953723|            0|    ERR_37520|
+|SEN_9387|CAR_34853|59.77093|-83.953713|            0|   WARN_83731|
+|SEN_9387|CAR_34853|40.77091|-79.953783|            0|    INF_69836|
+|SEN_9387|CAR_34853|43.77095|-72.953788|            0|    INF_69836|
+|SEN_9387|CAR_34853|67.77095|-75.953793|            0|    INF_69836|
+|SEN_9387|CAR_34853|69.77095|-76.953723|            0|   WARN_83731|
+|SEN_9387|CAR_34853|76.77095|-38.953713|            0|    ERR_37523|
+|SEN_9387|CAR_34853|40.77091|-73.953783|            0|    INF_69836|
+|SEN_9387|CAR_34853|42.77092|-63.953793|            0|    INF_69836|
+|SEN_9387|CAR_34853|47.77094|-40.953773|            0|    ERR_37520|
+|SEN_9387|CAR_34853|41.77034|-73.953773|            0|    ERR_37521|
+|SEN_9387|CAR_34853|40.77045|-93.953723|            0|    ERR_37522|
+|SEN_9387|CAR_34853|43.77032|-83.953773|            0|   WARN_83731|
+|SEN_9387|CAR_34853|51.77042|-66.953723|            0|    ERR_37520|
++--------+---------+--------+----------+-------------+-------------+
+only showing top 20 rows
+
+>>> valrecords.select('sensorid','carid').show(5)
++--------+---------+
+|sensorid|    carid|
++--------+---------+
+|SEN_9387|CAR_34853|
+|SEN_9387|CAR_34853|
+|SEN_9387|CAR_34853|
+|SEN_9387|CAR_34853|
+|SEN_9387|CAR_34853|
++--------+---------+
+only showing top 5 rows
+
+>>> valrecords.groupBy("TypeOfMessage").count().show()
++-------------+-------+
+|TypeOfMessage|  count|
++-------------+-------+
+|    ERR_37520|1622016|
+|    ERR_37522| 811008|
+|   WARN_83731|2433024|
+|    ERR_37521| 811008|
+|    INF_69836|4055040|
+|    ERR_37523| 811008|
++-------------+-------+
+
+>>> valrecords.where("TypeOfMessage like 'WARN%'").count()
+o/p::2433024
+
+>>> valrecords.filter("longitude<50").show(5)
++--------+---------+--------+----------+-------------+-------------+
+|sensorid|    carid|latitude| longitude|vehicle_speed|TypeOfMessage|
++--------+---------+--------+----------+-------------+-------------+
+|SEN_9387|CAR_34853|40.77091|-73.953783|            0|    INF_69836|
+|SEN_9387|CAR_34853|42.77092|-63.953793|            0|    INF_69836|
+|SEN_9387|CAR_34853|47.77094|-40.953773|            0|    ERR_37520|
+|SEN_9387|CAR_34853|41.77034|-73.953773|            0|    ERR_37521|
+|SEN_9387|CAR_34853|40.77045|-93.953723|            0|    ERR_37522|
++--------+---------+--------+----------+-------------+-------------+
+only showing top 5 rows
+
+>>> valrecords.limit(5).show()
++--------+---------+--------+----------+-------------+-------------+
+|sensorid|    carid|latitude| longitude|vehicle_speed|TypeOfMessage|
++--------+---------+--------+----------+-------------+-------------+
+|SEN_9387|CAR_34853|40.77091|-73.953783|            0|    INF_69836|
+|SEN_9387|CAR_34853|42.77092|-63.953793|            0|    INF_69836|
+|SEN_9387|CAR_34853|47.77094|-40.953773|            0|    ERR_37520|
+|SEN_9387|CAR_34853|41.77034|-73.953773|            0|    ERR_37521|
+|SEN_9387|CAR_34853|40.77045|-93.953723|            0|    ERR_37522|
++--------+---------+--------+----------+-------------+-------------+
+
+>>> from pyspark.sql.functions import min
+>>> valrecords.groupBy("TypeOfMessage").agg(min("latitude")).show()
++-------------+-------------+
+|TypeOfMessage|min(latitude)|
++-------------+-------------+
+|    ERR_37520|     47.77094|
+|    ERR_37522|     40.77045|
+|   WARN_83731|     43.77032|
+|    ERR_37521|     41.77034|
+|    INF_69836|     40.77091|
+|    ERR_37523|     76.77095|
++-------------+-------------+
+
+>>> from pyspark.sql.functions import sum
+>>> valrecords.groupBy("TypeOfMessage").agg(sum("latitude")).sho
+w()
++-------------+--------------------+
+|TypeOfMessage|       sum(latitude)|
++-------------+--------------------+
+|    ERR_37520| 8.072883929083648E7|
+|    ERR_37522|3.3065161113588195E7|
+|   WARN_83731|1.4055758069763023E8|
+|    ERR_37521| 3.387607990273194E7|
+|    INF_69836| 1.912799998770595E8|
+|    ERR_37523|6.2261854617616616E7|
++-------------+--------------------+
+
+>>> valrecords.select("TypeOfMessage").distinct().show()
++-------------+
+|TypeOfMessage|
++-------------+
+|    ERR_37520|
+|    ERR_37522|
+|   WARN_83731|
+|    ERR_37521|
+|    INF_69836|
+|    ERR_37523|
++-------------+
+
+>>> valrecords.orderBy("latitude").limit(5).show()
++--------+---------+--------+----------+-------------+-------------+
+|sensorid|    carid|latitude| longitude|vehicle_speed|TypeOfMessage|
++--------+---------+--------+----------+-------------+-------------+
+|SEN_9387|CAR_34853|40.77045|-93.953723|            0|    ERR_37522|
+|SEN_9387|CAR_34853|40.77045|-93.953723|            0|    ERR_37522|
+|SEN_9387|CAR_34853|40.77045|-93.953723|            0|    ERR_37522|
+|SEN_9387|CAR_34853|40.77045|-93.953723|            0|    ERR_37522|
+|SEN_9387|CAR_34853|40.77045|-93.953723|            0|    ERR_37522|
++--------+---------+--------+----------+-------------+-------------+
+
+>>> valrecords.printSchema()
+root
+ |-- sensorid: string (nullable = true)
+ |-- carid: string (nullable = true)
+ |-- latitude: double (nullable = true)
+ |-- longitude: string (nullable = true)
+ |-- vehicle_speed: long (nullable = true)
+ |-- TypeOfMessage: string (nullable = true)
+
+*********************************************************
+#::INCOMPLETE::#
+AF=spark.read.parquet("data.parquet")
+AF.write.json("dir") #in quotes we have to give direct name

@@ -1,0 +1,586 @@
+STEP-1 - CREATING FILE WITH DATA::
+cat >a
+	100:aaa:ETA:20000:ENG
+	102:bbb:HR:10000:MBA
+	103:ccc:PROD:30000:BE
+	104:ddd:ETA:15000:MTECH
+	105:eee:FC:30000:BSE
+	106:fff:SC:25000:BSE
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+STEP-2 - PRINTING DATA ONCE::
+cat a
+
+
+
+head -n 2 a---(it will give the first two rows)
+tail -n 2 a---(it will give the last two rows)
+head -c 30 a---(from starting 30 characters)
+tail -c 30 a---(from last 30 characters)
+tail -n+3 a ---(from 3rd to last row)
+head -n+3 a ---(total 3 rows)
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+cut -d ":" -f 2 a
+cut -d ":" -f 2,5 a
+cut -d ":" -f 2-5 a
+cut -c 5 a -- (5th character from all the lines)
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+STEP-3: CREATING ANOTHER FILE
+ cat >b
+1
+2
+3
+4
+5
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+paste a b --- (COMBINES BOTH A AND B FILES)
+O/P:
+100:aaa:ETA:20000:ENG   1
+102:bbb:HR:10000:MBA    2
+103:ccc:PROD:30000:BE   3
+104:ddd:ETA:15000:MTECH 4
+105:eee:FC:30000:BSE    5
+106:fff:SC:25000:BSE
+
+
+
+
+
+
+ paste -d "----" a b
+o/p:
+100:aaa:ETA:20000:ENG-1
+102:bbb:HR:10000:MBA-2
+103:ccc:PROD:30000:BE-3
+104:ddd:ETA:15000:MTECH-4
+105:eee:FC:30000:BSE-5
+106:fff:SC:25000:BSE-
+
+
+
+
+paste -s a b
+o/p:
+100:aaa:ETA:20000:ENG   102:bbb:HR:10000:MBA    103:ccc:PROD:30000:BE   104:ddd:ETA:15000:MTECH 105:eee:FC:30000:BSE   106:fff:SC:25000:BSE
+1       2       3       4       5
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+cat > numm
+1
+11
+2
+3
+
+
+
+
+4
+5
+1
+12
+1
+1
+
+
+
+
+
+5
+9
+2
+3
+14
+20
+31
+1
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+sort numm
+
+o/p:
+1
+1
+1
+1
+1
+11
+12
+14
+2
+2
+20
+3
+3
+31
+4
+5
+5
+9
+
+
+
+
+
+
+
+
+sort -n numm
+o/p:
+
+
+1
+1
+1
+1
+1
+2
+2
+3
+3
+4
+5
+5
+9
+11
+12
+14
+20
+31
+
+
+
+
+
+
+
+sort -u numm --- gives sorted removing duplicates
+o/p:
+1
+1
+1
+1
+1
+2
+2
+3
+3
+4
+5
+5
+9
+11
+12
+14
+20
+31
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+sort -t ":" -k 4 a   --- (t is the delimitor and k is the column and always we have to t if we have delimitor)
+
+o/p:
+102:bbb:HR:10000:MBA
+104:ddd:ETA:15000:MTECH
+100:aaa:ETA:20000:ENG
+106:fff:SC:25000:BSE
+103:ccc:PROD:30000:BE
+105:eee:FC:30000:BSE
+
+
+sort -t ":" -k 3,3 -k 4,4 a
+o/p:
+104:ddd:ETA:15000:MTECH
+100:aaa:ETA:20000:ENG
+105:eee:FC:30000:BSE
+102:bbb:HR:10000:MBA
+103:ccc:PROD:30000:BE
+106:fff:SC:25000:BSE
+
+sort -t ":" -k 3,3 -k 5,5 a
+o/p:
+100:aaa:ETA:20000:ENG
+104:ddd:ETA:15000:MTECH
+105:eee:FC:30000:BSE
+102:bbb:HR:10000:MBA
+103:ccc:PROD:30000:BE
+106:fff:SC:25000:BSE
+	
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+sort -n numm | uniq   ----(in order the uniq has to work it must be sorted first then it gives output removing duplicates)
+
+sort -n numm | uniq -d   -----(returns which values are duplicates)
+
+sort -n numm | uniq -c   -------(it returns which number has repeated how many number of times)
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+tr -  changes the delimitor and it doesn't change the main file it just displays with the given delimitor specification
+
+cat a | tr ":" "@"
+100@aaa@ETA@20000@ENG
+102@bbb@HR@10000@MBA
+103@ccc@PROD@30000@BE
+104@ddd@ETA@15000@MTECH
+105@eee@FC@30000@BSE
+106@fff@SC@25000@BSE
+
+
+
+
+
+cat a | tr "ETA" "ER"
+100:aaa:ERR:20000:ENG
+102:bbb:HR:10000:MBR
+103:ccc:PROD:30000:BE
+104:ddd:ERR:15000:MRECH
+105:eee:FC:30000:BSE
+106:fff:SC:25000:BSE
+
+
+
+
+
+
+ cat a | tr -d ":"
+100aaaETA20000ENG
+102bbbHR10000MBA
+103cccPROD30000BE
+104dddETA15000MTECH
+105eeeFC30000BSE
+106fffSC25000BSE
+
+
+
+
+
+ cat a | tr -c ":" "#"
+###:###:###:#####:#######:###:##:#####:#######:###:####:#####:######:###:###:#####:#########:###:##:#####:#######:###:##
+
+
+
+
+cat a | tr -c -s ":" "#"
+#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#:#
+
+
+
+
+
+ head -n 1 a | tr -c -s ":" "#"
+#:#:#:#:#
+
+
+head -n 1 a | tr -c ":" "#"
+###:###:###:#####:####[
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+[prashant.medapati@chnntxetarh10 demo]$ cat > f1
+aaa
+bbb
+ccc
+ddd
+^C
+[prashant.medapati@chnntxetarh10 demo]$ cat > f2
+bbb
+ccc
+ddd
+eee
+fff
+
+
+
+
+comm f1 f2 ----(to retrive common in both files and separate in separate row)
+
+[prashant.medapati@chnntxetarh10 demo]$ comm f1 f2
+aaa
+                bbb
+                ccc
+                ddd
+        eee
+        fff
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 demo]$ comm -3 f1 f2
+aaa
+        eee
+        fff
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 demo]$ comm -1 f1 f2
+        bbb
+        ccc
+        ddd
+eee
+fff
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+[prashant.medapati@chnntxetarh10 demo]$ diff f1 f2              ---(it shows difference between file 1 and file 2---- d means delete and a means append)
+1d0
+< aaa
+4a4,5
+> eee
+> fff
+
+
+
+[prashant.medapati@chnntxetarh10 demo]$ diff -c f1 f2
+*** f1  2024-12-16 12:14:57.866902046 +0530
+--- f2  2024-12-16 12:15:11.498902046 +0530
+***************
+*** 1,4 ****
+- aaa
+  bbb
+  ccc
+  ddd
+--- 1,5 ----
+  bbb
+  ccc
+  ddd
++ eee
++ fff
+
+
+
+
+[prashant.medapati@chnntxetarh10 demo]$ diff -u f1 f2
+--- f1  2024-12-16 12:14:57.866902046 +0530
++++ f2  2024-12-16 12:15:11.498902046 +0530
+@@ -1,4 +1,5 @@
+-aaa
+ bbb
+ ccc
+ ddd
++eee
++fff
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+[prashant.medapati@chnntxetarh10 demo]$ echo fddd2 | rev-            ----------(reversing of the given string)
+2dddf
+[prashant.medapati@chnntxetarh10 demo]$ echo "infosys" | rev
+sysofni
+
+
+[prashant.medapati@chnntxetarh10 ~]$ echo "Infosys" | tr '"' "'"
+Infosys
+[prashant.medapati@chnntxetarh10 ~]$ echo "AbGGJjdshHjuHhdj" | tr "[a-z]" "[A-Z]"
+ABGGJJDSHHJUHHDJ
+[prashant.medapati@chnntxetarh10 ~]$ echo "AbGGJjdshHjuHhdj" | tr "[a-z]" "[a-z]"
+AbGGJjdshHjuHhdj
+[prashant.medapati@chnntxetarh10 ~]$ echo "AbGGJjdshHjuHhdj" | tr "[A-Z]" "[a-z]"
+abggjjdshhjuhhdj
+[prashant.medapati@chnntxetarh10 ~]$ echo "((((abc+def))))" | tr -s "()"
+(abc+def)
+[prashant.medapati@chnntxetarh10 ~]$ echo "((((abc+def))))" | tr -s "("
+(abc+def))))
+[prashant.medapati@chnntxetarh10 ~]$ echo "((((abaaaaaaaaac+daaaaaaaaaaaaef))))" | tr -s "a"
+((((abac+daef))))
+[prashant.medapati@chnntxetarh10 ~]$ echo "aa:bb:cc:dd:ee:ff" | tr -d ":"
+aabbccddeeff
+[prashant.medapati@chnntxetarh10 ~]$ echo "aa_bb#cc dd#ee" | tr -cd "_#"
+_##[prashant.medapati@chnntxetarh10 ~]$ echo "aa_bb#cc dd#ee" | tr -cd "_#c"
+_#cc#[prashant.medapati@chnntxetarh10 ~]$ echo "10#sam#hr#25" | tr "#" "\t"
+10      sam     hr      25
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+[prashant.medapati@chnntxetarh10 demo]$ cat a
+100:aaa:ETA:20000:ENG
+102:bbb:HR:10000:MBA
+103:ccc:PROD:30000:BE
+104:ddd:ETA:15000:MTECH
+105:eee:FC:30000:BSE
+106:fff:SC:25000:BSE
+
+[prashant.medapati@chnntxetarh10 demo]$ sort -r a
+106:fff:SC:25000:BSE
+105:eee:FC:30000:BSE
+104:ddd:ETA:15000:MTECH
+103:ccc:PROD:30000:BE
+102:bbb:HR:10000:MBA
+100:aaa:ETA:20000:ENG
+
+[prashant.medapati@chnntxetarh10 demo]$ sort -r a | head -n 2
+106:fff:SC:25000:BSE
+105:eee:FC:30000:BSE
+
+[prashant.medapati@chnntxetarh10 demo]$ sort -r a | head -n 2 | tail -n 1
+105:eee:FC:30000:BSE
+
+[prashant.medapati@chnntxetarh10 demo]$ sort -r a | head -n 2 | tail -n 1 | cut -d ":" -f 2
+eee
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "esdyfchsdhciushdjfcuiehdvscx" | grep "s*"   ---(occurrence of given character in whole string)
+o/p:
+esdyfchsdhciushdjfcuiehdvscx
+
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "esdyfchsdhciushdjfcuiehdvscx" | grep ".s"    ---(one character occurrence before given character)
+o/p:
+esdyfchsdhciushdjfcuiehdvscx
+
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "esdyfchsdhciushdjfcuiehdvscx" | grep "[fci]"  ---(occurrence of characters given will be shown)
+o/p:
+esdyfchsdhciushdjfcuiehdvscx
+
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "esdyfchsdhciushdjfcuiehdvscx" | grep "[a-g]"   ----(range of characters)
+o/p:
+esdyfchsdhciushdjfcuiehdvscx
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "esdyfchsdhciushdjfcuiehdvscx" | grep "[^a-g]"  ---(except given range)
+o/p:
+esdyfchsdhciushdjfcuiehdvscx
+
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "abcdef2024" | grep "[d4$]"    ---(given two characters will be visible no matter how many inbetween)
+abcdef2024
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "aaaaabcdddddddef2024" | grep "d\{2\}"  --(minimum number of occurrence of given character)
+o/p:
+aaaaabcdddddddef2024
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "aaaaabcdddddddef2024" | grep -E a+
+aaaaabcdddddddef2024
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "aaaaabcdddddddef2024" | grep -E d+
+aaaaabcdddddddef2024
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "aaaaabcdddddddef2024" | grep -E a?
+aaaaabcdddddddef2024
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "this is unix" | grep -E "unix|python"
+this is unix
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 demo]$ echo "prashant medapati 2024" | grep -P "\d"    --(numbers)
+prashant medapati 2024
+[prashant.medapati@chnntxetarh10 demo]$ echo "prashant medapati 2024" | grep -P "\D"     --(apart from numbers)
+prashant medapati 2024
+[prashant.medapati@chnntxetarh10 demo]$ echo "prashant medapati 2024" | grep -P "\W"     ----(only letters and numbers)
+prashant medapati 2024
+[prashant.medapati@chnntxetarh10 demo]$ echo "prashant medapati 2024" | grep -P "\s"    ----(no letters and numbers)
+prashant medapati 2024
+[prashant.medapati@chnntxetarh10 demo]$ echo "prashant medapati 2024" | grep -P "\S"      ---(letters and numbers)
+prashant medapati 2024
+[prashant.medapati@chnntxetarh10 demo]$ echo "prashant medapati 2024" | grep -oP "\S"     -----(everything in next line)
+p
+r
+a
+s
+h
+a
+n
+t
+m
+e
+d
+a
+p
+a
+t
+i
+2
+0
+2
+4
+
+
+
+
+
+
+
+
+
+[prashant.medapati@chnntxetarh10 demo]$ grep -i eta a    ---(where eta)
+100:aaa:ETA:20000:ENG
+104:ddd:ETA:15000:MTECH
+[prashant.medapati@chnntxetarh10 demo]$ grep -in eta a   ----(same with snos)
+1:100:aaa:ETA:20000:ENG
+4:104:ddd:ETA:15000:MTECH
+[prashant.medapati@chnntxetarh10 demo]$ grep -inc eta a   ----(no of times eta came)
+2
+
+
+[prashant.medapati@chnntxetarh10 demo]$ grep -e ETA -e HR a    ----(-e for searching multiple occurence)
+100:aaa:ETA:20000:ENG
+102:bbb:HR:10000:MBA
+104:ddd:ETA:15000:MTECH
+
+[prashant.medapati@chnntxetarh10 demo]$ grep -A 2 HR a   ---(2 lines after matching)
+102:bbb:HR:10000:MBA
+103:ccc:PROD:30000:BE
+104:ddd:ETA:15000:MTECH
+[prashant.medapati@chnntxetarh10 demo]$ grep -B 2 HR a   ---(2 lines before matching)
+100:aaa:ETA:20000:ENG
+102:bbb:HR:10000:MBA
+[prashant.medapati@chnntxetarh10 demo]$ grep -C 2 HR a     ----(match line and its before and after line comes)
+100:aaa:ETA:20000:ENG
+102:bbb:HR:10000:MBA
+103:ccc:PROD:30000:BE
+104:ddd:ETA:15000:MTECH
+
